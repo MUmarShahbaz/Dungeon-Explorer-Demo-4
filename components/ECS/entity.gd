@@ -79,14 +79,10 @@ func hurt(amount: float) -> void:
 func die():
 	set_process(false)
 	set_physics_process(false)
+	(get_children().filter(func (x): return x is Controller)[0] as Controller).queue_free()
 	velocity.x = 0
 	name = str(randi())
 	Collider.set_deferred("disabled", true)
-	get_tree().create_timer(5).timeout.connect(
-		func (): 
-			entity_died.emit()
-			queue_free()
-	)
 	await force_anim("die")
 	entity_died.emit()
 	queue_free()

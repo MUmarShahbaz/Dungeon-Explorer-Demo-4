@@ -35,5 +35,5 @@ func get_avg_damage():
 		sum_damages += this_attack.Damage
 	return int(sum_damages / Move_List.size())
 
-func attack(attack_info : AttackInfo):
+func attack(_attack_info : AttackInfo):
 	pass

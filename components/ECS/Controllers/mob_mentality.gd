@@ -1,4 +1,4 @@
-extends Node
+extends Controller
 class_name MobMentallity
 
 @onready var myself : Enemy = get_parent()

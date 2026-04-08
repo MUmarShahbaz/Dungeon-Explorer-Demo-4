@@ -44,7 +44,7 @@ script/source = "extends CanvasLayer
 func _ready() -> void:
 	$Menu/Main/Play.grab_focus()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"interact\") or Input.is_action_just_pressed(\"ui_cancel\"): _on_back_pressed()
 	if Input.is_joy_known(0):
 		Gamepad.show()
@@ -1203,7 +1203,7 @@ theme_override_constants/v_separation = 6
 alignment = 1
 
 [node name="PC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1954927675]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
@@ -1235,7 +1235,7 @@ layout_mode = 2
 entity = ExtResource("21_ysbvi")
 
 [node name="NPC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=955335418]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
@@ -1254,7 +1254,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="ENM_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1026515187]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
@@ -1301,7 +1301,7 @@ layout_mode = 2
 entity = ExtResource("31_cuftd")
 
 [node name="BOSS_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1270662383]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2

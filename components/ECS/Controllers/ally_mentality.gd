@@ -1,4 +1,4 @@
-extends Node
-class_name AlluMentality
+extends Controller
+class_name AllyMentality
 
 @onready var myself : Ally = get_parent()

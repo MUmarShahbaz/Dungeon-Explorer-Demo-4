@@ -10,4 +10,4 @@ func _physics_process(delta: float) -> void:
 		var new_rotation = parent.get_floor_normal().angle() + deg_to_rad(90)*facing
 		if abs(new_rotation - rotation) < 90: parent.rotation = rotate_toward(rotation, new_rotation, delta*3)
 		else: parent.rotation = new_rotation
-		parent.RayBox.rotation = -rotation*facing - (PI if facing == -1 else 0)
+		parent.RayBox.rotation = -rotation*facing - (PI if facing == -1 else 0.0)
