@@ -19,7 +19,6 @@
 
 [sub_resource type="GDScript" id="GDScript_ahx3g"]
 script/source = "extends Player
-class_name Knight
 
 @export var Primary_Move_Buffer : Buffer
 @export var melee_controller : MeleeController
@@ -1216,18 +1215,18 @@ size = Vector2(5, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4a0eb"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
 shield = NodePath("Sheild")
 ITM_Healing_Potions = 0
-MV_Collider = NodePath("collider")
+CI_Avatar = SubResource("AtlasTexture_4a0eb")
+CI_Title = "Knight"
+Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
-CI_Avatar = SubResource("AtlasTexture_4a0eb")
-CI_Title = "Knight"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1841807516]
 sprite_frames = SubResource("SpriteFrames_8lcca")

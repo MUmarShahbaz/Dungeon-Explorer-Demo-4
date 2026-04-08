@@ -31,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 	var bodies = get_colliding_bodies()
 	if bodies.size() > 0:
 		if bodies[0] is Entity:
-			(bodies[0] as Entity).take_damage(damage)
+			(bodies[0] as Entity).hurt(damage)
 			(bodies[0] as Entity).velocity.x += 10*direction
 		queue_free()
 

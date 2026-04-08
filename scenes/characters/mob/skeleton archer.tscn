@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://pef12h1natq2" path="res://assets/sprites/mobs/skeleton archer/Hurt.png" id="4_7cuvh"]
 [ext_resource type="Texture2D" uid="uid://c2ik7b3kf52km" path="res://assets/sprites/mobs/skeleton archer/Walk.png" id="5_bagv5"]
 [ext_resource type="Texture2D" uid="uid://dq6d6myh0k3gx" path="res://assets/sprites/mobs/skeleton archer/Shot_1.png" id="6_5x53q"]
+[ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="7_yncxf"]
 [ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/AC/damager/projectile/ProjectileAttack.gd" id="8_osokx"]
 [ext_resource type="PackedScene" uid="uid://da1rk8kecexds" path="res://scenes/projectile_scenes/arrow.tscn" id="9_7cuvh"]
 [ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/damager/projectile/projectile_launcher.gd" id="10_bagv5"]
@@ -12,9 +13,11 @@
 [sub_resource type="GDScript" id="GDScript_kdj4h"]
 script/source = "extends Enemy
 
-func pounce(player):
-	super.pounce(player)
-	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
+@export var projectile_launcher : ProjectileLauncher
+
+func primary():
+	if not projectile_launcher.is_cooldown:
+		ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdj4h"]
@@ -655,28 +658,28 @@ graph_offset = Vector2(0, 13.2303)
 
 [sub_resource type="Resource" id="Resource_k7qhe"]
 script = ExtResource("8_osokx")
-Animation_Name = "shoot"
-Animation_Frame = 11
 Launch_Frame = 12
 Projectile_Scene = ExtResource("9_7cuvh")
 Spawn_Offset = Vector2(25, -22)
 Force = 600
+Animation_Name = "shoot"
+Animation_Frame = 11
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="Skeleton Archer" type="CharacterBody2D" unique_id=610114944 node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Archer" type="CharacterBody2D" unique_id=610114944 node_paths=PackedStringArray("projectile_launcher", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_kdj4h")
+projectile_launcher = NodePath("ProjectileLauncher")
 VIS_Range = 400.0
 VIS_Attack_Range = 350.0
-HP_Health_Points = 5.0
-HP_Regeneration_Rate = 0.0
-MV_Collider = NodePath("collider")
-MV_Run_Speed = 230.0
-ANM_Animated_Sprite = NodePath("sprite")
-ANM_Animation_Player = NodePath("anim_player")
-ANM_Animation_Tree = NodePath("anim_tree")
+Health_Points = 5.0
 CI_Avatar = SubResource("AtlasTexture_kdj4h")
 CI_Title = "Skeleton Archer"
 CI_Type = 1
+MV_Run_Speed = 230.0
+Collider = NodePath("collider")
+ANM_Animated_Sprite = NodePath("sprite")
+ANM_Animation_Player = NodePath("anim_player")
+ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=77565841]
 sprite_frames = SubResource("SpriteFrames_kbpb8")
@@ -695,5 +698,5 @@ anim_player = NodePath("../anim_player")
 
 [node name="ProjectileLauncher" type="Node" parent="." unique_id=1379396027]
 script = ExtResource("10_bagv5")
-Move_List = Array[ExtResource("8_osokx")]([SubResource("Resource_k7qhe")])
+Move_List = Array[ExtResource("7_yncxf")]([SubResource("Resource_k7qhe")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"

@@ -45,6 +45,7 @@ func _ready() -> void:
 	$Menu/Main/Play.grab_focus()
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"interact\") or Input.is_action_just_pressed(\"ui_cancel\"): _on_back_pressed()
 	if Input.is_joy_known(0):
 		Gamepad.show()
 		Keyboard.hide()
@@ -488,6 +489,16 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd4ok"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjhlv"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 
 [node name="Home" type="CanvasLayer" unique_id=1546458026]
 script = SubResource("GDScript_tt30a")
@@ -1192,13 +1203,16 @@ theme_override_constants/v_separation = 6
 alignment = 1
 
 [node name="PC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1954927675]
-custom_minimum_size = Vector2(1000, 200)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme = ExtResource("17_cd4ok")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 90
-text = "  Playable Characters"
+theme_override_styles/normal = SubResource("StyleBoxFlat_cd4ok")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wjhlv")
+text = "Playable Character"
 vertical_alignment = 2
 
 [node name="PC" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1153993437]
@@ -1221,13 +1235,16 @@ layout_mode = 2
 entity = ExtResource("21_ysbvi")
 
 [node name="NPC_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=955335418]
-custom_minimum_size = Vector2(1000, 200)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme = ExtResource("17_cd4ok")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 90
-text = "  Non-Playable Characters"
+theme_override_styles/normal = SubResource("StyleBoxFlat_cd4ok")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wjhlv")
+text = "Non-Playable Character"
 vertical_alignment = 2
 
 [node name="NPC" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=511727171]
@@ -1237,13 +1254,16 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="ENM_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1026515187]
-custom_minimum_size = Vector2(1000, 200)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme = ExtResource("17_cd4ok")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 90
-text = "  Enemies"
+theme_override_styles/normal = SubResource("StyleBoxFlat_cd4ok")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wjhlv")
+text = "Enemy"
 vertical_alignment = 2
 
 [node name="ENM" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=110497770]
@@ -1281,13 +1301,16 @@ layout_mode = 2
 entity = ExtResource("31_cuftd")
 
 [node name="BOSS_LABEL" type="Label" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=1270662383]
-custom_minimum_size = Vector2(1000, 200)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme = ExtResource("17_cd4ok")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 90
-text = "  Boss"
+theme_override_styles/normal = SubResource("StyleBoxFlat_cd4ok")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wjhlv")
+text = "Boss"
 vertical_alignment = 2
 
 [node name="BOSS" type="HFlowContainer" parent="Menu/Entity Stats/ScrollContainer/HFlowContainer" unique_id=976545815]

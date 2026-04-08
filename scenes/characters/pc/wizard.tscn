@@ -16,7 +16,6 @@
 
 [sub_resource type="GDScript" id="GDScript_egk8w"]
 script/source = "extends Player
-class_name Wizard
 
 func SP_Handler(delta):
 	if SP_Special_Points > 0:
@@ -1139,15 +1138,15 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_egk8w")
-MV_Collider = NodePath("collider")
-ANM_Animated_Sprite = NodePath("sprite")
-ANM_Animation_Player = NodePath("anim_player")
-ANM_Animation_Tree = NodePath("anim_tree")
 CI_Avatar = SubResource("AtlasTexture_s7oct")
 CI_Title = "Wizard"
 CI_Type = 1
+Collider = NodePath("collider")
+ANM_Animated_Sprite = NodePath("sprite")
+ANM_Animation_Player = NodePath("anim_player")
+ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
 sprite_frames = SubResource("SpriteFrames_8lcca")

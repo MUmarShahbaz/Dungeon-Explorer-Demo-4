@@ -11,21 +11,18 @@ func _ready() -> void:
 	set_collision_mask_value(3, parent is Player)
 	ray.enabled = false
 	ray.set_collision_mask_value(5, true)
-	parent.add_child.call_deferred(ray)
+	await parent.ready
+	parent.RayBox.add_child.call_deferred(ray)
 
 func damage_all(amount):
 	ray.enabled = true
 	for body in get_overlapping_bodies():
 		if body is not Entity or obstruction_check(body): continue
-		body.take_damage(amount)
+		body.hurt(amount)
 	ray.enabled = false
 
 func obstruction_check(target : Entity) -> bool:
 	ray.target_position = target.global_position - self.global_position
-	ray.target_position.x *= parent.facing
 	ray.force_raycast_update()
 	if ray.is_colliding() : return true
 	else : return false
-
-func flip():
-	scale.x *= -1

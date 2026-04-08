@@ -23,10 +23,10 @@ func entity_z_index(entity : Entity):
 			if global_bounds[2] < -4.5: entity.z_index = 0
 			elif global_bounds[3] < 118:
 				entity.z_index = -2
-				entity.get_children().filter(func (x): return x is LightOccluder2D)[0].hide()
+				if entity is Ally: entity.get_children().filter(func (x): return x is LightOccluder2D)[0].hide()
 			else:
 				entity.z_index = 0
-				entity.get_children().filter(func (x): return x is LightOccluder2D)[0].show()
+				if entity is Ally: entity.get_children().filter(func (x): return x is LightOccluder2D)[0].show()
 		else:
 			entity.z_index = 0
 "

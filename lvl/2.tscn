@@ -15,11 +15,7 @@ func prepare_map():
 	$\"Castle Outdoors/Borders/Blockage\".queue_free()
 
 func _physics_process(_delta: float) -> void:
-	var entities = get_tree().get_nodes_in_group(\"players\")
-	var npcs = get_tree().get_nodes_in_group(\"npcs\")
-	var enemies = get_tree().get_nodes_in_group(\"enemies\")
-	if npcs.size() > 0: entities.append(npcs)
-	if enemies.size() > 0: entities.append(enemies)
+	var entities = get_tree().get_nodes_in_group(\"entities\")
 	for this_entity in entities:
 		$\"Castle Outdoors\".entity_z_index(this_entity)
 "

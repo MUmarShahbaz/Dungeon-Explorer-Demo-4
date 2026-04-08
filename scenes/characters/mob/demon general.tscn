@@ -18,10 +18,9 @@ script/source = "extends Enemy
 @export var melee_controller : MeleeController
 
 func _process(_delta: float) -> void:
-	ANM_Animation_Tree.set(\"parameters/conditions/attack\", attack_buffer.buffer)
+	ANM_Animation_Tree.set(\"parameters/conditions/attack\", attack_buffer.buffer and not melee_controller.is_cooldown)
 
-func pounce(player):
-	super.pounce(player)
+func primary():
 	attack_buffer.start()
 "
 
@@ -644,23 +643,21 @@ Animation_Frame = 3
 Damage = 30.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Demon General" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Demon General" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 VIS_Range = 200.0
 VIS_Attack_Range = 40.0
-HP_Health_Points = 200.0
-HP_Regeneration_Rate = 0.0
-MV_Collider = NodePath("collider")
-MV_Run_Speed = 230.0
-ANM_Animated_Sprite = NodePath("sprite")
-ANM_Animation_Player = NodePath("anim_player")
-ANM_Animation_Tree = NodePath("anim_tree")
+Health_Points = 200.0
 CI_Avatar = SubResource("AtlasTexture_yn02r")
 CI_Title = "Demon General"
 CI_Type = 2
-metadata/_custom_type_script = "uid://dyi8w7p8cl28t"
+MV_Run_Speed = 230.0
+Collider = NodePath("collider")
+ANM_Animated_Sprite = NodePath("sprite")
+ANM_Animation_Player = NodePath("anim_player")
+ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
 scale = Vector2(3, 3)

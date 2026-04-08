@@ -21,7 +21,6 @@
 
 [sub_resource type="GDScript" id="GDScript_ahx3g"]
 script/source = "extends Player
-class_name Samurai
 
 @export var Primary_Move_Buffer : Buffer
 @export var melee_controller : MeleeController
@@ -1389,19 +1388,18 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcwo"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "MV_Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
 ITM_Healing_Potions = 0
-HP_Health_Points = 150.0
 HP_Regeneration_Rate = 2.0
-MV_Collider = NodePath("collider")
+CI_Avatar = SubResource("AtlasTexture_f7nts")
+CI_Title = "Samurai"
+Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
-CI_Avatar = SubResource("AtlasTexture_f7nts")
-CI_Title = "Samurai"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=722151253]
 position = Vector2(0, -1)

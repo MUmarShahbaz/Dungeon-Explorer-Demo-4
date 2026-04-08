@@ -13,7 +13,7 @@ func _physics_process(_delta: float) -> void:
 	if bodies.size() > 0:
 		for body in blast_radius.get_overlapping_bodies():
 			if body is Entity:
-				(body as Entity).take_damage(damage)
+				(body as Entity).hurt(damage)
 				(body as Entity).velocity.x += 10*direction
 		queue_free()
 

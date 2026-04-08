@@ -16,6 +16,3 @@ func activate():
 
 func deactivate():
 	collider.disabled = true
-
-func flip():
-	scale.x *= -1

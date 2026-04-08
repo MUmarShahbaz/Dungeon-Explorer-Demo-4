@@ -1,0 +1,163 @@
+@abstract
+extends CharacterBody2D
+class_name Entity
+
+#region Stats
+@export_category("Stats")
+@export var Health_Points : float = 100
+
+@export_group("Character Info", "CI")
+enum character_type {Melee, Projectile, Boss}
+@export var CI_Avatar : Texture2D
+@export var CI_Title : String
+@export var CI_Type : character_type
+
+@export_group("Movement", "MV")
+@export var MV_Speed : float = 100
+@export var MV_Run_Speed : float = 300
+@export var MV_Jump : float = -300
+#endregion
+
+#region Meta
+@export_category("Meta")
+@export var Collider : CollisionShape2D
+
+@export_group("Animation", "ANM")
+@export var ANM_Animated_Sprite : AnimatedSprite2D
+@export var ANM_Animation_Player : AnimationPlayer
+@export var ANM_Animation_Tree : AnimationTree
+
+@export_group("Sound Effects", "SFX")
+@export var SFX_Walk : AudioStreamPlayer2D
+@export var SFX_Run : AudioStreamPlayer2D
+@export var SFX_Jump : AudioStreamPlayer2D
+@export var SFX_Hurt : AudioStreamPlayer2D
+@export var SFX_Die : AudioStreamPlayer2D
+@export var SFX_Heal : AudioStreamPlayer2D
+
+@export_group("Dialogue Images", "DIA")
+@export var DIA_Aggression : Texture2D
+@export var DIA_Calm : Texture2D
+@export var DIA_Sadness : Texture2D
+@export var DIA_Smile : Texture2D
+@export var DIA_Special : Texture2D
+@export var DIA_Talk : Texture2D
+#endregion
+
+#region Core
+@onready var HP_Current = Health_Points
+@onready var RayBox := Node2D.new()
+var facing : int = 1
+signal entity_died
+
+func _ready() -> void:
+	add_to_group("entities")
+	add_child.call_deferred(RayBox)
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor(): velocity += get_gravity() * delta
+	if velocity.x != 0: velocity.x = move_toward(velocity.x, 0, delta*10)
+	move_and_slide()
+
+func flip() -> void:
+	facing *= -1
+	scale.x *= -1
+	RayBox.scale.x = facing
+#endregion
+
+#region HP
+func kill():
+	hurt(HP_Current)
+
+func hurt(amount: float) -> void:
+	if HP_Current <= 0: return
+	HP_Current -= amount
+	velocity.x = 0
+	if HP_Current <= 0: die()
+	else:  start_anim("hurt")
+
+func die():
+	set_process(false)
+	set_physics_process(false)
+	velocity.x = 0
+	name = str(randi())
+	Collider.set_deferred("disabled", true)
+	get_tree().create_timer(5).timeout.connect(
+		func (): 
+			entity_died.emit()
+			queue_free()
+	)
+	await force_anim("die")
+	entity_died.emit()
+	queue_free()
+#endregion
+
+#region ANM
+func check_anim(animation : String) -> bool:
+	return ANM_Animated_Sprite.animation == animation
+
+func check_frame(animation : String, frame : int) -> bool:
+	return ANM_Animated_Sprite.animation == animation and ANM_Animated_Sprite.frame == frame
+
+func await_frame(animation: String, frame : int) -> void:
+	while !check_frame(animation, frame):
+		await get_tree().process_frame
+	return
+
+func start_anim(animation : String):
+	ANM_Animation_Tree.get("parameters/playback").start(animation)
+
+func force_anim(animation : String):
+	while not check_frame(animation, ANM_Animated_Sprite.sprite_frames.get_frame_count(animation) - 1):
+		if not check_anim(animation): start_anim(animation)
+		await get_tree().process_frame
+	return
+#endregion
+
+func get_card_data() -> Dictionary:
+	var damagers = get_children().filter(func (x): return x is Damager)
+	var sum_damages : int = 0
+	for this_damager : Damager in damagers:
+		sum_damages += this_damager.get_avg_damage()
+	var avg_dmg = int(sum_damages / damagers.size())
+	var my_rng = INF
+	return {
+		"avatar": CI_Avatar,
+		"title": CI_Title,
+		"type": character_type.keys()[CI_Type],
+		"hp": int(Health_Points),
+		"dmg": avg_dmg,
+		"spd": int(MV_Run_Speed / 10),
+		"rng": my_rng,
+	}
+
+#region ACT
+var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
+var force_pause : bool = false
+func pause_movement():
+	if force_pause: return true
+	for anim in pause_on_anims: if check_anim(anim) : return true
+	return false
+
+func move(x_dir : float, run : bool = false):
+	if pause_movement():
+		velocity.x = 0
+		return
+	var delta = get_physics_process_delta_time()
+	if x_dir != 0:
+		if run:
+			velocity.x = x_dir * MV_Run_Speed * delta * 60
+			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("run")
+		else:
+			velocity.x = x_dir * MV_Speed * delta * 50
+			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("walk")
+	else: velocity.x = 0
+	if x_dir * facing < 0 : flip()
+
+func jump():
+	if pause_movement() or not is_on_floor(): return
+	velocity.y += MV_Jump
+	ANM_Animation_Tree.get("parameters/playback").travel("jump")
+
+func primary(): pass
+#endregion
