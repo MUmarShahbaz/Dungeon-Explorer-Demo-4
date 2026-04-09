@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_1ue2v"]
 
 [sub_resource type="GDScript" id="GDScript_x4ujb"]
-script/source = "extends Enemy
+script/source = "extends Boss
 
 @export var attack_buffer : Buffer
 @export var melee_controller : MeleeController
@@ -733,7 +733,7 @@ attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 VIS_Range = 5000.0
 VIS_Attack_Range = 160.0
-Health_Points = 200.0
+Health_Points = 500.0
 CI_Avatar = SubResource("AtlasTexture_yn02r")
 CI_Title = "Demon General"
 CI_Type = 2

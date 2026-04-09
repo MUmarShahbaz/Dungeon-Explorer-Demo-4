@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://brm1y5fo4w5t3" path="res://components/MISC/quadruped.gd" id="14_6bhf1"]
 
 [sub_resource type="GDScript" id="GDScript_x4ujb"]
-script/source = "extends Enemy
+script/source = "extends Boss
 
 @export var attack_buffer : Buffer
 @export var melee_controller : MeleeController

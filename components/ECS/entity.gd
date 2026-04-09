@@ -71,10 +71,11 @@ func kill():
 
 func hurt(amount: float) -> void:
 	if HP_Current <= 0: return
-	HP_Current -= amount
+	if randf() <= 0.2: HP_Current -= amount*1.2
+	else: HP_Current -= amount
 	velocity.x = 0
 	if HP_Current <= 0: die()
-	else:  start_anim("hurt")
+	else: start_anim("hurt", true)
 
 func die():
 	set_process(false)
@@ -100,12 +101,13 @@ func await_frame(animation: String, frame : int) -> void:
 		await get_tree().process_frame
 	return
 
-func start_anim(animation : String):
-	ANM_Animation_Tree.get("parameters/playback").start(animation)
+func start_anim(animation : String, force : bool = false):
+	if force: ANM_Animation_Tree.get("parameters/playback").start(animation)
+	else: ANM_Animation_Tree.get("parameters/playback").travel(animation)
 
 func force_anim(animation : String):
 	while not check_frame(animation, ANM_Animated_Sprite.sprite_frames.get_frame_count(animation) - 1):
-		if not check_anim(animation): start_anim(animation)
+		if not check_anim(animation): start_anim(animation, true)
 		await get_tree().process_frame
 	return
 #endregion
@@ -143,17 +145,17 @@ func move(x_dir : float, run : bool = false):
 	if x_dir != 0:
 		if run:
 			velocity.x = x_dir * MV_Run_Speed * delta * 60
-			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("run")
+			if is_on_floor(): start_anim("run")
 		else:
 			velocity.x = x_dir * MV_Speed * delta * 50
-			if is_on_floor(): ANM_Animation_Tree.get("parameters/playback").travel("walk")
+			if is_on_floor(): start_anim("walk")
 	else: velocity.x = 0
 	if x_dir * facing < 0 : flip()
 
 func jump():
 	if pause_movement() or not is_on_floor(): return
 	velocity.y += MV_Jump
-	ANM_Animation_Tree.get("parameters/playback").travel("jump")
+	start_anim("jump")
 
 func primary(): pass
 #endregion

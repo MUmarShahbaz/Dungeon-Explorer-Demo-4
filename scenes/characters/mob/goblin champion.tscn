@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_5wscf"]
 
 [sub_resource type="GDScript" id="GDScript_x4ujb"]
-script/source = "extends Enemy
+script/source = "extends Boss
 
 @export var attack_buffer : Buffer
 @export var melee_controller : MeleeController
