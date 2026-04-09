@@ -44,21 +44,9 @@ region = Rect2(128, 0, 128, 128)
 atlas = ExtResource("2_olx4a")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5wscf"]
-atlas = ExtResource("2_olx4a")
-region = Rect2(384, 0, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkg46"]
 atlas = ExtResource("2_olx4a")
 region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcptq"]
-atlas = ExtResource("3_jcbsb")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0regl"]
-atlas = ExtResource("3_jcbsb")
-region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtwad"]
 atlas = ExtResource("3_jcbsb")
@@ -217,9 +205,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_x0x4u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5wscf")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_vkg46")
 }],
 "loop": false,
@@ -227,12 +212,6 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcptq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0regl")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rtwad")
 }, {
@@ -406,10 +385,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(3, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_i1l8o"]
 resource_name = "attack_1"
-length = 0.50001
+length = 0.40001002
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -430,15 +421,27 @@ tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(6, -36), Vector2(2, -36), Vector2(6, -36), Vector2(5, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_h5rmb"]
 resource_name = "attack_2"
-length = 0.60001004
+length = 0.40001002
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -459,10 +462,22 @@ tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(8, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_cunfx"]
@@ -493,6 +508,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(5, -36), Vector2(1, -36), Vector2(5, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_5vnuj"]
 resource_name = "dead"
@@ -522,6 +549,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(10, -36), Vector2(11, -36), Vector2(21, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_cibta"]
 resource_name = "hurt"
@@ -550,6 +589,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(9, -36), Vector2(5, -36), Vector2(9, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_yf1h3"]
@@ -581,6 +632,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(3, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_x4ujb"]
 resource_name = "run"
@@ -611,6 +674,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(3, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_veckx"]
 resource_name = "walk"
@@ -640,6 +715,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-5, -36)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_veckx"]
@@ -793,7 +880,7 @@ ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
 sprite_frames = SubResource("SpriteFrames_g21a4")
-offset = Vector2(0, -36)
+offset = Vector2(3, -36)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1178652562]
 shape = SubResource("CapsuleShape2D_yn02r")
