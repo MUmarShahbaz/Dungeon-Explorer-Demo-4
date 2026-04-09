@@ -859,7 +859,7 @@ states/run/position = Vector2(481.778, -64.2018)
 states/walk/node = SubResource("AnimationNodeAnimation_xvblh")
 states/walk/position = Vector2(348, 3.79818)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xvblh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_pma8q"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_y1brm"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t2new"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_ffo2t"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_kbpb8"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_uuvfu"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_6wvc4"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_2vbbf"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_cu0da"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_nsq1e"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_gqno1"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_lmxp8"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_2xjtu"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_jdx8s")]
-graph_offset = Vector2(93.43411, 21.540798)
+graph_offset = Vector2(93.43411, -0.39230618)
 
 [sub_resource type="Resource" id="Resource_ffo2t"]
 script = ExtResource("10_sesl5")

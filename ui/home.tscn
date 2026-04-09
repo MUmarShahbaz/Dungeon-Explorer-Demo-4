@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="25_4dycw"]
 [ext_resource type="PackedScene" uid="uid://be3xdfq2ly1iy" path="res://scenes/characters/mob/goblin champion.tscn" id="26_0cdnv"]
 [ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="27_l7puc"]
-[ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/cereberus.tscn" id="28_rydd6"]
+[ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/cerberus.tscn" id="28_rydd6"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="29_pcguc"]
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="30_l5wgd"]
 [ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="31_cuftd"]

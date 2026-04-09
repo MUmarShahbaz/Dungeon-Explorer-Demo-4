@@ -379,7 +379,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn02r"]
 radius = 28.0
-height = 72.0
+height = 86.0
 
 [sub_resource type="Animation" id="Animation_ym1ol"]
 length = 0.001
@@ -406,6 +406,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_i1l8o"]
@@ -436,6 +448,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_h5rmb"]
 resource_name = "attack_2"
@@ -464,6 +488,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_cunfx"]
@@ -494,6 +530,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_5vnuj"]
 resource_name = "dead"
@@ -522,6 +570,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_cibta"]
@@ -552,6 +612,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -36)]
+}
 
 [sub_resource type="Animation" id="Animation_yf1h3"]
 resource_name = "idle"
@@ -581,6 +653,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_x4ujb"]
@@ -751,7 +835,7 @@ states/run/position = Vector2(481.778, -64.2018)
 states/walk/node = SubResource("AnimationNodeAnimation_xvblh")
 states/walk/position = Vector2(348, 3.79818)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xvblh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_pma8q"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_y1brm"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_t2new"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_ffo2t"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_kbpb8"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_uuvfu"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_6wvc4"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_2vbbf"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_cu0da"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_nsq1e"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_gqno1"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_lmxp8"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_2xjtu"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_jdx8s")]
-graph_offset = Vector2(93.43411, 21.540798)
+graph_offset = Vector2(93.43411, -139.302)
 
 [sub_resource type="Resource" id="Resource_ffo2t"]
 script = ExtResource("10_3wkwg")
@@ -777,14 +861,14 @@ Animation_Frame = 2
 Damage = 12.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Cereberus" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Cerberus" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 500.0
-VIS_Attack_Range = 50.0
+VIS_Range = 1000.0
+VIS_Attack_Range = 100.0
 CI_Avatar = SubResource("AtlasTexture_s2akx")
-CI_Title = "Cereberus"
+CI_Title = "Cerberus"
 CI_Type = 2
 MV_Run_Speed = 350.0
 Collider = NodePath("collider")
@@ -795,7 +879,7 @@ ANM_Animation_Tree = NodePath("anim_tree")
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g21a4")
-offset = Vector2(1, -36)
+offset = Vector2(-8, -36)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1178652562]
 rotation = 1.5707964
