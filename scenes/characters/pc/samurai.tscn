@@ -783,6 +783,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"attack_3"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(20, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_4bvir"]
 resource_name = "die"
@@ -836,6 +848,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [0.0, 1.5707964]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(1, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_ku7g3"]
 resource_name = "fall"
@@ -875,7 +899,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0, -25)]
+"values": [Vector2(0, -27)]
 }
 
 [sub_resource type="Animation" id="Animation_ox6at"]
@@ -906,6 +930,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"hurt"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_wfufo"]
 resource_name = "idle"
@@ -935,6 +971,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -32)]
 }
 
 [sub_resource type="Animation" id="Animation_gu12u"]
@@ -1349,7 +1397,7 @@ states/shoot/position = Vector2(693.2, 315.9263)
 states/walk/node = SubResource("AnimationNodeAnimation_ox6at")
 states/walk/position = Vector2(542.258, 25.38)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_mh47a"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_4bvir"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_7eb7e"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_fpawd"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_jue6h"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_dxeu0")]
-graph_offset = Vector2(0, 70.3263)
+graph_offset = Vector2(0, 102.406555)
 
 [sub_resource type="Resource" id="Resource_sdnk0"]
 script = ExtResource("13_uprf7")
@@ -1379,7 +1427,7 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 script = ExtResource("15_rlas0")
 Launch_Frame = 11
 Projectile_Scene = ExtResource("16_rlas0")
-Spawn_Offset = Vector2(35, -21)
+Spawn_Offset = Vector2(47, -20.5)
 Force = 600
 Animation_Name = "shoot"
 Animation_Frame = 10
@@ -1402,7 +1450,6 @@ ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=722151253]
-position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_8lcca")
 autoplay = "default"
 offset = Vector2(0, -32)
