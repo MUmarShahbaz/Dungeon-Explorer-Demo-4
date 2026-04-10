@@ -118,7 +118,7 @@ func get_card_data() -> Dictionary:
 	for this_damager : Damager in damagers:
 		sum_damages += this_damager.get_avg_damage()
 	var avg_dmg = int(sum_damages / damagers.size())
-	var my_rng = INF
+	var my_rng = int(self.VIS_Attack_Range / 10) if self is Enemy else INF
 	return {
 		"avatar": CI_Avatar,
 		"title": CI_Title,
