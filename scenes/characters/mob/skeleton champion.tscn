@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="13_k1mcq"]
 
 [sub_resource type="GDScript" id="GDScript_xej81"]
-script/source = "extends Enemy
+script/source = "extends Boss
 
 @export var attack_buffer : Buffer
 @export var melee_controller : MeleeController
@@ -405,6 +405,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"default"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4, -34)]
+}
 
 [sub_resource type="Animation" id="Animation_pma8q"]
 resource_name = "attack_1"
@@ -433,6 +445,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(4, -34), Vector2(5, -34)]
 }
 
 [sub_resource type="Animation" id="Animation_y1brm"]
@@ -463,6 +487,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-4, -34), Vector2(-3, -34)]
+}
 
 [sub_resource type="Animation" id="Animation_t2new"]
 resource_name = "attack_3"
@@ -491,6 +527,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-3, -34)]
 }
 
 [sub_resource type="Animation" id="Animation_ffo2t"]
@@ -521,6 +569,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-9, -34), Vector2(-10, -34)]
+}
 
 [sub_resource type="Animation" id="Animation_uuvfu"]
 resource_name = "hurt"
@@ -549,6 +609,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-8, -34)]
 }
 
 [sub_resource type="Animation" id="Animation_kbpb8"]
@@ -580,6 +652,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(4, -34)]
+}
 
 [sub_resource type="Animation" id="Animation_2vbbf"]
 resource_name = "run"
@@ -610,6 +694,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(7, -34)]
+}
 
 [sub_resource type="Animation" id="Animation_6wvc4"]
 resource_name = "walk"
@@ -639,6 +735,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(2, -34)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xvblh"]
@@ -779,8 +887,8 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 script = SubResource("GDScript_xej81")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 200.0
-VIS_Attack_Range = 50.0
+VIS_Range = 250.0
+VIS_Attack_Range = 80.0
 CI_Avatar = SubResource("AtlasTexture_xej81")
 CI_Title = "Skeleton Champion"
 CI_Type = 2
@@ -794,7 +902,7 @@ ANM_Animation_Tree = NodePath("anim_tree")
 scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_kbpb8")
 frame = 1
-offset = Vector2(0, -34)
+offset = Vector2(4, -34)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=863153628]
 scale = Vector2(1.8, 1.8)
