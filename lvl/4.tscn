@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://btbryvu3frjcr"]
 
-[ext_resource type="PackedScene" uid="uid://bmvrlagg3o3i6" path="res://ui/pause_menu.tscn" id="1_nhwvc"]
-[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="1_oek2d"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="1_onalh"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="2_e47pr"]
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="4_3283v"]
@@ -20,11 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/demon general.tscn" id="16_cce0b"]
 
 [sub_resource type="GDScript" id="GDScript_3283v"]
-script/source = "extends Node2D
+script/source = "extends Level
 
 func _ready() -> void:
-	prepare_map()
-	$Fade.fade_in()
+	super._ready()
 	$PlayerSpawner.display_player_selector()
 	$Dungeon/Doors/door1.unlock()
 	$Dungeon/Doors/door2.unlock()
@@ -140,16 +137,9 @@ size = Vector2(428, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1l7f"]
 size = Vector2(1424, 261)
 
-[node name="Enter the Dungeon" type="Node2D" unique_id=353818878]
+[node name="Enter the Dungeon" type="Node2D" unique_id=1808679160]
 script = SubResource("GDScript_3283v")
-
-[node name="Pause Menu" parent="." unique_id=1918781953 instance=ExtResource("1_nhwvc")]
-
-[node name="Fade" type="CanvasLayer" parent="." unique_id=298288358]
-layer = 2
-script = ExtResource("1_oek2d")
-duration = 2.0
-metadata/_custom_type_script = "uid://1uygfo1ei3w4"
+metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="PlayerSpawner" type="Node2D" parent="." unique_id=1699808860]
 position = Vector2(-31, 46)

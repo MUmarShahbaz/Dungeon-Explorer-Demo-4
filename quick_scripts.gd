@@ -1,5 +1,14 @@
 extends Node
 
+@onready var bg_player = AudioStreamPlayer.new()
+
+func _ready() -> void:
+	add_child.call_deferred(bg_player)
+	bg_player.stream = load("res://assets/audio/bg.mp3")
+	bg_player.autoplay = true
+	bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	bg_player.set_deferred("parameters/looping", true)
+
 func get_player():
 	var player = get_tree().get_first_node_in_group("players")
 	while player == null:

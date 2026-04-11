@@ -22,6 +22,7 @@
 script/source = "extends CanvasLayer
 
 func _ready() -> void:
+	QuickScripts.bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	await $Fade.fade_in()
 	$Menu/Main/Play.grab_focus()
 
