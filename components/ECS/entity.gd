@@ -117,7 +117,9 @@ func get_card_data() -> Dictionary:
 	var sum_damages : int = 0
 	for this_damager : Damager in damagers:
 		sum_damages += this_damager.get_avg_damage()
+	@warning_ignore("integer_division")
 	var avg_dmg = int(sum_damages / damagers.size())
+	@warning_ignore("incompatible_ternary")
 	var my_rng = int(self.VIS_Attack_Range / 10) if self is Enemy else INF
 	return {
 		"avatar": CI_Avatar,

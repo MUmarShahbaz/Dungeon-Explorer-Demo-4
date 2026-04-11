@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://btbryvu3frjcr"]
 
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="1_onalh"]
-[ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="2_e47pr"]
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="4_3283v"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="5_5tki5"]
 [ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_d3d0d"]
@@ -22,21 +21,25 @@ script/source = "extends Level
 
 func _ready() -> void:
 	super._ready()
-	$PlayerSpawner.display_player_selector()
+	QuickScripts.player_spawned.connect(_on_player_spawned)
+	QuickScripts.spawn()
 	$Dungeon/Doors/door1.unlock()
 	$Dungeon/Doors/door2.unlock()
 	$Dungeon/Doors/door3.unlock()
 	$Dungeon/Doors/door16.unlock()
-
+	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(6))
 func prepare_map():
 	$Dungeon/Torches.normal()
 	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
 	for door in $Dungeon/Doors.get_children():
-		door.door_opened.connect(func (_x): if door.exit != null: $PlayerSpawner.global_position = door.exit.global_position)
+		door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
 
-func _on_player_spawned(player: Player, death_count: int) -> void:
-	if death_count == 0:
-		QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/enter_the_dungeon.tres\")
+var death_count = -1
+
+func _on_player_spawned(player: Player) -> void:
+	player.entity_died.connect(QuickScripts.spawn)
+	death_count += 1
+	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/enter_the_dungeon.tres\")
 
 func _on_green_slimes_wave_finished() -> void:
 	$Dungeon/Doors/door4.unlock()
@@ -139,12 +142,8 @@ size = Vector2(1424, 261)
 
 [node name="Enter the Dungeon" type="Node2D" unique_id=1808679160]
 script = SubResource("GDScript_3283v")
+player_spawn_position = Vector2(-31, 46)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
-
-[node name="PlayerSpawner" type="Node2D" parent="." unique_id=1699808860]
-position = Vector2(-31, 46)
-script = ExtResource("2_e47pr")
-metadata/_custom_type_script = "uid://b666ndns0368d"
 
 [node name="Dungeon" parent="." unique_id=935988611 instance=ExtResource("1_onalh")]
 
@@ -307,7 +306,6 @@ metadata/_custom_type_script = "uid://k0njues52nl2"
 position = Vector2(9151, 821)
 shape = SubResource("RectangleShape2D_p1l7f")
 
-[connection signal="player_spawned" from="PlayerSpawner" to="." method="_on_player_spawned"]
 [connection signal="goblins_defeated" from="Mob Waves" to="Mob Waves" method="_on_goblins_defeated"]
 [connection signal="hellhounds_defeated" from="Mob Waves" to="Mob Waves" method="_on_hellhounds_defeated"]
 [connection signal="skeletons_defeated" from="Mob Waves" to="Mob Waves" method="_on_skeletons_defeated"]

@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 #region HP_SP
 @export_group("Items", "ITM")
-@export var ITM_Healing_Potions : int = 3
+@export var ITM_Healing_Potions : int = 0
 @export var ITM_Booster_Potions : int = 5
 @export_range(0, 5, 0.1) var HP_Regeneration_Rate :float = 1
 var SP_Special_Points : float = 0

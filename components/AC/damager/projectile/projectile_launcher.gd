@@ -7,6 +7,7 @@ func attack(projectile_attack : AttackInfo):
 	new_projectile.global_position = parent.global_position + Vector2(projectile_attack.Spawn_Offset.x * parent.facing, projectile_attack.Spawn_Offset.y)
 	new_projectile.direction = parent.facing
 	new_projectile.launched_by = parent
+	@warning_ignore("narrowing_conversion")
 	new_projectile.damage *= multiplier
 	get_tree().get_current_scene().add_child(new_projectile)
 	await parent.await_frame(projectile_attack.Animation_Name, projectile_attack.Launch_Frame)

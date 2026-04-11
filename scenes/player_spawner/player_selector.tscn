@@ -12,34 +12,11 @@ class_name PlayerSelector
 @export var continue_btn : Button
 
 var selected : Dictionary
-var playable : Array[StringName] = [\"KNIGHT\", \"WIZARD\", \"SAMURAI\"]
-
-var all_characters = {
-	\"KNIGHT\": {
-		\"scene\": \"res://scenes/characters/pc/knight.tscn\",
-		\"image\": \"res://assets/sprites/knight.png\"
-	},
-	\"WIZARD\": {
-		\"scene\": \"res://scenes/characters/pc/wizard.tscn\",
-		\"image\": \"res://assets/sprites/wizard.png\"
-	},
-	\"SAMURAI\": {
-		\"scene\": \"res://scenes/characters/pc/samurai.tscn\",
-		\"image\": \"res://assets/sprites/samurai.png\"
-	},
-	\"NINJA\": {},
-	\"DWARF\": {},
-	\"ELF\": {},
-	\"WITCH\": {},
-	\"GLADIATOR\": {},
-	\"AMAZON\": {},
-	\"PYROMANCER\": {}
-}
 
 func  _ready() -> void:
-	grid.columns = ceil(sqrt(playable.size()))
-	for this_character in playable:
-		add_button(this_character, load(all_characters[this_character][&\"image\"]))
+	grid.columns = ceil(sqrt(QuickScripts.playable.size()))
+	for this_character in QuickScripts.playable:
+		add_button(this_character, load(QuickScripts.all_characters[this_character][&\"image\"]))
 	continue_btn.grab_focus()
 
 func add_button(my_name: StringName, image : Texture2D):
@@ -60,7 +37,7 @@ func add_button(my_name: StringName, image : Texture2D):
 		)
 	my_button.pressed.connect(func ():
 		label.text = my_name
-		selected = all_characters[my_name]
+		selected = QuickScripts.all_characters[my_name]
 	)
 	grid.add_child.call_deferred(my_button)
 "

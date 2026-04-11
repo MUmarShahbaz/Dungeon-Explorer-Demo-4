@@ -67,7 +67,7 @@ func _on_entity_stats_pressed() -> void:
 	change_state(states.Stats)
 
 func _on_play_pressed() -> void:
-	var start_lvl = QuickScripts.get_lvl(4)
+	var start_lvl = QuickScripts.get_lvl(1)
 	await $Fade.fade_out()
 	get_tree().change_scene_to_packed(start_lvl)
 "

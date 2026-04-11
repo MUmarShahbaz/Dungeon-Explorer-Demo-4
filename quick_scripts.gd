@@ -1,5 +1,76 @@
 extends Node
 
+#region Playable Characters
+var playable : Array[StringName] = ["KNIGHT", "WIZARD", "SAMURAI"]
+var all_characters = {
+	"KNIGHT": {
+		"scene": "res://scenes/characters/pc/knight.tscn",
+		"image": "res://assets/sprites/knight.png"
+	},
+	"WIZARD": {
+		"scene": "res://scenes/characters/pc/wizard.tscn",
+		"image": "res://assets/sprites/wizard.png"
+	},
+	"SAMURAI": {
+		"scene": "res://scenes/characters/pc/samurai.tscn",
+		"image": "res://assets/sprites/samurai.png"
+	},
+	"NINJA": {},
+	"DWARF": {},
+	"ELF": {},
+	"WITCH": {},
+	"GLADIATOR": {},
+	"AMAZON": {},
+	"PYROMANCER": {}
+}
+#endregion
+
+#region Player Spawner
+var selector_file : PackedScene = preload("res://scenes/player_spawner/player_selector.tscn")
+var hud_file : PackedScene = preload("res://scenes/player_spawner/hud.tscn")
+
+signal player_spawned(player : Player)
+
+var selected : Dictionary
+var hp_potions : int = 0
+var player : Player
+var hud : CanvasLayer
+
+func new_spawn():
+	var new_selector = selector_file.instantiate()
+	(new_selector.continue_btn as Button).pressed.connect(func ():
+		if new_selector.selected:
+			selected = new_selector.selected
+			new_selector.queue_free()
+			spawn()
+	)
+	get_tree().get_current_scene().add_child.call_deferred(new_selector)
+
+func spawn():
+	var current_scene : Level = get_tree().get_current_scene()
+
+	var new_player : Player = load(selected[&"scene"]).instantiate()
+	new_player.global_position = current_scene.player_spawn_position
+	new_player.ITM_Healing_Potions = hp_potions
+	current_scene.add_child.call_deferred(new_player)
+
+	var new_hud = hud_file.instantiate()
+	new_hud.player = new_player
+	new_hud.avatar = AtlasTexture.new()
+	new_hud.avatar.atlas = load(selected[&"image"])
+	new_hud.avatar.region.position = Vector2(16, 8)
+	new_hud.avatar.region.size = Vector2(32, 32)
+	current_scene.add_child.call_deferred(new_hud)
+
+	player = new_player
+	hud = new_hud
+	while not player.is_node_ready() and not hud.is_node_ready():
+		await get_tree().physics_frame
+	player_spawned.emit(new_player)
+
+	return new_player
+#endregion
+
 @onready var bg_player = AudioStreamPlayer.new()
 
 func _ready() -> void:
@@ -9,22 +80,7 @@ func _ready() -> void:
 	bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	bg_player.set_deferred("parameters/looping", true)
 
-func get_player():
-	var player = get_tree().get_first_node_in_group("players")
-	while player == null:
-		await get_tree().physics_frame
-		player = get_tree().get_first_node_in_group("players")
-	return player
-
-func get_hud():
-	var hud = get_tree().get_first_node_in_group("hud")
-	while hud == null:
-		await get_tree().physics_frame
-		hud = get_tree().get_first_node_in_group("hud")
-	return hud
-
 func new_dialogue(dialogue = null, dialogue_resource = null):
-	var player : Player = await get_player()
 	player.disable_controls = true
 	var new_dialog_box := DialogueBox.new()
 	add_child.call_deferred(new_dialog_box)
@@ -36,9 +92,6 @@ func new_dialogue(dialogue = null, dialogue_resource = null):
 	player.disable_controls = false
 
 func clamp_camera(left : float = -INF, right : float = INF, top : float = -INF, bottom : float = INF, zoom : float = INF, hud_zoom : float = INF):
-	var player = await get_player()
-	var hud = await get_hud()
-	await get_tree().physics_frame
 	var player_cam = player.get_children().filter(func (x): return x is CAM)[0]
 	var hud_cam = hud.get_node_or_null("Control/Minimap Container/Minimap/Camera2D")
 	if left != -INF:
@@ -66,3 +119,9 @@ func get_bounds(entity: Entity):
 
 func get_lvl(num: int) -> PackedScene:
 	return load("res://lvl/%d.tscn" % num)
+
+func open_lvl(num: int):
+	var new_lvl_file = QuickScripts.get_lvl(num)
+	for this_connection in player_spawned.get_connections(): player_spawned.disconnect(this_connection.callable)
+	await get_tree().get_current_scene().fade.fade_out()
+	get_tree().change_scene_to_packed(new_lvl_file)

@@ -7,10 +7,8 @@
 [sub_resource type="GDScript" id="GDScript_yhcpw"]
 script/source = "extends Node2D
 
-@export var player_spawner : PlayerSpawner
-
 func _ready() -> void:
-	player_spawner.player_spawned.connect(func (_x,_y): QuickScripts.clamp_camera(-1036.5, 3110, -190, 300, INF, 0.5))
+	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(-1300, 3110, -190, 300, INF, 0.5))
 
 func entity_z_index(entity : Entity):
 	var global_bounds = QuickScripts.get_bounds(entity).slice(4, 8)

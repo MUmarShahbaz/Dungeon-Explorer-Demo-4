@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b0pyjjawvp820"]
+
+[ext_resource type="PackedScene" uid="uid://myukpp1ey4ou" path="res://maps/castle_indoors.tscn" id="2_367xe"]
+
+[sub_resource type="GDScript" id="GDScript_u1uom"]
+script/source = "extends Level
+
+var talked_to_queen : bool = false
+
+func _ready() -> void:
+	super._ready()
+	QuickScripts.new_spawn()
+
+func _on_next_level_body_entered(body: Node2D) -> void:
+	if body is Player: QuickScripts.open_lvl(2)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1uom"]
+size = Vector2(80, 360)
+
+[node name="Start" type="Node2D" unique_id=1512458389]
+script = SubResource("GDScript_u1uom")
+player_spawn_position = Vector2(110, 200)
+metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
+
+[node name="Castle Indoors" parent="." unique_id=77318229 instance=ExtResource("2_367xe")]
+
+[node name="next_level" type="Area2D" parent="." unique_id=877736523]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=1106384498]
+position = Vector2(30, 170)
+shape = SubResource("RectangleShape2D_u1uom")
+
+[connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]
