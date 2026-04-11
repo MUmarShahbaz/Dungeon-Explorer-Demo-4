@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://w7pmycn2ducw"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_iaqwv"]
+[ext_resource type="Texture2D" uid="uid://b40vdtm18i0dg" path="res://assets/sprites/dialogues/elf queen/Calm.png" id="2_k6dw8"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_rgu83"]
+[ext_resource type="Texture2D" uid="uid://bj7w0xupe00by" path="res://assets/sprites/dialogues/elf queen/Talk.png" id="3_5220t"]
+[ext_resource type="Texture2D" uid="uid://cacb1coqamq7o" path="res://assets/sprites/dialogues/elf queen/Sadness.png" id="4_xe3bs"]
+[ext_resource type="Texture2D" uid="uid://cv5uwkimsrbfv" path="res://assets/sprites/dialogues/elf queen/Special.png" id="5_124ty"]
+[ext_resource type="Texture2D" uid="uid://b6frmtqcign0h" path="res://assets/sprites/dialogues/elf queen/Aggression.png" id="6_4ruvg"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="7_rv2iy"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="8_85af3"]
+
+[sub_resource type="Resource" id="Resource_n17dh"]
+script = ExtResource("1_iaqwv")
+Text = "Brave Knight!!"
+Sprite = ExtResource("2_k6dw8")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_124ty"]
+script = ExtResource("1_iaqwv")
+Text = "The crown seeks your aid!!"
+Sprite = ExtResource("3_5220t")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_4ruvg"]
+script = ExtResource("1_iaqwv")
+Text = "Regretably, the King has fallen extremely ill.
+The Royal Physician claims only a miracle can save him."
+Sprite = ExtResource("4_xe3bs")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_k6dw8"]
+script = ExtResource("1_iaqwv")
+Text = "That is where you come in."
+Sprite = ExtResource("5_124ty")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_h3tuu"]
+script = ExtResource("1_iaqwv")
+Text = "Go to the depths of the dungeon
+and find the dark lady."
+Sprite = ExtResource("6_4ruvg")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_e32di"]
+script = ExtResource("1_iaqwv")
+Text = "Tell her that I sent you and
+inform her of the king's health"
+Sprite = ExtResource("6_4ruvg")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_ds3jl"]
+script = ExtResource("1_iaqwv")
+Text = "Bring her healing potion to me
+and I shall heal our king!"
+Sprite = ExtResource("4_xe3bs")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_jbb2u"]
+script = ExtResource("1_iaqwv")
+Text = "Now away!!
+Time is short!!"
+Sprite = ExtResource("6_4ruvg")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_qy380"]
+script = ExtResource("1_iaqwv")
+Text = "Right away your highness!!"
+Sprite = ExtResource("7_rv2iy")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_u1q06"]
+script = ExtResource("1_iaqwv")
+Text = "You can count on me!!"
+Sprite = ExtResource("8_85af3")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_rgu83")
+array = Array[ExtResource("1_iaqwv")]([SubResource("Resource_n17dh"), SubResource("Resource_124ty"), SubResource("Resource_4ruvg"), SubResource("Resource_k6dw8"), SubResource("Resource_h3tuu"), SubResource("Resource_e32di"), SubResource("Resource_ds3jl"), SubResource("Resource_jbb2u"), SubResource("Resource_qy380"), SubResource("Resource_u1q06")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

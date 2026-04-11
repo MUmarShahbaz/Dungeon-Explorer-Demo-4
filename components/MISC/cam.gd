@@ -9,16 +9,11 @@ var target_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	zoom = Vector2.ONE * 2.5
-	#limit_bottom = 600
 	limit_smoothed = true
 	position_smoothing_enabled = true
 	make_current()
 
 func _physics_process(_delta: float) -> void:
-	var cam_off: Vector2 = Vector2.ZERO
-	cam_off.x = Input.get_axis("cam_left", "cam_right")
-	cam_off.y = Input.get_axis("cam_up", "cam_down")
-	set_target_offset(cam_off)
 	if target:
 		global_position = lerp(global_position, target.global_position + target_offset, smoothing)
 

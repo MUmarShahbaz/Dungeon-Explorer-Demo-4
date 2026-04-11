@@ -7,7 +7,7 @@ class_name Entity
 @export var Health_Points : float = 100
 
 @export_group("Character Info", "CI")
-enum character_type {Melee, Projectile, Boss}
+enum character_type {Melee, Projectile, Boss, Civillian}
 @export var CI_Avatar : Texture2D
 @export var CI_Title : String
 @export var CI_Type : character_type
