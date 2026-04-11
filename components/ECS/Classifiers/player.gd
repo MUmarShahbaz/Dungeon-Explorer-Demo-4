@@ -1,6 +1,8 @@
 extends Ally
 class_name Player
 
+var disable_controls : bool = false
+
 func _ready() -> void:
 	super._ready()
 	add_to_group("players")

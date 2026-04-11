@@ -6,6 +6,7 @@ class_name PlayerController
 signal cam(cam_dir : Vector2)
 
 func _physics_process(_delta: float) -> void:
+	if myself.disable_controls: return
 	cam.emit(Input.get_vector("cam_left", "cam_right", "cam_up", "cam_down").normalized())
 	if Input.is_action_just_pressed("primary"): myself.primary()
 	if Input.is_action_just_pressed("secondary"): myself.secondary()

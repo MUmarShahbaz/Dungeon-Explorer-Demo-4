@@ -39,7 +39,7 @@ func prepare_map():
 
 func _on_player_spawned(player: Player, death_count: int) -> void:
 	if death_count == 0:
-		pass#QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
+		QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/enter_the_dungeon.tres\")
 
 func _on_green_slimes_wave_finished() -> void:
 	$Dungeon/Doors/door4.unlock()

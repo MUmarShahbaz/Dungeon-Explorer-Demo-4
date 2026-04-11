@@ -35,10 +35,10 @@ func update_dialogue(image, text ,avatar_on_right = false):
 	text_box.text = text + "\n\n(jump to continue...)"
 	if avatar_on_right:
 		avatar.flip_h = true
-		avatar_container.alignment = BoxContainer.ALIGNMENT_END
+		avatar_container.move_child(text_box, 0)
 	else:
 		avatar.flip_h = false
-		avatar_container.alignment = BoxContainer.ALIGNMENT_BEGIN
+		avatar_container.move_child(text_box, 1)
 	
 func begin_dialogue(dialogue_sequence : Array[Dialogue]):
 	for this_dialogue in dialogue_sequence:

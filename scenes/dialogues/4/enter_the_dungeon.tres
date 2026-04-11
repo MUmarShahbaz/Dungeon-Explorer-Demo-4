@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://dvajgu8v1jnh8"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_avesi"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_1vddx"]
+[ext_resource type="Texture2D" uid="uid://ebds6ij2c334" path="res://assets/sprites/dialogues/dark queen/Aggression.png" id="2_22h3m"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_okywi"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="4_2bl3w"]
+[ext_resource type="Texture2D" uid="uid://s61ekmxgk2nh" path="res://assets/sprites/dialogues/dark queen/Talk.png" id="5_s8vec"]
+
+[sub_resource type="Resource" id="Resource_3fe2h"]
+script = ExtResource("1_avesi")
+Text = "Who dares enter my dungeon!!??"
+Sprite = ExtResource("2_22h3m")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_iku1e"]
+script = ExtResource("1_avesi")
+Text = "That would be me....."
+Sprite = ExtResource("3_okywi")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_3385o"]
+script = ExtResource("1_avesi")
+Text = "Watch your tone, boy!!"
+Sprite = ExtResource("2_22h3m")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_tbkwv"]
+script = ExtResource("1_avesi")
+Text = "I apologize. I do not mean any disrespect."
+Sprite = ExtResource("4_2bl3w")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_j87gg"]
+script = ExtResource("1_avesi")
+Text = "I wish to speak......personally."
+Sprite = ExtResource("3_okywi")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_8l84k"]
+script = ExtResource("1_avesi")
+Text = "So you do have manners.
+Very well."
+Sprite = ExtResource("2_22h3m")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_dby6b"]
+script = ExtResource("1_avesi")
+Text = "If you can make your way through this dungeon, then I shall grant you an audience."
+Sprite = ExtResource("5_s8vec")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_1vddx")
+array = Array[ExtResource("1_avesi")]([SubResource("Resource_3fe2h"), SubResource("Resource_iku1e"), SubResource("Resource_3385o"), SubResource("Resource_tbkwv"), SubResource("Resource_j87gg"), SubResource("Resource_8l84k"), SubResource("Resource_dby6b")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"
