@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://bmvrlagg3o3i6"]
+
+[ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_2thiu"]
+[ext_resource type="PackedScene" uid="uid://cos5ex21hlpxf" path="res://ui/controls.tscn" id="2_ii2nf"]
+[ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="3_fob5h"]
+[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="4_avurv"]
+
+[sub_resource type="GDScript" id="GDScript_fob5h"]
+script/source = "extends CanvasLayer
+
+@onready var main = $Menu/Main
+@onready var controls = $Menu/Controls
+@onready var entity_stats = $\"Menu/Entity Stats\"
+@onready var back = $Menu/Back
+@onready var resume = $Menu/Main/Resume
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"interact\"): _on_back_pressed()
+	if Input.is_action_just_pressed(\"pause\"):
+		if get_tree().paused:
+			get_tree().set_deferred(\"paused\", false)
+			hide()
+		else:
+			get_tree().set_deferred(\"paused\", true)
+			show()
+			resume.grab_focus()
+
+func _on_resume_pressed() -> void:
+	get_tree().set_deferred(\"paused\", false)
+	hide()
+
+func _on_controls_pressed() -> void:
+	main.hide()
+	back.show()
+	back.grab_focus()
+	controls.show()
+
+func _on_entity_stats_pressed() -> void:
+	main.hide()
+	back.show()
+	back.grab_focus()
+	entity_stats.show()
+
+func _on_quit_pressed() -> void:
+	var home = load(\"res://ui/home.tscn\")
+	await $Fade.fade_out()
+	get_tree().set_deferred(\"paused\", false)
+	get_tree().change_scene_to_packed(home)
+
+func _on_back_pressed() -> void:
+	main.show()
+	resume.grab_focus()
+	back.hide()
+	controls.hide()
+	entity_stats.hide()
+"
+
+[node name="Pause Menu" type="CanvasLayer" unique_id=1918781953]
+process_mode = 3
+layer = 100
+visible = false
+script = SubResource("GDScript_fob5h")
+
+[node name="Menu" type="Control" parent="." unique_id=364356920]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="Menu" unique_id=610502761]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -129.0
+offset_right = 201.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Menu/Main" unique_id=1915730659]
+layout_mode = 2
+color = Color(1, 1, 1, 0.67058825)
+
+[node name="Resume" type="Button" parent="Menu/Main" unique_id=1710977182]
+layout_mode = 2
+theme = ExtResource("1_2thiu")
+text = "Resume"
+
+[node name="Controls" type="Button" parent="Menu/Main" unique_id=727683323]
+layout_mode = 2
+theme = ExtResource("1_2thiu")
+text = "Controls"
+
+[node name="Entity Stats" type="Button" parent="Menu/Main" unique_id=403563585]
+layout_mode = 2
+theme = ExtResource("1_2thiu")
+text = "Entity Stats"
+
+[node name="Quit" type="Button" parent="Menu/Main" unique_id=1570958491]
+layout_mode = 2
+theme = ExtResource("1_2thiu")
+text = "Quit"
+
+[node name="Controls" parent="Menu" unique_id=77077679 instance=ExtResource("2_ii2nf")]
+visible = false
+layout_mode = 1
+
+[node name="Entity Stats" parent="Menu" unique_id=256849622 instance=ExtResource("3_fob5h")]
+visible = false
+layout_mode = 1
+
+[node name="Back" type="Button" parent="Menu" unique_id=1042453589]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -120.0
+offset_right = 154.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme = ExtResource("1_2thiu")
+text = "Back"
+
+[node name="Fade" type="CanvasLayer" parent="." unique_id=1535009478]
+layer = 101
+script = ExtResource("4_avurv")
+duration = 2.0
+start_blank = true
+metadata/_custom_type_script = "uid://1uygfo1ei3w4"
+
+[connection signal="pressed" from="Menu/Main/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
+[connection signal="pressed" from="Menu/Main/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/Back" to="." method="_on_back_pressed"]

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dn7kco7uqeba8"]
 
+[ext_resource type="PackedScene" uid="uid://bmvrlagg3o3i6" path="res://ui/pause_menu.tscn" id="1_e2n5i"]
 [ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_p2nvj"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="2_2r3r7"]
 
@@ -22,6 +23,8 @@ func _physics_process(_delta: float) -> void:
 
 [node name="PassThroughCastle" type="Node2D" unique_id=1798991047]
 script = SubResource("GDScript_p2nvj")
+
+[node name="Pause Menu" parent="." unique_id=1918781953 instance=ExtResource("1_e2n5i")]
 
 [node name="Castle Outdoors" parent="." unique_id=2112943336 node_paths=PackedStringArray("player_spawner") instance=ExtResource("1_p2nvj")]
 player_spawner = NodePath("../PlayerSpawner")

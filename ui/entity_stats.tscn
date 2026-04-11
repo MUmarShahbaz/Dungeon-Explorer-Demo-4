@@ -1,0 +1,205 @@
+[gd_scene format=3 uid="uid://bkalwlo4pjron"]
+
+[ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_y2xwm"]
+[ext_resource type="PackedScene" uid="uid://83howi64ipha" path="res://scenes/characters/character_card.tscn" id="2_yqeip"]
+[ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/pc/knight.tscn" id="3_32ap0"]
+[ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="4_iba8s"]
+[ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="5_ksetj"]
+[ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_s0jrw"]
+[ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
+[ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
+[ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="11_jqmen"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="12_crryw"]
+[ext_resource type="PackedScene" uid="uid://l5fcp0cx14mo" path="res://scenes/characters/mob/red slime.tscn" id="13_c7flg"]
+[ext_resource type="PackedScene" uid="uid://be3xdfq2ly1iy" path="res://scenes/characters/mob/goblin champion.tscn" id="14_2eb4v"]
+[ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/cerberus.tscn" id="15_70a2y"]
+[ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/skeleton champion.tscn" id="16_wir3w"]
+[ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/demon general.tscn" id="17_wgmab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cw5t"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rxty"]
+content_margin_left = 30.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[node name="Entity Stats" type="Control" unique_id=256849622]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="." unique_id=1563476642]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67058825)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1160756167]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 50.0
+offset_right = -30.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+draw_focus_border = true
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer" unique_id=269563819]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+alignment = 1
+
+[node name="PC_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=897208714]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme = ExtResource("1_y2xwm")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cw5t")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1rxty")
+text = "Playable Character"
+vertical_alignment = 2
+
+[node name="PC" type="HFlowContainer" parent="ScrollContainer/HFlowContainer" unique_id=901215737]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Knight" parent="ScrollContainer/HFlowContainer/PC" unique_id=511723444 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("3_32ap0")
+
+[node name="Wizard" parent="ScrollContainer/HFlowContainer/PC" unique_id=995178654 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("4_iba8s")
+
+[node name="Samurai" parent="ScrollContainer/HFlowContainer/PC" unique_id=1623953694 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("5_ksetj")
+
+[node name="NPC_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=188986695]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme = ExtResource("1_y2xwm")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cw5t")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1rxty")
+text = "Non-Playable Character"
+vertical_alignment = 2
+
+[node name="NPC" type="HFlowContainer" parent="ScrollContainer/HFlowContainer" unique_id=969841924]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ENM_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=326972825]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme = ExtResource("1_y2xwm")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cw5t")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1rxty")
+text = "Enemy"
+vertical_alignment = 2
+
+[node name="ENM" type="HFlowContainer" parent="ScrollContainer/HFlowContainer" unique_id=669305314]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Green Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=868646207 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("6_s0jrw")
+
+[node name="Blue Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1605394717 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("7_4fgu2")
+
+[node name="Goblin" parent="ScrollContainer/HFlowContainer/ENM" unique_id=2042488285 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("8_qcnil")
+
+[node name="Hellhound" parent="ScrollContainer/HFlowContainer/ENM" unique_id=406711136 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("9_s6jkj")
+
+[node name="Skeleton Warrior" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1896920148 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("10_fsk3l")
+
+[node name="Skeleton Spearman" parent="ScrollContainer/HFlowContainer/ENM" unique_id=556156657 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("11_jqmen")
+
+[node name="Skeleton Archer" parent="ScrollContainer/HFlowContainer/ENM" unique_id=2115806295 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("12_crryw")
+
+[node name="BOSS_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=603243686]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme = ExtResource("1_y2xwm")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cw5t")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1rxty")
+text = "Boss"
+vertical_alignment = 2
+
+[node name="BOSS" type="HFlowContainer" parent="ScrollContainer/HFlowContainer" unique_id=1759171944]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Red Slime" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=558978649 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("13_c7flg")
+
+[node name="Goblin Champion" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=1537246490 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("14_2eb4v")
+
+[node name="Cereberus" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=1399428232 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("15_70a2y")
+
+[node name="Skeleton Champion" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=757572339 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("16_wir3w")
+
+[node name="Demon General" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=702520306 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("17_wgmab")

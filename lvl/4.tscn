@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://btbryvu3frjcr"]
 
+[ext_resource type="PackedScene" uid="uid://bmvrlagg3o3i6" path="res://ui/pause_menu.tscn" id="1_nhwvc"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="1_oek2d"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="1_onalh"]
 [ext_resource type="Script" uid="uid://b666ndns0368d" path="res://scenes/player_spawner/player_spawner.gd" id="2_e47pr"]
@@ -141,6 +142,8 @@ size = Vector2(1424, 261)
 
 [node name="Enter the Dungeon" type="Node2D" unique_id=353818878]
 script = SubResource("GDScript_3283v")
+
+[node name="Pause Menu" parent="." unique_id=1918781953 instance=ExtResource("1_nhwvc")]
 
 [node name="Fade" type="CanvasLayer" parent="." unique_id=298288358]
 layer = 2
