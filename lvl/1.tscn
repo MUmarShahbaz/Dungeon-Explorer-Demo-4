@@ -5,14 +5,14 @@
 [sub_resource type="GDScript" id="GDScript_u1uom"]
 script/source = "extends Level
 
-var talked_to_queen : bool = false
+var talked_to_queen : bool = true
 
 func _ready() -> void:
 	super._ready()
-	QuickScripts.new_spawn()
+	QuickScripts.spawn()
 
 func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player: QuickScripts.open_lvl(2)
+	if body is Player and talked_to_queen: QuickScripts.open_lvl(2)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1uom"]

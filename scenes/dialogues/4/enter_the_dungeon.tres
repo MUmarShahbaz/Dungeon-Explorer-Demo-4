@@ -49,7 +49,8 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_dby6b"]
 script = ExtResource("1_avesi")
-Text = "If you can make your way through this dungeon, then I shall grant you an audience."
+Text = "If you can make your way through this dungeon,
+then I shall grant you an audience."
 Sprite = ExtResource("5_s8vec")
 Right_Side = true
 metadata/_custom_type_script = "uid://86nuwqny3eip"

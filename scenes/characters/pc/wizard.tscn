@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/AC/damager/projectile/ProjectileAttack.gd" id="11_s5sl6"]
 [ext_resource type="PackedScene" uid="uid://41857mtigfwr" path="res://scenes/projectile_scenes/magic arrow.tscn" id="11_tpcqg"]
 [ext_resource type="PackedScene" uid="uid://cvth31vukk7kj" path="res://scenes/projectile_scenes/magic bomb.tscn" id="12_cpdw5"]
+[ext_resource type="AudioStream" uid="uid://f1psa8qthkty" path="res://assets/audio/humanoid_die.mp3" id="14_4vrct"]
+[ext_resource type="AudioStream" uid="uid://dhy42b7v1262j" path="res://assets/audio/player_walk.mp3" id="15_bud0i"]
+[ext_resource type="AudioStream" uid="uid://o08th5osuh6c" path="res://assets/audio/player_run.mp3" id="16_dcksc"]
 
 [sub_resource type="GDScript" id="GDScript_egk8w"]
 script/source = "extends Player
@@ -1180,7 +1183,7 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="wizard" type="CharacterBody2D" unique_id=929675328 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_egk8w")
 CI_Avatar = SubResource("AtlasTexture_s7oct")
 CI_Title = "Wizard"
@@ -1189,6 +1192,9 @@ Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
+SFX_Walk = NodePath("walk")
+SFX_Run = NodePath("run")
+SFX_Die = NodePath("die")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
 sprite_frames = SubResource("SpriteFrames_8lcca")
@@ -1213,3 +1219,19 @@ Move_List = Array[ExtResource("10_uqnqn")]([SubResource("Resource_0h755"), SubRe
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=866903742]
 occluder = SubResource("OccluderPolygon2D_uqnqn")
 sdf_collision = false
+
+[node name="die" type="AudioStreamPlayer2D" parent="." unique_id=517140264]
+stream = ExtResource("14_4vrct")
+max_distance = 500.0
+
+[node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=1978047857]
+stream = ExtResource("15_bud0i")
+autoplay = true
+max_distance = 300.0
+parameters/looping = true
+
+[node name="run" type="AudioStreamPlayer2D" parent="." unique_id=880696874]
+stream = ExtResource("16_dcksc")
+autoplay = true
+max_distance = 300.0
+parameters/looping = true

@@ -18,10 +18,8 @@ func _physics_process(_delta: float) -> void:
 	for this_entity in entities:
 		$\"Castle Outdoors\".entity_z_index(this_entity)
 
-
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player: QuickScripts.open_lvl(4)
-	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxky6"]

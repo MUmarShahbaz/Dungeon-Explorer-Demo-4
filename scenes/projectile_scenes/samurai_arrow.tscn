@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceiqufe7wg16k"]
+[gd_scene format=3 uid="uid://ceiqufe7wg16k"]
 
-[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_mjynd"]
 [ext_resource type="Texture2D" uid="uid://d0yovoqjboijt" path="res://assets/sprites/players/samurai/Arrow.png" id="2_mjynd"]
+[ext_resource type="AudioStream" uid="uid://b0hw48qrt6h3x" path="res://assets/audio/arrow_hit.mp3" id="3_et6yb"]
+
+[sub_resource type="GDScript" id="GDScript_mjynd"]
+script/source = "extends Projectile
+
+func _physics_process(_delta: float) -> void:
+	var bodies = get_colliding_bodies()
+	if bodies.size() > 0:
+		hide()
+		set_physics_process(false)
+		$arrow_hit.play()
+		if bodies[0] is Entity:
+			(bodies[0] as Entity).hurt(damage)
+			(bodies[0] as Entity).velocity.x += 10*direction
+		await get_tree().create_timer($arrow_hit.stream.get_length() + 0.1).timeout
+		queue_free()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_et6yb"]
 atlas = ExtResource("2_mjynd")
@@ -21,16 +37,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8600"]
 radius = 4.12311
 
-[node name="Arrow" type="RigidBody2D" node_paths=PackedStringArray("sprite", "collider")]
+[node name="Arrow" type="RigidBody2D" unique_id=242194292 node_paths=PackedStringArray("sprite", "collider")]
 max_contacts_reported = 1
-script = ExtResource("1_mjynd")
+script = SubResource("GDScript_mjynd")
 sprite = NodePath("sprite")
 collider = NodePath("collider")
-damage = 7
+metadata/_custom_type_script = "uid://c0irv2blollmd"
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1293457150]
 sprite_frames = SubResource("SpriteFrames_ahq02")
 offset = Vector2(-23, -0.5)
 
-[node name="collider" type="CollisionShape2D" parent="."]
+[node name="collider" type="CollisionShape2D" parent="." unique_id=934288102]
 shape = SubResource("CircleShape2D_j8600")
+
+[node name="arrow_hit" type="AudioStreamPlayer2D" parent="." unique_id=1641779283]
+stream = ExtResource("3_et6yb")
+max_distance = 300.0

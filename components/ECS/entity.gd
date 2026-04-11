@@ -84,7 +84,11 @@ func die():
 	velocity.x = 0
 	name = str(randi())
 	Collider.set_deferred("disabled", true)
-	await force_anim("die")
+	if SFX_Die:
+		SFX_Die.play()
+		force_anim("die")
+		await get_tree().create_timer(SFX_Die.stream.get_length() + 0.1).timeout
+	else: await force_anim("die")
 	entity_died.emit()
 	queue_free()
 #endregion
@@ -147,11 +151,19 @@ func move(x_dir : float, run : bool = false):
 	if x_dir != 0:
 		if run:
 			velocity.x = x_dir * MV_Run_Speed * delta * 60
-			if is_on_floor(): start_anim("run")
+			if is_on_floor():
+				play_from_continous_audio_players(SFX_Run)
+				start_anim("run")
+			else: play_from_continous_audio_players(false)
 		else:
 			velocity.x = x_dir * MV_Speed * delta * 50
-			if is_on_floor(): start_anim("walk")
-	else: velocity.x = 0
+			if is_on_floor():
+				play_from_continous_audio_players(SFX_Walk)
+				start_anim("walk")
+			else: play_from_continous_audio_players(false)
+	else:
+		velocity.x = 0
+		play_from_continous_audio_players(false)
 	if x_dir * facing < 0 : flip()
 
 func jump():
@@ -161,3 +173,8 @@ func jump():
 
 func primary(): pass
 #endregion
+
+func play_from_continous_audio_players(sfx_player = false):
+	if SFX_Run: SFX_Run.stream_paused = true
+	if SFX_Walk: SFX_Walk.stream_paused = true
+	if sfx_player: sfx_player.stream_paused = false

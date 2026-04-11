@@ -47,6 +47,9 @@ func new_spawn():
 	get_tree().get_current_scene().add_child.call_deferred(new_selector)
 
 func spawn():
+	if not selected:
+		new_spawn()
+		return
 	var current_scene : Level = get_tree().get_current_scene()
 
 	var new_player : Player = load(selected[&"scene"]).instantiate()

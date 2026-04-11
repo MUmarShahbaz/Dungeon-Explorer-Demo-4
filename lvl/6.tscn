@@ -9,7 +9,8 @@ func _ready() -> void:
 	super._ready()
 	QuickScripts.player_spawned.connect(_on_player_spawned)
 	QuickScripts.spawn()
-	$Dungeon/Doors/door16.unlock()
+	$Dungeon/Doors/door16.lock()
+	$Dungeon/Doors/door0.lock()
 
 func prepare_map():
 	$Dungeon/Torches.ghost_flame()

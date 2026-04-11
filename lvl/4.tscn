@@ -23,16 +23,16 @@ func _ready() -> void:
 	super._ready()
 	QuickScripts.player_spawned.connect(_on_player_spawned)
 	QuickScripts.spawn()
+	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(6))
+
+func prepare_map():
+	$Dungeon/Torches.normal()
+	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
 	$Dungeon/Doors/door1.unlock()
 	$Dungeon/Doors/door2.unlock()
 	$Dungeon/Doors/door3.unlock()
 	$Dungeon/Doors/door16.unlock()
-	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(6))
-func prepare_map():
-	$Dungeon/Torches.normal()
-	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
-	for door in $Dungeon/Doors.get_children():
-		door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
+	for door in $Dungeon/Doors.get_children(): door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
 
 var death_count = -1
 
@@ -73,7 +73,7 @@ func _on_cereberus_wave_finished() -> void:
 
 func _on_demon_general_wave_finished() -> void:
 	$Dungeon/Doors/door17.unlock()
-	#QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_end.tres\")
+	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/granted_audience.tres\")
 "
 
 [sub_resource type="GDScript" id="GDScript_5tki5"]

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://rrnm3yxce6v8"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_mbjeo"]
+[ext_resource type="Texture2D" uid="uid://dp4n75kuh8spu" path="res://assets/sprites/dialogues/dark queen/Calm.png" id="2_7g6kj"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_hilrv"]
+[ext_resource type="Texture2D" uid="uid://s743mvpvhlhp" path="res://assets/sprites/dialogues/dark queen/Sadness.png" id="3_thgrs"]
+
+[sub_resource type="Resource" id="Resource_58i4d"]
+script = ExtResource("1_mbjeo")
+Text = "Impressive!!"
+Sprite = ExtResource("2_7g6kj")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_h1sdx"]
+script = ExtResource("1_mbjeo")
+Text = "I suppose I shall grant you
+an audience"
+Sprite = ExtResource("3_thgrs")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_hilrv")
+array = Array[ExtResource("1_mbjeo")]([SubResource("Resource_58i4d"), SubResource("Resource_h1sdx")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"
