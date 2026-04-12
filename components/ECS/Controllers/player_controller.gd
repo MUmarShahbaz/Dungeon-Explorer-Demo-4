@@ -2,6 +2,7 @@ extends Controller
 class_name PlayerController
 
 @onready var myself : Player = get_parent()
+var gathered : bool = true
 
 signal cam(cam_dir : Vector2)
 
@@ -18,4 +19,9 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"): myself.jump()
 
 func regroup():
-	pass
+	gathered = not gathered
+	var allies = get_tree().get_nodes_in_group("allies").filter(func (x : Ally):
+		return x is not Player and not x.civilian and not x.puppet)
+	for ally : Ally in allies:
+		var controller : AllyMentality = ally.get_children().filter(func (x): return x is Controller)[0]
+		controller.gather = gathered

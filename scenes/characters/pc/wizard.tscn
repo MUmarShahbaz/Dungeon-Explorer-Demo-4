@@ -1188,6 +1188,7 @@ script = SubResource("GDScript_egk8w")
 CI_Avatar = SubResource("AtlasTexture_s7oct")
 CI_Title = "Wizard"
 CI_Type = 1
+VIS_Attack_Range = 99.0
 Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

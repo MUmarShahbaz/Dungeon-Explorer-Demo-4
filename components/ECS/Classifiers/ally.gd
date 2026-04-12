@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_to_group("civilian" if civilian else "allies")
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(2, true)
-	if not puppet: add_child.call_deferred(AllyMentality.new())
+	if not puppet and not self is Player: add_child.call_deferred(AllyMentality.new())
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)

@@ -1225,6 +1225,7 @@ melee_controller = NodePath("Melee Controller")
 shield = NodePath("Sheild")
 CI_Avatar = SubResource("AtlasTexture_4a0eb")
 CI_Title = "Knight"
+VIS_Attack_Range = 50.0
 Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

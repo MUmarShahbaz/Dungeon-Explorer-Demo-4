@@ -1446,6 +1446,7 @@ melee_controller = NodePath("Melee Controller")
 HP_Regeneration_Rate = 2.0
 CI_Avatar = SubResource("AtlasTexture_f7nts")
 CI_Title = "Samurai"
+VIS_Attack_Range = 99.0
 Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

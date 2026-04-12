@@ -669,6 +669,7 @@ script = ExtResource("1_i46ji")
 CI_Avatar = SubResource("AtlasTexture_b8apu")
 CI_Title = "Elf King"
 puppet = true
+VIS_Attack_Range = 50.0
 Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

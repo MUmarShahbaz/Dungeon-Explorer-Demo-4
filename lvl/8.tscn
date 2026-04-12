@@ -12,7 +12,9 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
-	QuickScripts.move_entity(-1200)
+	QuickScripts.move_entity(-900)
+	$\"Corrupt Knights/Spawner\".begin()
+	$\"Ally Knights/Spawner\".begin()
 
 func _physics_process(_delta: float) -> void:
 	var entities = get_tree().get_nodes_in_group(\"entities\")
@@ -27,11 +29,11 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 size = Vector2(53, 313)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlh3"]
-size = Vector2(277, 20)
+size = Vector2(289, 20)
 
 [node name="Break into castle" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
-player_spawn_position = Vector2(-1350, 150)
+player_spawn_position = Vector2(-1050, 150)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_mmdjw")]
@@ -58,24 +60,19 @@ metadata/_custom_type_script = "uid://k0njues52nl2"
 position = Vector2(1069, 133)
 shape = SubResource("RectangleShape2D_8mlh3")
 
-[node name="Ally Knights" type="Node2D" parent="." unique_id=69955813]
+[node name="Ally Knights" type="Node2D" parent="." unique_id=1983777057]
+script = ExtResource("2_qq4ve")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
 
-[node name="ally knight" parent="Ally Knights" unique_id=383885407 instance=ExtResource("5_8mlh3")]
+[node name="Spawner" type="Area2D" parent="Ally Knights" unique_id=220484700 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("3_nhe16")
+Mob_Scenes = Array[PackedScene]([ExtResource("5_8mlh3")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
 
-[node name="ally knight2" parent="Ally Knights" unique_id=1903585748 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight3" parent="Ally Knights" unique_id=371679837 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight4" parent="Ally Knights" unique_id=197895576 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight5" parent="Ally Knights" unique_id=503680347 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight6" parent="Ally Knights" unique_id=1239046793 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight7" parent="Ally Knights" unique_id=1512028235 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight8" parent="Ally Knights" unique_id=1557156376 instance=ExtResource("5_8mlh3")]
-
-[node name="ally knight9" parent="Ally Knights" unique_id=40109321 instance=ExtResource("5_8mlh3")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ally Knights/Spawner" unique_id=419901067]
+position = Vector2(-1158.5, 109)
+shape = SubResource("RectangleShape2D_8mlh3")
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]
