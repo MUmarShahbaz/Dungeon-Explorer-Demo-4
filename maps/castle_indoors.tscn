@@ -6,7 +6,7 @@
 script/source = "extends Node2D
 
 func _ready() -> void:
-	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(100, 1600, 0, 324, INF, 0.8))
+	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(60, 960, 0, 194, 4, 1))
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1iro4"]
@@ -14,12 +14,13 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8f6le"]
 normal = Vector2(-1, 0)
-distance = -1720.0
+distance = -1030.0
 
 [node name="Castle Indoors" type="Node2D" unique_id=77318229]
 script = SubResource("GDScript_lx756")
 
 [node name="Tilemap" type="Node2D" parent="." unique_id=345834086]
+scale = Vector2(0.6, 0.6)
 
 [node name="Wall" type="TileMapLayer" parent="Tilemap" unique_id=1503449039]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0)
