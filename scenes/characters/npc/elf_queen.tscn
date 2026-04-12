@@ -1,19 +1,14 @@
 [gd_scene format=3 uid="uid://bgadipced6uys"]
 
 [ext_resource type="Texture2D" uid="uid://djla2y8h31c68" path="res://assets/sprites/npc/elf queen/Idle.png" id="1_6jpg0"]
+[ext_resource type="Script" uid="uid://barw5y24lp3v7" path="res://components/ECS/Classifiers/ally.gd" id="1_qlpfc"]
 [ext_resource type="Texture2D" uid="uid://dqfyuvhu54pmk" path="res://assets/sprites/npc/elf queen/Walk.png" id="2_qlpfc"]
 [ext_resource type="AudioStream" uid="uid://dhy42b7v1262j" path="res://assets/audio/player_walk.mp3" id="15_4hup8"]
 [ext_resource type="AudioStream" uid="uid://o08th5osuh6c" path="res://assets/audio/player_run.mp3" id="16_fxk4i"]
 
-[sub_resource type="GDScript" id="GDScript_bx8go"]
-script/source = "extends Ally
-
-func SP_Effect(_damage_multiplier : float = 1, _attack_speed_multiplier : float = 1): pass
-"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bx8go"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlpfc"]
 atlas = ExtResource("1_6jpg0")
-region = Rect2(408.972, 49.29892, 68.47485, 78.70108)
+region = Rect2(410.37262, 42.923737, 74.69983, 85.07626)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qod67"]
 atlas = ExtResource("1_6jpg0")
@@ -469,10 +464,10 @@ graph_offset = Vector2(0, -84.2036)
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
 [node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
-script = SubResource("GDScript_bx8go")
+script = ExtResource("1_qlpfc")
 civilian = true
 puppet = true
-CI_Avatar = SubResource("AtlasTexture_bx8go")
+CI_Avatar = SubResource("AtlasTexture_qlpfc")
 CI_Title = "Elf Queen"
 CI_Type = 3
 Collider = NodePath("collider")

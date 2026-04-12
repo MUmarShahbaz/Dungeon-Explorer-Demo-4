@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/pc/knight.tscn" id="3_32ap0"]
 [ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="4_iba8s"]
 [ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="5_ksetj"]
+[ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf_king.tscn" id="6_32ap0"]
 [ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_s0jrw"]
 [ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
+[ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf_queen.tscn" id="7_iba8s"]
 [ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
 [ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
@@ -117,6 +119,14 @@ custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+
+[node name="Elf King" parent="ScrollContainer/HFlowContainer/NPC" unique_id=1317230586 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("6_32ap0")
+
+[node name="Elf Queen" parent="ScrollContainer/HFlowContainer/NPC" unique_id=939757395 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("7_iba8s")
 
 [node name="ENM_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=326972825]
 custom_minimum_size = Vector2(1000, 200)
