@@ -21,6 +21,7 @@ enum character_type {Melee, Projectile, Boss, Civillian}
 #region Meta
 @export_category("Meta")
 @export var puppet : bool = false
+@export var VIS_Attack_Range : float
 @export var Collider : CollisionShape2D
 
 @export_group("Animation", "ANM")
@@ -122,27 +123,6 @@ func force_anim(animation : String):
 	return
 #endregion
 
-func get_card_data() -> Dictionary:
-	var damagers = get_children().filter(func (x): return x is Damager)
-	var avg_dmg : int
-	if damagers.size() > 0:
-		var sum_damages : int = 0
-		for this_damager : Damager in damagers: sum_damages += this_damager.get_avg_damage()
-		@warning_ignore("integer_division")
-		avg_dmg = int(sum_damages / damagers.size())
-	else: avg_dmg = 0
-	@warning_ignore("incompatible_ternary")
-	var my_rng = int(self.VIS_Attack_Range / 10) if self is Enemy else INF
-	return {
-		"avatar": CI_Avatar,
-		"title": CI_Title,
-		"type": character_type.keys()[CI_Type],
-		"hp": int(Health_Points),
-		"dmg": avg_dmg,
-		"spd": int(MV_Run_Speed / 10),
-		"rng": my_rng,
-	}
-
 #region ACT
 var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
 var force_pause : bool = false
@@ -182,7 +162,30 @@ func jump():
 func primary(): pass
 #endregion
 
+#region MISC
+func get_card_data() -> Dictionary:
+	var damagers = get_children().filter(func (x): return x is Damager)
+	var avg_dmg : int
+	if damagers.size() > 0:
+		var sum_damages : int = 0
+		for this_damager : Damager in damagers: sum_damages += this_damager.get_avg_damage()
+		@warning_ignore("integer_division")
+		avg_dmg = int(sum_damages / damagers.size())
+	else: avg_dmg = 0
+	@warning_ignore("incompatible_ternary")
+	var my_rng = int(VIS_Attack_Range / 10)
+	return {
+		"avatar": CI_Avatar,
+		"title": CI_Title,
+		"type": character_type.keys()[CI_Type],
+		"hp": int(Health_Points),
+		"dmg": avg_dmg,
+		"spd": int(MV_Run_Speed / 10),
+		"rng": my_rng,
+	}
+
 func play_from_continous_audio_players(sfx_player = false):
 	if SFX_Run: SFX_Run.stream_paused = true
 	if SFX_Walk: SFX_Walk.stream_paused = true
 	if sfx_player: sfx_player.stream_paused = false
+#endregion

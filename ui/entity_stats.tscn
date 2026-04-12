@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
 [ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf_queen.tscn" id="7_iba8s"]
 [ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="8_iba8s"]
+[ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally_knight.tscn" id="8_ksetj"]
 [ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
 [ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
@@ -129,6 +130,13 @@ entity = ExtResource("6_32ap0")
 layout_mode = 2
 entity = ExtResource("7_iba8s")
 
+[node name="Ally Knight" parent="ScrollContainer/HFlowContainer/NPC" unique_id=969170581 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("8_ksetj")
+
+[node name="Avatar" parent="ScrollContainer/HFlowContainer/NPC/Ally Knight/BG/Container/Sub" parent_id_path=PackedInt32Array(969170581, 317594288) index="1" unique_id=404912874]
+self_modulate = Color(0.88, 0.8, 1, 1)
+
 [node name="ENM_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=326972825]
 custom_minimum_size = Vector2(1000, 200)
 layout_mode = 2
@@ -153,7 +161,7 @@ layout_mode = 2
 entity = ExtResource("8_iba8s")
 
 [node name="Avatar" parent="ScrollContainer/HFlowContainer/ENM/Corrupt Knight/BG/Container/Sub" parent_id_path=PackedInt32Array(492799347, 317594288) index="1" unique_id=404912874]
-self_modulate = Color(1, 0.78431374, 0.78431374, 1)
+self_modulate = Color(1, 0.8117647, 0.8117647, 1)
 
 [node name="Green Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=868646207 instance=ExtResource("2_yqeip")]
 layout_mode = 2
@@ -222,4 +230,5 @@ entity = ExtResource("16_wir3w")
 layout_mode = 2
 entity = ExtResource("17_wgmab")
 
+[editable path="ScrollContainer/HFlowContainer/NPC/Ally Knight"]
 [editable path="ScrollContainer/HFlowContainer/ENM/Corrupt Knight"]

@@ -6,7 +6,6 @@ class_name Enemy
 @onready var VIS_Ray : RayCast2D = RayCast2D.new()
 @onready var VIS_Block_Check : RayCast2D = RayCast2D.new()
 @export var VIS_Range : float
-@export var VIS_Attack_Range : float
 
 func _ready() -> void:
 	super._ready()

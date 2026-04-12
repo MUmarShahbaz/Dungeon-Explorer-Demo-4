@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dtqu2i6wvcrtc"]
 
 [ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_mmdjw"]
+[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="2_oqyht"]
+[ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_qq4ve"]
+[ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="3_nhe16"]
+[ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally_knight.tscn" id="5_8mlh3"]
 
 [sub_resource type="GDScript" id="GDScript_p2nvj"]
 script/source = "extends Level
@@ -22,6 +26,9 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxky6"]
 size = Vector2(53, 313)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlh3"]
+size = Vector2(277, 20)
+
 [node name="Break into castle" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
 player_spawn_position = Vector2(-1350, 150)
@@ -35,5 +42,40 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=2143341115]
 position = Vector2(3273, 163.5)
 shape = SubResource("RectangleShape2D_rxky6")
+
+[node name="Corrupt Knights" type="Node2D" parent="." unique_id=517810782]
+script = ExtResource("2_qq4ve")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Corrupt Knights" unique_id=618807397 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("3_nhe16")
+Mob_Scenes = Array[PackedScene]([ExtResource("2_oqyht")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Corrupt Knights/Spawner" unique_id=1784311418]
+position = Vector2(1069, 133)
+shape = SubResource("RectangleShape2D_8mlh3")
+
+[node name="Ally Knights" type="Node2D" parent="." unique_id=69955813]
+
+[node name="ally knight" parent="Ally Knights" unique_id=383885407 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight2" parent="Ally Knights" unique_id=1903585748 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight3" parent="Ally Knights" unique_id=371679837 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight4" parent="Ally Knights" unique_id=197895576 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight5" parent="Ally Knights" unique_id=503680347 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight6" parent="Ally Knights" unique_id=1239046793 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight7" parent="Ally Knights" unique_id=1512028235 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight8" parent="Ally Knights" unique_id=1557156376 instance=ExtResource("5_8mlh3")]
+
+[node name="ally knight9" parent="Ally Knights" unique_id=40109321 instance=ExtResource("5_8mlh3")]
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]
