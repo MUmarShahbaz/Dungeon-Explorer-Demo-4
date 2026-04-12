@@ -20,6 +20,7 @@ enum character_type {Melee, Projectile, Boss, Civillian}
 
 #region Meta
 @export_category("Meta")
+@export var puppet : bool = false
 @export var Collider : CollisionShape2D
 
 @export_group("Animation", "ANM")
@@ -51,8 +52,13 @@ var facing : int = 1
 signal entity_died
 
 func _ready() -> void:
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if SFX_Walk: SFX_Walk.stream_paused = true
+	if SFX_Run: SFX_Run.stream_paused = true
 	add_to_group("entities")
 	add_child.call_deferred(RayBox)
+	set_collision_mask_value(6, true)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -80,7 +86,7 @@ func hurt(amount: float) -> void:
 func die():
 	set_process(false)
 	set_physics_process(false)
-	(get_children().filter(func (x): return x is Controller)[0] as Controller).queue_free()
+	if not puppet: (get_children().filter(func (x): return x is Controller)[0] as Controller).queue_free()
 	velocity.x = 0
 	name = str(randi())
 	Collider.set_deferred("disabled", true)

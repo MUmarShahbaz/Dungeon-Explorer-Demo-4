@@ -13,7 +13,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(3, true)
-	add_child.call_deferred(MobMentallity.new())
+	if not puppet: add_child.call_deferred(MobMentallity.new())
 	VIS_Ray.set_collision_mask_value(2, true)
 	VIS_Block_Check.target_position = Vector2(50, 0)
 	VIS_Block_Check.global_position = Collider.shape.get_rect().end

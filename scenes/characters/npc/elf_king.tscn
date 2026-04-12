@@ -666,10 +666,9 @@ polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0,
 
 [node name="Elf King" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
 script = ExtResource("1_i46ji")
-civilian = true
-puppet = true
 CI_Avatar = SubResource("AtlasTexture_b8apu")
 CI_Title = "Elf King"
+puppet = true
 Collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -716,11 +715,11 @@ sdf_collision = false
 [node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=1978047857]
 stream = ExtResource("3_cbddx")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true
 
 [node name="run" type="AudioStreamPlayer2D" parent="." unique_id=880696874]
 stream = ExtResource("4_krwm6")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true

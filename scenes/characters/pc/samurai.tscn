@@ -1518,16 +1518,16 @@ sdf_collision = false
 
 [node name="die" type="AudioStreamPlayer2D" parent="." unique_id=428753313]
 stream = ExtResource("19_8s716")
-max_distance = 500.0
+max_distance = 1000.0
 
 [node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=1153817147]
 stream = ExtResource("20_7oo47")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true
 
 [node name="run" type="AudioStreamPlayer2D" parent="." unique_id=864416753]
 stream = ExtResource("21_8wxi7")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true

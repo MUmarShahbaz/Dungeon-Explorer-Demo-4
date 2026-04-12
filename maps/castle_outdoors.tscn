@@ -132,18 +132,18 @@ shape = SubResource("SegmentShape2D_cogm1")
 position = Vector2(2296.6667, 236.66667)
 
 [node name="Burning Wagon2" parent="Borders/Blockage" unique_id=1447619621 instance=ExtResource("3_h2dug")]
-position = Vector2(2160, 270)
+position = Vector2(2160, 249)
 
 [node name="Burning Wagon3" parent="Borders/Blockage" unique_id=832669035 instance=ExtResource("3_h2dug")]
-position = Vector2(2235, 358)
+position = Vector2(2235, 335)
 scale = Vector2(-1, 1)
 
 [node name="Burning Wagon4" parent="Borders/Blockage" unique_id=1154968706 instance=ExtResource("3_h2dug")]
-position = Vector2(2123.3333, 456.66666)
+position = Vector2(2123.333, 429.667)
 scale = Vector2(-1, 1)
 
 [node name="Burning Wagon5" parent="Borders/Blockage" unique_id=223238184 instance=ExtResource("3_h2dug")]
-position = Vector2(2266.6665, 546.6666)
+position = Vector2(2266.667, 516.667)
 
 [node name="Darkness" type="DirectionalLight2D" parent="." unique_id=1575385351]
 energy = 0.5

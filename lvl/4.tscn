@@ -22,7 +22,6 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	QuickScripts.player_spawned.connect(_on_player_spawned)
-	QuickScripts.spawn()
 	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(6))
 
 func prepare_map():

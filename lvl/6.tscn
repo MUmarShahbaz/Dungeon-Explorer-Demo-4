@@ -8,9 +8,9 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	QuickScripts.player_spawned.connect(_on_player_spawned)
-	QuickScripts.spawn()
-	$Dungeon/Doors/door16.lock()
-	$Dungeon/Doors/door0.lock()
+	$Dungeon/Doors/door0.door_opened.connect(func (_x): QuickScripts.open_lvl(8))
+	#$Dungeon/Doors/door16.lock()
+	#$Dungeon/Doors/door0.lock()
 
 func prepare_map():
 	$Dungeon/Torches.ghost_flame()
@@ -20,9 +20,10 @@ func prepare_map():
 		door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
 		door.unlock()
 
+var death_count : int = -1
 func _on_player_spawned(_player: Player) -> void:
-	#if death_count == 0:
-		#QuickScripts.new_dialogue(null, \"res://scenes/dialogues/dialogue_on_start.tres\")
+	death_count += 1
+	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/temp.tres\")
 	$Dungeon/Vignette.add_mini_map_vignette(QuickScripts.hud)
 "
 

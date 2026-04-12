@@ -502,11 +502,11 @@ sdf_collision = false
 [node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=1978047857]
 stream = ExtResource("15_4hup8")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true
 
 [node name="run" type="AudioStreamPlayer2D" parent="." unique_id=880696874]
 stream = ExtResource("16_fxk4i")
 autoplay = true
-max_distance = 300.0
+max_distance = 500.0
 parameters/looping = true

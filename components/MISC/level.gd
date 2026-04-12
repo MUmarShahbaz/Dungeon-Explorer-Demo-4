@@ -14,6 +14,7 @@ func _ready() -> void:
 	fade.layer = 2
 	await fade.ready
 	fade.fade_in()
+	QuickScripts.spawn()
 
 # to be overwritten
 func prepare_map():

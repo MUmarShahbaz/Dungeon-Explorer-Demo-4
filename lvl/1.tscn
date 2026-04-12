@@ -6,31 +6,29 @@
 [sub_resource type="GDScript" id="GDScript_u1uom"]
 script/source = "extends Level
 
-var talked_to_queen : bool = false
+var cutscene_1_played : bool = false
 
 func _ready() -> void:
 	super._ready()
-	QuickScripts.spawn()
+	await QuickScripts.player_spawned
+	QuickScripts.move_entity(150)
 
 func _physics_process(_delta: float) -> void:
-	if not talked_to_queen and QuickScripts.player and QuickScripts.player.global_position.x > 350:
-		talked_to_queen = true
-		QuickScripts.player.disable_controls = true
-		QuickScripts.player.velocity.x = 0
-		(QuickScripts.player.get_children().filter(func (x): return x is CAM)[0] as CAM).set_target_offset(Vector2.RIGHT)
-		while %\"Elf Queen\".global_position.x > 600:
-			%\"Elf Queen\".move(-1)
-			await get_tree().physics_frame
-		%\"Elf Queen\".velocity.x = 0
-		await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/1/elf_queens_request.tres\")
-		(QuickScripts.player.get_children().filter(func (x): return x is CAM)[0] as CAM).set_target_offset(Vector2.ZERO)
-		QuickScripts.player.disable_controls = true
-		while true:
-			QuickScripts.player.move(-1, true)
-			await get_tree().physics_frame
+	if not cutscene_1_played and QuickScripts.player and QuickScripts.player.global_position.x > 350:
+		cutscene_1()
+
+func cutscene_1():
+	cutscene_1_played = true
+	QuickScripts.player.disable_controls = true
+	QuickScripts.player.move(0)
+	QuickScripts.camera_offset(Vector2.RIGHT)
+	await QuickScripts.move_entity(600, %\"Elf Queen\", false)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/1/elf_queens_request.tres\")
+	QuickScripts.camera_offset(Vector2.ZERO)
+	QuickScripts.move_entity(50)
 
 func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player and talked_to_queen: QuickScripts.open_lvl(2)
+	if body is Player and cutscene_1_played: QuickScripts.open_lvl(2)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1uom"]
@@ -38,7 +36,7 @@ size = Vector2(80, 215)
 
 [node name="Start" type="Node2D" unique_id=1512458389]
 script = SubResource("GDScript_u1uom")
-player_spawn_position = Vector2(50, 100)
+player_spawn_position = Vector2(50, 140)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Indoors" parent="." unique_id=77318229 instance=ExtResource("2_367xe")]
@@ -52,6 +50,6 @@ shape = SubResource("RectangleShape2D_u1uom")
 
 [node name="Elf Queen" parent="." unique_id=40547968 instance=ExtResource("2_blpe2")]
 unique_name_in_owner = true
-position = Vector2(838, 124)
+position = Vector2(838, 140)
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

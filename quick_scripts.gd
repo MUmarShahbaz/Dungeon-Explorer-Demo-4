@@ -48,7 +48,7 @@ func new_spawn():
 
 func spawn():
 	if not selected:
-		new_spawn()
+		await new_spawn()
 		return
 	var current_scene : Level = get_tree().get_current_scene()
 
@@ -82,6 +82,23 @@ func _ready() -> void:
 	bg_player.autoplay = true
 	bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	bg_player.set_deferred("parameters/looping", true)
+
+func move_entity(to : int, entity: Entity = player, run : bool = true, speed_boost : float = 1):
+	if entity is Player: entity.disable_controls = true
+	var dif = to - entity.global_position.x
+	if dif < 0:
+		while entity.global_position.x > to:
+			entity.move(-1 * speed_boost, run)
+			await get_tree().physics_frame
+	if dif > 0:
+		while entity.global_position.x < to:
+			entity.move(1 * speed_boost, run)
+			await get_tree().physics_frame
+	entity.move(0)
+	if entity is Player: entity.disable_controls = false
+
+func camera_offset(off : Vector2 = Vector2.ZERO):
+	player.get_children().filter(func (x): return x is CAM)[0].set_target_offset(off)
 
 func new_dialogue(dialogue = null, dialogue_resource = null):
 	player.disable_controls = true

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://26abb1atu7bh"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_7xweb"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="2_2jpv5"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="3_cnfls"]
+
+[sub_resource type="Resource" id="Resource_q8nfi"]
+script = ExtResource("1_7xweb")
+Text = "note from developer:
+some levels (including this one) are incoplete
+as this is a wip game "
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_2fqcq"]
+script = ExtResource("1_7xweb")
+Text = "note from developer:
+the dark lady just gave you the potion
+take it and leave the dungeon"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_tv6s5"]
+script = ExtResource("1_7xweb")
+Text = "note from developer:
+there's still a teensy weensy
+cutscene left (my personal favorite)"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("3_cnfls")
+array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_tv6s5")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://ccci20ohpes23"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_5hvsk"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="2_3a3ni"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_c56wf"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_83o27"]
+[ext_resource type="Texture2D" uid="uid://db6rq1eax1hf" path="res://assets/sprites/dialogues/elf king/Talk.png" id="4_ped6a"]
+[ext_resource type="Texture2D" uid="uid://cxycydnvdhxp1" path="res://assets/sprites/dialogues/elf king/Aggression.png" id="5_hfwca"]
+[ext_resource type="Texture2D" uid="uid://cvtnvhyb4deob" path="res://assets/sprites/dialogues/knight/Special.png" id="6_83o27"]
+
+[sub_resource type="Resource" id="Resource_d4mlj"]
+script = ExtResource("1_5hvsk")
+Text = "Your highness!!"
+Sprite = ExtResource("2_3a3ni")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_uyj01"]
+script = ExtResource("1_5hvsk")
+Text = "but you're bedroom is over there.....
+.....when did you....."
+Sprite = ExtResource("3_83o27")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_0yu2m"]
+script = ExtResource("1_5hvsk")
+Text = "My loyal subject,
+I thank you for your services"
+Sprite = ExtResource("4_ped6a")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_7ei7l"]
+script = ExtResource("1_5hvsk")
+Text = "You need not to worry.
+I will deal with these ruffians myself."
+Sprite = ExtResource("5_hfwca")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_cp05q"]
+script = ExtResource("1_5hvsk")
+Text = "It seems they have forgotten
+the reason, that I am the king."
+Sprite = ExtResource("5_hfwca")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_ped6a"]
+script = ExtResource("1_5hvsk")
+Text = "(Still confused how the king
+got behind him)"
+Sprite = ExtResource("2_3a3ni")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_hfwca"]
+script = ExtResource("1_5hvsk")
+Text = "(feels the aura and
+decides not to question it)"
+Sprite = ExtResource("6_83o27")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_c56wf")
+array = Array[ExtResource("1_5hvsk")]([SubResource("Resource_d4mlj"), SubResource("Resource_uyj01"), SubResource("Resource_0yu2m"), SubResource("Resource_7ei7l"), SubResource("Resource_cp05q"), SubResource("Resource_ped6a"), SubResource("Resource_hfwca")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

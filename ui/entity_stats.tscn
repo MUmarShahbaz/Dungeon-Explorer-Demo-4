@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_s0jrw"]
 [ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
 [ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf_queen.tscn" id="7_iba8s"]
+[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="8_iba8s"]
 [ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
 [ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
@@ -147,6 +148,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
+[node name="Corrupt Knight" parent="ScrollContainer/HFlowContainer/ENM" unique_id=492799347 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("8_iba8s")
+
+[node name="Avatar" parent="ScrollContainer/HFlowContainer/ENM/Corrupt Knight/BG/Container/Sub" parent_id_path=PackedInt32Array(492799347, 317594288) index="1" unique_id=404912874]
+self_modulate = Color(1, 0.78431374, 0.78431374, 1)
+
 [node name="Green Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=868646207 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("6_s0jrw")
@@ -213,3 +221,5 @@ entity = ExtResource("16_wir3w")
 [node name="Demon General" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=702520306 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("17_wgmab")
+
+[editable path="ScrollContainer/HFlowContainer/ENM/Corrupt Knight"]

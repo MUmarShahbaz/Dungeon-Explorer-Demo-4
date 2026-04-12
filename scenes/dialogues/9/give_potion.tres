@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://hhrb86lwxqkp"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_6ex85"]
+[ext_resource type="Texture2D" uid="uid://it8d8s6qt074" path="res://assets/sprites/dialogues/elf queen/Smile.png" id="2_32spf"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_t4p5g"]
+[ext_resource type="Texture2D" uid="uid://b6frmtqcign0h" path="res://assets/sprites/dialogues/elf queen/Aggression.png" id="3_vms4y"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="4_t1c77"]
+[ext_resource type="Texture2D" uid="uid://cacb1coqamq7o" path="res://assets/sprites/dialogues/elf queen/Sadness.png" id="5_upn7o"]
+
+[sub_resource type="Resource" id="Resource_nlddd"]
+script = ExtResource("1_6ex85")
+Text = "Brave Knight!!
+You have returned!!"
+Sprite = ExtResource("2_32spf")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_nh0v2"]
+script = ExtResource("1_6ex85")
+Text = "What is that ruckus??!!"
+Sprite = ExtResource("3_vms4y")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_7mwx3"]
+script = ExtResource("1_6ex85")
+Text = "Your highness!!
+Traitors have infiltrated the castle!!"
+Sprite = ExtResource("4_t1c77")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_uapkv"]
+script = ExtResource("1_6ex85")
+Text = "The king wasn't sick,
+he was being poisoned!!"
+Sprite = ExtResource("4_t1c77")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_wr3p8"]
+script = ExtResource("1_6ex85")
+Text = "Please give this potion to the king!!
+I'll stand guard!!"
+Sprite = ExtResource("4_t1c77")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_wac6o"]
+script = ExtResource("1_6ex85")
+Text = "Thank you......
+.......for everything"
+Sprite = ExtResource("5_upn7o")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_t4p5g")
+array = Array[ExtResource("1_6ex85")]([SubResource("Resource_nlddd"), SubResource("Resource_nh0v2"), SubResource("Resource_7mwx3"), SubResource("Resource_uapkv"), SubResource("Resource_wr3p8"), SubResource("Resource_wac6o")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

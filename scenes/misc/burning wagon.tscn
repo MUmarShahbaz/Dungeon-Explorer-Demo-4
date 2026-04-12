@@ -71,5 +71,5 @@ texture_scale = 40.0
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2052854771]
 stream = ExtResource("2_vhkr5")
 autoplay = true
-max_distance = 500.0
+max_distance = 1500.0
 parameters/looping = true

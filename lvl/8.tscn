@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dn7kco7uqeba8"]
+[gd_scene format=3 uid="uid://dtqu2i6wvcrtc"]
 
-[ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_p2nvj"]
+[ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_mmdjw"]
 
 [sub_resource type="GDScript" id="GDScript_p2nvj"]
 script/source = "extends Level
@@ -8,11 +8,7 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
-	QuickScripts.move_entity(3050)
-
-func prepare_map():
-	$\"Castle Outdoors/Darkness\".queue_free()
-	$\"Castle Outdoors/Borders/Blockage\".queue_free()
+	QuickScripts.move_entity(-1200)
 
 func _physics_process(_delta: float) -> void:
 	var entities = get_tree().get_nodes_in_group(\"entities\")
@@ -20,24 +16,24 @@ func _physics_process(_delta: float) -> void:
 		$\"Castle Outdoors\".entity_z_index(this_entity)
 
 func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player: QuickScripts.open_lvl(4)
+	if body is Player: QuickScripts.open_lvl(9)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxky6"]
-size = Vector2(53, 508)
+size = Vector2(53, 313)
 
-[node name="Pass through Castle Outdoors" type="Node2D" unique_id=1580822662]
+[node name="Break into castle" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
-player_spawn_position = Vector2(3250, 75)
+player_spawn_position = Vector2(-1350, 150)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
-[node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_p2nvj")]
+[node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_mmdjw")]
 
 [node name="next_level" type="Area2D" parent="." unique_id=581464720]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=2143341115]
-position = Vector2(-1331.5, 66)
+position = Vector2(3273, 163.5)
 shape = SubResource("RectangleShape2D_rxky6")
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

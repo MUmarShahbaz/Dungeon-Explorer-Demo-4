@@ -2,7 +2,6 @@ extends Entity
 class_name Ally
 
 @export var civilian : bool = false
-@export var puppet : bool = false
 
 #region Core
 func _ready() -> void:

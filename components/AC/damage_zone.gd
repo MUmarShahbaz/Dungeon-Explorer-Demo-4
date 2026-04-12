@@ -8,7 +8,7 @@ class_name DamageZone
 func _ready() -> void:
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, parent is Enemy)
-	set_collision_mask_value(3, parent is Player)
+	set_collision_mask_value(3, parent is Ally)
 	ray.enabled = false
 	ray.set_collision_mask_value(5, true)
 	await parent.ready
