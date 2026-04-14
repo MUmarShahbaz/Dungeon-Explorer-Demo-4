@@ -21,11 +21,11 @@
 script/source = "extends Player
 
 func SP_Handler(delta):
-	if SP_Special_Points > 0:
-		SP_Special_Points -= delta/2
+	if SP > 0:
+		SP -= delta/2
 		ANM_Animation_Tree.set(\"parameters/attack_1/TimeScale/scale\", 1.5)
 	else:
-		SP_Special_Points = 0
+		SP = 0
 		ANM_Animation_Tree.set(\"parameters/attack_1/TimeScale/scale\", 1)
 
 func primary():
@@ -34,7 +34,7 @@ func primary():
 
 func secondary():
 	if pause_movement(): return
-	if SP_Special_Points < 5: return
+	if SP < 5: return
 	else:
 		ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")
 		var timer = get_tree().create_timer(5)
@@ -42,7 +42,7 @@ func secondary():
 		while not (timeout or check_anim(\"attack_2\")):
 			timeout = (timer.time_left <= 0)
 			await get_tree().physics_frame
-		if not timeout: SP_Special_Points -= 5
+		if not timeout: SP -= 5
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7oct"]
@@ -1188,8 +1188,6 @@ script = SubResource("GDScript_egk8w")
 avatar = SubResource("AtlasTexture_s7oct")
 title = "Wizard"
 type = 2
-Attack_Range = 99
-collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")

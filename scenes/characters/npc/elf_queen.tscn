@@ -463,11 +463,11 @@ graph_offset = Vector2(0, -84.2036)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
+[node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
 script = ExtResource("1_qlpfc")
-puppet = true
 avatar = SubResource("AtlasTexture_qlpfc")
 title = "Elf Queen"
+puppet = true
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
