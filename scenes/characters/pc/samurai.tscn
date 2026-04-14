@@ -1439,15 +1439,16 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcwo"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
+[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
 HP_Regeneration_Rate = 2.0
-CI_Avatar = SubResource("AtlasTexture_f7nts")
-CI_Title = "Samurai"
-VIS_Attack_Range = 99.0
-Collider = NodePath("collider")
+avatar = SubResource("AtlasTexture_f7nts")
+title = "Samurai"
+type = 1
+Attack_Range = 60.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
@@ -1490,7 +1491,6 @@ Move_List = Array[ExtResource("13_lgcwo")]([SubResource("Resource_8s716")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"
 
 [node name="Attack 1" type="Area2D" parent="." unique_id=1104800646]
-visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1498,7 +1498,6 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(3, -4, 53, 7, 64, -6, 65, -24, 8, -25)
 
 [node name="Attack 2" type="Area2D" parent="." unique_id=1550585782]
-visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
@@ -1506,7 +1505,6 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 polygon = PackedVector2Array(0, 4, 46, 17, 65, 10, 70, -22, 55, -47, 11, -31)
 
 [node name="Attack 3" type="Area2D" parent="." unique_id=1461956384]
-visible = false
 script = ExtResource("14_vfju5")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
