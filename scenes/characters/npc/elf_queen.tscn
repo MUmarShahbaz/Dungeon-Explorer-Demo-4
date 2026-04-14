@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgadipced6uys"]
 
 [ext_resource type="Texture2D" uid="uid://djla2y8h31c68" path="res://assets/sprites/npc/elf queen/Idle.png" id="1_6jpg0"]
-[ext_resource type="Script" uid="uid://barw5y24lp3v7" path="res://components/ECS/Classifiers/ally.gd" id="1_qlpfc"]
+[ext_resource type="Script" uid="uid://byl2pwnbi7c1h" path="res://components/ECS/ally.gd" id="1_qlpfc"]
 [ext_resource type="Texture2D" uid="uid://dqfyuvhu54pmk" path="res://assets/sprites/npc/elf queen/Walk.png" id="2_qlpfc"]
 [ext_resource type="AudioStream" uid="uid://dhy42b7v1262j" path="res://assets/audio/player_walk.mp3" id="15_4hup8"]
 [ext_resource type="AudioStream" uid="uid://o08th5osuh6c" path="res://assets/audio/player_run.mp3" id="16_fxk4i"]
@@ -465,18 +465,16 @@ polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0,
 
 [node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
 script = ExtResource("1_qlpfc")
-civilian = true
 puppet = true
-CI_Avatar = SubResource("AtlasTexture_qlpfc")
-CI_Title = "Elf Queen"
-CI_Type = 3
-Collider = NodePath("collider")
+avatar = SubResource("AtlasTexture_qlpfc")
+title = "Elf Queen"
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 SFX_Walk = NodePath("walk")
 SFX_Run = NodePath("run")
-metadata/_custom_type_script = "uid://barw5y24lp3v7"
+metadata/_custom_type_script = "uid://byl2pwnbi7c1h"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
 scale = Vector2(0.9, 0.9)
