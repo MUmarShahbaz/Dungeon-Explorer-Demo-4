@@ -885,16 +885,17 @@ Animation_Frame = 3
 Damage = 5.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Blue Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Blue Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 250.0
-VIS_Attack_Range = 130.0
-Health_Points = 30.0
-CI_Avatar = SubResource("AtlasTexture_yn02r")
-CI_Title = "Blue Slime"
-Collider = NodePath("collider")
+TDR_front = 250.0
+avatar = SubResource("AtlasTexture_yn02r")
+title = "Blue Slime"
+type = 1
+HitPoints = 30.0
+Attack_Range = 130.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")

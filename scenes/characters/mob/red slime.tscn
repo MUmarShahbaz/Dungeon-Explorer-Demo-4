@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_goyy1"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_7xrb1"]
 
-[sub_resource type="GDScript" id="GDScript_x4ujb"]
+[sub_resource type="GDScript" id="GDScript_6741j"]
 script/source = "extends Boss
 
 @export var attack_buffer : Buffer
@@ -886,15 +886,15 @@ Damage = 10.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Red Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
-script = SubResource("GDScript_x4ujb")
+script = SubResource("GDScript_6741j")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 400.0
-VIS_Attack_Range = 180.0
-CI_Avatar = SubResource("AtlasTexture_yn02r")
-CI_Title = "Red Slime"
-CI_Type = 2
-Collider = NodePath("collider")
+TDR_front = 400.0
+Attack_Range = 180.0
+avatar = SubResource("AtlasTexture_yn02r")
+title = "Red Slime"
+type = 3
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")

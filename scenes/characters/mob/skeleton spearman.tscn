@@ -763,23 +763,24 @@ Animation_Frame = 2
 Damage = 2.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Spearman" type="CharacterBody2D" unique_id=776061347 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Spearman" type="CharacterBody2D" unique_id=776061347 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_8krme")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 200.0
-VIS_Attack_Range = 60.0
-Health_Points = 10.0
-CI_Avatar = SubResource("AtlasTexture_8krme")
-CI_Title = "Skeleton Spearman"
-MV_Run_Speed = 250.0
-Collider = NodePath("collider")
+avatar = SubResource("AtlasTexture_8krme")
+title = "Skeleton Spearman"
+type = 1
+HitPoints = 10.0
+Run_Speed = 250.0
+Attack_Range = 60.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=150995432]
 sprite_frames = SubResource("SpriteFrames_kbpb8")
+frame = 1
 offset = Vector2(8, -34)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=24093915]

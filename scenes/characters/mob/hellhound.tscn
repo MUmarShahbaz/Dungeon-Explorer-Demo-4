@@ -899,17 +899,17 @@ Animation_Frame = 4
 Damage = 5.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Hellhound" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Hellhound" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 600.0
-VIS_Attack_Range = 50.0
-Health_Points = 20.0
-CI_Avatar = SubResource("AtlasTexture_s2akx")
-CI_Title = "Hellhound"
-MV_Run_Speed = 330.0
-Collider = NodePath("collider")
+TDR_front = 600.0
+avatar = SubResource("AtlasTexture_s2akx")
+title = "Hellhound"
+type = 1
+HitPoints = 20.0
+Run_Speed = 330.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")

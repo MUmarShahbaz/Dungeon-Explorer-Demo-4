@@ -885,16 +885,17 @@ Animation_Frame = 3
 Damage = 2.5
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Green Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Green Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 80.0
-VIS_Attack_Range = 30.0
-Health_Points = 1.0
-CI_Avatar = SubResource("AtlasTexture_yn02r")
-CI_Title = "Green Slime"
-Collider = NodePath("collider")
+TDR_front = 100.0
+avatar = SubResource("AtlasTexture_yn02r")
+title = "Green Slime"
+type = 1
+HitPoints = 1.0
+Attack_Range = 75.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
@@ -902,7 +903,7 @@ ANM_Animation_Tree = NodePath("anim_tree")
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=513176687]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g21a4")
-offset = Vector2(1, -48)
+offset = Vector2(3, -48)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1178652562]
 scale = Vector2(2, 2)

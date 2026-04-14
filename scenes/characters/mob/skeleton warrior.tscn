@@ -883,17 +883,16 @@ Animation_Frame = 2
 Damage = 4.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Warrior" type="CharacterBody2D" unique_id=324656721 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Warrior" type="CharacterBody2D" unique_id=324656721 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_j8d2y")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
-VIS_Range = 200.0
-VIS_Attack_Range = 50.0
-Health_Points = 20.0
-CI_Avatar = SubResource("AtlasTexture_xej81")
-CI_Title = "Skeleton Warrior"
-MV_Run_Speed = 280.0
-Collider = NodePath("collider")
+avatar = SubResource("AtlasTexture_xej81")
+title = "Skeleton Warrior"
+type = 1
+HitPoints = 20.0
+Run_Speed = 280.0
+collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
@@ -901,7 +900,7 @@ ANM_Animation_Tree = NodePath("anim_tree")
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=24334665]
 sprite_frames = SubResource("SpriteFrames_kbpb8")
 frame = 1
-offset = Vector2(0, -34)
+offset = Vector2(4, -34)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=39895499]
 shape = SubResource("CapsuleShape2D_6wvc4")
