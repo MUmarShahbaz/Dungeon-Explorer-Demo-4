@@ -19,8 +19,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if player:
-		$\"Control/Player/HP_SP/HP\".value = (player.HP_Current / player.Health_Points)*100
-		$\"Control/Player/HP_SP/SP\".value = player.SP_Special_Points
+		$\"Control/Player/HP_SP/HP\".value = (player.hp / player.HitPoints)*100
+		$\"Control/Player/HP_SP/SP\".value = player.SP
 		$Control/Player/Potions/Health/Count.text = str(player.ITM_Healing_Potions)
 		$Control/Player/Potions/Boost/Count.text = str(player.ITM_Booster_Potions)
 		$\"Control/Minimap Container/Minimap/Camera2D\".position = player.position

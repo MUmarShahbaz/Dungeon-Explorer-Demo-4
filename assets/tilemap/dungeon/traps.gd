@@ -33,7 +33,7 @@ func create_area(cell, local_position, size, handler):
 	area.global_position = map_to_local(cell) + local_position
 	area.body_entered.connect(Callable(self, handler).bind(area, cell))
 	area.set_collision_mask_value(1, false)
-	area.set_collision_mask_value(2, true)
+	area.set_collision_mask_value(3, true)
 	area.name = handler + "(" + str(cell.x) + "," + str(cell.y) + ")"
 	
 	TRAPS_CONTAINER.add_child.call_deferred(area)

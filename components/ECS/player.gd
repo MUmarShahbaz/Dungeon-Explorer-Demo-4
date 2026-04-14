@@ -42,18 +42,18 @@ func controller():
 @export var ITM_Healing_Potions : int = 0
 @export var ITM_Booster_Potions : int = 5
 @export_range(0, 5, 0.1) var HP_Regeneration_Rate :float = 1
-var SP_Special_Points : float = 0
+var SP : float = 0
 
 func Regeneration(delta):
 	hp += HP_Regeneration_Rate *  delta
 	if hp > HitPoints: hp = HitPoints
 
 func SP_Handler(delta):
-	if SP_Special_Points > 0:
-		SP_Special_Points -= delta
+	if SP > 0:
+		SP -= delta
 		SP_Effect(1.5, 1.5)
 	else:
-		SP_Special_Points = 0
+		SP = 0
 		SP_Effect()
 
 func SP_Effect(damage_multiplier : float = 1, attack_speed_multiplier : float = 1):
@@ -72,6 +72,6 @@ func heal():
 func boost():
 	if ITM_Booster_Potions > 0:
 		ITM_Booster_Potions -= 1
-		SP_Special_Points += 34
-		if SP_Special_Points > 100: SP_Special_Points = 100
+		SP += 34
+		if SP > 100: SP = 100
 #endregion
