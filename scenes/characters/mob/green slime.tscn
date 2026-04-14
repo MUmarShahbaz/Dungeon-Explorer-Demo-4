@@ -885,7 +885,7 @@ Animation_Frame = 3
 Damage = 2.5
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Green Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Green Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")

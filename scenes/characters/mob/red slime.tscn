@@ -885,15 +885,15 @@ Animation_Frame = 3
 Damage = 10.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Red Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Red Slime" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_6741j")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 TDR_front = 400.0
-Attack_Range = 180.0
 avatar = SubResource("AtlasTexture_yn02r")
 title = "Red Slime"
 type = 3
+Attack_Range = 180.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

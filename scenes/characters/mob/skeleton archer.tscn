@@ -750,7 +750,7 @@ Animation_Name = "shoot"
 Animation_Frame = 11
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
-[node name="Skeleton Archer" type="CharacterBody2D" unique_id=610114944 node_paths=PackedStringArray("projectile_launcher", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Archer" type="CharacterBody2D" unique_id=610114944 node_paths=PackedStringArray("projectile_launcher", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_kdj4h")
 projectile_launcher = NodePath("ProjectileLauncher")
 TDR_front = 400.0

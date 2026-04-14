@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	check_state_change()
 	var target : Entity = find_closest_target()
 	if target: charge(target)
-	else: match state:
+	else: match current_state:
 		state.Stand: stand()
 		state.Patrol: patrol()
 		state.Follow: follow()
@@ -48,7 +48,8 @@ func stand():
 func follow():
 	if not QuickScripts.player: return
 	var to_player := QuickScripts.player.global_position - global_position
-	if to_player.length() > follow_dist: move(to_player.normalized().x, true)
+	if to_player.length() > follow_dist + 50: move(to_player.normalized().x, true)
+	elif to_player.length() > follow_dist: move(to_player.normalized().x)
 	else: move(0)
 #endregion
 
@@ -95,7 +96,7 @@ func charge(target : Entity):
 func find_closest_target(outside_range : bool = false) -> Entity:
 	var closest_target : Entity = null
 	var closest_target_distance : float = INF
-	var allies = get_tree().get_nodes_in_group("allies").filter(func (x : Ally): return not x.puppet and not x is Player)
+	var allies := get_tree().get_nodes_in_group("allies").filter(func (x : Ally): return not x.puppet and not x is Player)
 	for target : Entity in get_tree().get_nodes_in_group("enemies"):
 		var to_target : Vector2 = target.global_position - global_position
 		if check_engagement(target, allies) or \
@@ -110,7 +111,7 @@ func find_closest_target(outside_range : bool = false) -> Entity:
 			closest_target_distance = to_target.length()
 	return closest_target
 
-func check_engagement(target : Entity, allies : Array[Ally]) -> bool:
+func check_engagement(target : Entity, allies : Array) -> bool:
 	for ally in allies: if ally.engaged_with == target: return true
 	return false
 

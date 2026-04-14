@@ -24,24 +24,29 @@
 script/source = "extends Ally
 
 @export var Primary_Move_Buffer : Buffer
+@export var Secondary_Move_Buffer : Buffer
 @export var melee_controller : MeleeController
 @export var shield : Shield
+var protect := false
 
 func _process(_delta: float) -> void:
 	ANM_Animation_Tree.set(\"parameters/conditions/attack\", Primary_Move_Buffer.buffer)
+	if Secondary_Move_Buffer.buffer and not protect:
+		protect = true
+		ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", false)
+		ANM_Animation_Tree.set(\"parameters/conditions/protect\", true)
+		shield.activate()
+	if not Secondary_Move_Buffer.buffer and protect:
+		shield.deactivate()
+		ANM_Animation_Tree.set(\"parameters/conditions/protect\", false)
+		ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", true)
+		protect = false
 
 func primary():
 	Primary_Move_Buffer.start()
 
 func secondary():
-	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", false)
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", true)
-	shield.activate()
-	while Input.is_action_pressed(\"secondary\"):
-		await get_tree().physics_frame
-	shield.deactivate()
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", false)
-	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", true)
+	Secondary_Move_Buffer.start()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4a0eb"]
@@ -1218,15 +1223,16 @@ size = Vector2(5, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4a0eb"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="ally knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "Collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
+[node name="ally knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "Secondary_Move_Buffer", "melee_controller", "shield", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
+Secondary_Move_Buffer = NodePath("Secondary Buffer")
 melee_controller = NodePath("Melee Controller")
 shield = NodePath("Sheild")
-HitPoints = 20.0
 avatar = SubResource("AtlasTexture_4a0eb")
 title = "Ally Knight"
-Attack_Range = 50.0
+type = 1
+HitPoints = 20.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -1242,7 +1248,6 @@ autoplay = "default"
 offset = Vector2(3, 0)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1698838339]
-visible = false
 shape = SubResource("CapsuleShape2D_f1v5o")
 
 [node name="anim_player" type="AnimationPlayer" parent="." unique_id=401617038]
@@ -1316,3 +1321,8 @@ stream = ExtResource("19_sdwpe")
 autoplay = true
 max_distance = 500.0
 parameters/looping = true
+
+[node name="Secondary Buffer" type="Node" parent="." unique_id=1118191215]
+script = ExtResource("11_qwjep")
+duration = 0.1
+metadata/_custom_type_script = "uid://n2liqouspgxa"

@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 [node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_p2nvj")]
 
 [node name="next_level" type="Area2D" parent="." unique_id=581464720]
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=2143341115]
 position = Vector2(-1067.75, 43)

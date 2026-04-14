@@ -883,7 +883,7 @@ Animation_Frame = 2
 Damage = 4.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Warrior" type="CharacterBody2D" unique_id=324656721 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Warrior" type="CharacterBody2D" unique_id=324656721 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_j8d2y")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")

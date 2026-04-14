@@ -763,7 +763,7 @@ Animation_Frame = 2
 Damage = 2.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
-[node name="Skeleton Spearman" type="CharacterBody2D" unique_id=776061347 node_paths=PackedStringArray("attack_buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
+[node name="Skeleton Spearman" type="CharacterBody2D" unique_id=776061347 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_8krme")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")

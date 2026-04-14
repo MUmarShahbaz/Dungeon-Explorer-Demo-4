@@ -1439,7 +1439,7 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcwo"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
+[node name="samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
