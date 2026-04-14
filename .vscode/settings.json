@@ -1,3 +1,13 @@
 {
-    "godotTools.editorPath.godot4": "c:\\Program Files\\Godot\\Godot_v4.6.1-stable_win64.exe"
+    "godotTools.editorPath.godot4": "c:\\Program Files\\Godot\\Godot_v4.6.1-stable_win64.exe",
+    "files.exclude": {
+        "**/**.git": true,
+        "**/**.uid": true,
+        ".godot/": true,
+        "addons/": true,
+        ".editorconfig": true,
+        ".gitattributes": true,
+        "export_presets.cfg": true,
+        "LICENSE.md": true
+    }
 }
