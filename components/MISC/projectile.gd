@@ -11,17 +11,17 @@ var launched_by : CharacterBody2D
 
 func _ready() -> void:
 	set_collision_layer_value(1, false)
-	set_collision_layer_value(4, true)
-	set_collision_mask_value(3 if launched_by is Player else 2, true)
-	set_collision_mask_value(5, true)
+	set_collision_layer_value(5, true)
+	set_collision_mask_value(4 if launched_by is Ally else 3, true)
+	set_collision_mask_value(6, true)
 	gravity_scale = 0
 	lock_rotation = true
 	contact_monitor = true
 	max_contacts_reported = 1
 	if direction == -1 : flip()
 	while true:
-		await get_tree().create_timer(5).timeout
-		if abs(linear_velocity.x) < 2: queue_free()
+		await get_tree().create_timer(2).timeout
+		if abs(linear_velocity.x) < 100: queue_free()
 
 func flip():
 	sprite.scale.x *= -1

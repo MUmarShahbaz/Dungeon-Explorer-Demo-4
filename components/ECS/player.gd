@@ -1,20 +1,40 @@
-extends Entity
-class_name Ally
-
-@export var civilian : bool = false
+extends Ally
+class_name Player
 
 #region Core
 func _ready() -> void:
 	super._ready()
-	add_to_group("civilian" if civilian else "allies")
-	set_collision_layer_value(1, false)
-	set_collision_layer_value(2, true)
-	if not puppet and not self is Player: add_child.call_deferred(AllyMentality.new())
+	puppet = true
+	add_to_group("players")
+	var myCAM = CAM.new()
+	myCAM.target = self
+	add_child.call_deferred(myCAM)
+	cam.connect(Callable(myCAM, "set_target_offset"))
+	var myEars = AudioListener2D.new()
+	add_child.call_deferred(myEars)
+	myEars.make_current()
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	Regeneration(delta)
 	SP_Handler(delta)
+	controller()
+#endregion
+
+#region Controller
+signal cam(cam_dir : Vector2)
+var disable_controls : bool = false
+
+func controller():
+	if disable_controls: return
+	cam.emit(Input.get_vector("cam_left", "cam_right", "cam_up", "cam_down").normalized())
+	if Input.is_action_just_pressed("primary"): primary()
+	if Input.is_action_just_pressed("secondary"): secondary()
+	if Input.is_action_just_pressed("heal"): heal()
+	if Input.is_action_just_pressed("boost"): boost()
+	if pause_movement(): return
+	move(Input.get_axis("left", "right"), Input.is_action_pressed("sprint"))
+	if Input.is_action_just_pressed("jump"): jump()
 #endregion
 
 #region HP_SP
@@ -25,8 +45,8 @@ func _physics_process(delta: float) -> void:
 var SP_Special_Points : float = 0
 
 func Regeneration(delta):
-	HP_Current += HP_Regeneration_Rate *  delta
-	if HP_Current > Health_Points: HP_Current = Health_Points
+	hp += HP_Regeneration_Rate *  delta
+	if hp > HitPoints: hp = HitPoints
 
 func SP_Handler(delta):
 	if SP_Special_Points > 0:
@@ -47,7 +67,7 @@ func SP_Effect(damage_multiplier : float = 1, attack_speed_multiplier : float = 
 func heal():
 	if ITM_Healing_Potions > 0:
 		ITM_Healing_Potions -= 1
-		HP_Current += HP_Regeneration_Rate * 60
+		hp += HP_Regeneration_Rate * 60
 
 func boost():
 	if ITM_Booster_Potions > 0:
@@ -55,5 +75,3 @@ func boost():
 		SP_Special_Points += 34
 		if SP_Special_Points > 100: SP_Special_Points = 100
 #endregion
-
-func secondary(): pass

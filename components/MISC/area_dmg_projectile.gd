@@ -5,8 +5,8 @@ class_name AreaDamageProjectile
 
 func _ready() -> void:
 	super._ready()
-	blast_radius.set_collision_mask_value(3 if launched_by is Player else 2, true)
-	blast_radius.set_collision_mask_value(5, true)
+	blast_radius.set_collision_mask_value(4 if launched_by is Ally else 3, true)
+	blast_radius.set_collision_mask_value(6, true)
 
 func _physics_process(_delta: float) -> void:
 	var bodies = get_colliding_bodies()
