@@ -4,6 +4,8 @@ Dungeon Explorer is my work-in-progress multiplayer dungeon exploration game. Th
 
 Since I'm slightly new to game development, it took me some time. These demos are my experiments where I learn something new that I will be able to use in the final game.
 
+**Note: The final game will be multiplayer, not this demo**
+
 
 Here's what I leared with the previous demos
 
@@ -19,7 +21,7 @@ This project was very important in teaching me not only game development, but al
 
 ## ECS - Entity Component System
 
-<img width="2687" height="2256" alt="Debugging Error Handling-2026-04-10-012019" src="https://github.com/user-attachments/assets/332e97e1-64e3-419e-8bf5-e78c35303375" />
+<img width="2687" height="2256" alt="ECS" src="https://github.com/user-attachments/assets/332e97e1-64e3-419e-8bf5-e78c35303375" />
 
 
 The ECS contains 2 types of nodes:

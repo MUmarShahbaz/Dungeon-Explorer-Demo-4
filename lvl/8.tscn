@@ -9,10 +9,11 @@
 [sub_resource type="GDScript" id="GDScript_p2nvj"]
 script/source = "extends Level
 
-func _ready() -> void:
+func _ready() -> void:   
 	super._ready()
 	await QuickScripts.player_spawned
-	QuickScripts.move_entity(-900)
+	await QuickScripts.move_entity(-900)
+	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/8.tres\")
 	$\"Corrupt Knights/Spawner\".begin()
 	$\"Ally Knights/Spawner\".begin()
 

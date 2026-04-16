@@ -8,7 +8,9 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
-	QuickScripts.move_entity(3050)
+	await QuickScripts.move_entity(3050)
+	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/2.tres\")
+
 
 func prepare_map():
 	$\"Castle Outdoors/Darkness\".queue_free()

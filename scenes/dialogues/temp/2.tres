@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://dd0mufy7ntkd3"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_6fohp"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="2_cuimj"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="3_6spqs"]
+
+[sub_resource type="Resource" id="Resource_xp3d0"]
+script = ExtResource("1_6fohp")
+Text = "note from the developer:
+
+Hello there!!"
+Sprite = ExtResource("2_cuimj")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_buby4"]
+script = ExtResource("1_6fohp")
+Text = "This game is still a WIP so
+there are a few missing levels"
+Sprite = ExtResource("2_cuimj")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_3kajm"]
+script = ExtResource("1_6fohp")
+Text = "For the sake of storyline, I will tell
+you the missing parts when needed"
+Sprite = ExtResource("2_cuimj")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_abe57"]
+script = ExtResource("1_6fohp")
+Text = "P.S: I am aiming for the MacBook M5 Air
+And I need almost 30/30 cookies/hr"
+Sprite = ExtResource("2_cuimj")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_tj5r5"]
+script = ExtResource("1_6fohp")
+Text = "So please be a little
+generous in your vote.
+I promise it'll be worth it!!"
+Sprite = ExtResource("2_cuimj")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("3_6spqs")
+array = Array[ExtResource("1_6fohp")]([SubResource("Resource_xp3d0"), SubResource("Resource_buby4"), SubResource("Resource_3kajm"), SubResource("Resource_abe57"), SubResource("Resource_tj5r5")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

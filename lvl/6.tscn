@@ -23,7 +23,7 @@ func prepare_map():
 var death_count : int = -1
 func _on_player_spawned(_player: Player) -> void:
 	death_count += 1
-	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/temp.tres\")
+	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/6.tres\")
 	$Dungeon/Vignette.add_mini_map_vignette(QuickScripts.hud)
 "
 

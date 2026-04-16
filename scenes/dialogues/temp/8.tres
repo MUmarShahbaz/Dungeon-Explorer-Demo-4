@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://7cuoprtsbd51"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_6d30g"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="2_splby"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="3_hj3yt"]
+
+[sub_resource type="Resource" id="Resource_0x617"]
+script = ExtResource("1_6d30g")
+Text = "just one more level was skipped"
+Sprite = ExtResource("2_splby")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_gotpo"]
+script = ExtResource("1_6d30g")
+Text = "You were ambushed by mercenaries and you defeated them"
+Sprite = ExtResource("2_splby")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_ihyun"]
+script = ExtResource("1_6d30g")
+Text = "They revealed about a coup and how
+the king is poisoned, not sick"
+Sprite = ExtResource("2_splby")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_oq42e"]
+script = ExtResource("1_6d30g")
+Text = "You gather some loyal knights and break into the castle"
+Sprite = ExtResource("2_splby")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_d0pi1"]
+script = ExtResource("1_6d30g")
+Text = "P.S:  You can go past the blockade
+by clmibing the fountain and trees
+to reach the roof/balcony"
+Sprite = ExtResource("2_splby")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("3_hj3yt")
+array = Array[ExtResource("1_6d30g")]([SubResource("Resource_0x617"), SubResource("Resource_gotpo"), SubResource("Resource_ihyun"), SubResource("Resource_oq42e"), SubResource("Resource_d0pi1")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

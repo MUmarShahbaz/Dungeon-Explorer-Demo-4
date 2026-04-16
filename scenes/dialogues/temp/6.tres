@@ -7,59 +7,39 @@
 [sub_resource type="Resource" id="Resource_q8nfi"]
 script = ExtResource("1_7xweb")
 Text = "note from developer:
-some levels (including this one) are incoplete
-as this is a wip game "
+These are the 3 levels in a row that were skipped."
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_2fqcq"]
 script = ExtResource("1_7xweb")
-Text = "context:
-the dark lady just gave you the potion
-and challenged you to escape this dungeon"
+Text = "You've had your audience with the dark lady
+and she gave you the miracle potion"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_7xweb"]
 script = ExtResource("1_7xweb")
-Text = "more controls:
-In the next level you will command an army
-Z = Stand/Secondary"
+Text = "Now you must escape this dungeon.
+Only problem is that the dungeon is empty
+This lvl is still wip after all"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_2jpv5"]
 script = ExtResource("1_7xweb")
-Text = "X = Follow Player
-C = Patrol Autonomously
-V = Charge at Foes"
+Text = "But the next one is totally worth it!!!
+You command an army!!!!"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_cnfls"]
 script = ExtResource("1_7xweb")
-Text = "A level is being skipped (for now) where you
-fight and interogate mercenary ambushers"
-Sprite = ExtResource("2_2jpv5")
-metadata/_custom_type_script = "uid://86nuwqny3eip"
-
-[sub_resource type="Resource" id="Resource_dqinl"]
-script = ExtResource("1_7xweb")
-Text = "They reveal about the coup planned
-You must break into the castle
-and give the medicine"
-Sprite = ExtResource("2_2jpv5")
-metadata/_custom_type_script = "uid://86nuwqny3eip"
-
-[sub_resource type="Resource" id="Resource_tv6s5"]
-script = ExtResource("1_7xweb")
-Text = "note from developer:
-there's still a teensy weensy
-cutscene left (my personal favorite)"
+Text = "30/30 cookies/hr please!!!"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [resource]
 script = ExtResource("3_cnfls")
-array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_7xweb"), SubResource("Resource_2jpv5"), SubResource("Resource_cnfls"), SubResource("Resource_dqinl"), SubResource("Resource_tv6s5")])
+array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_7xweb"), SubResource("Resource_2jpv5"), SubResource("Resource_cnfls")])
 metadata/_custom_type_script = "uid://0jqxed4lfalo"
