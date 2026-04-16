@@ -37,7 +37,7 @@ func patrol():
 		await get_tree().create_timer(randf_range(3, 5)).timeout
 		pause = false
 
-@export var path_checker : Vector2 = Vector2(5, 50)
+@export var path_checker : Vector2 = Vector2(50, 5)
 func prepare_block_check_ray():
 	block_check_ray.target_position = Vector2(path_checker.x, 0)
 	block_check_ray.global_position = collider.shape.get_rect().end

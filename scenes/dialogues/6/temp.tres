@@ -14,9 +14,40 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_2fqcq"]
 script = ExtResource("1_7xweb")
-Text = "note from developer:
+Text = "context:
 the dark lady just gave you the potion
-take it and leave the dungeon"
+and challenged you to escape this dungeon"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_7xweb"]
+script = ExtResource("1_7xweb")
+Text = "more controls:
+In the next level you will command an army
+Z = Stand/Secondary"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_2jpv5"]
+script = ExtResource("1_7xweb")
+Text = "X = Follow Player
+C = Patrol Autonomously
+V = Charge at Foes"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_cnfls"]
+script = ExtResource("1_7xweb")
+Text = "A level is being skipped (for now) where you
+fight and interogate mercenary ambushers"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_dqinl"]
+script = ExtResource("1_7xweb")
+Text = "They reveal about the coup planned
+You must break into the castle
+and give the medicine"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
@@ -30,5 +61,5 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [resource]
 script = ExtResource("3_cnfls")
-array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_tv6s5")])
+array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_7xweb"), SubResource("Resource_2jpv5"), SubResource("Resource_cnfls"), SubResource("Resource_dqinl"), SubResource("Resource_tv6s5")])
 metadata/_custom_type_script = "uid://0jqxed4lfalo"

@@ -86,9 +86,9 @@ func pause_movement():
 	if force_pause: return true
 	for anim in pause_on_anims: if check_anim(anim) : return true
 	return false
-func quick_pause():
+func quick_pause(duration : float = 0.3):
 	force_pause = true
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(duration).timeout
 	force_pause = false
 
 func move(x_dir : float, run : bool = false):
@@ -109,9 +109,10 @@ func move(x_dir : float, run : bool = false):
 		velocity.x = 0
 	if x_dir * facing < 0 : flip()
 
-func jump():
-	if pause_movement() or not is_on_floor(): return
-	velocity.y -= Jump_Force
+func jump(force := Jump_Force):
+	if pause_movement() or not is_on_floor() or check_anim("jump"): return
+	velocity.y -= force
+	quick_pause(0.01)
 	start_anim("jump")
 #endregion
 

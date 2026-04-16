@@ -10,7 +10,7 @@ var multiplier : float = 1
 var attacking = null
 
 func _process(_delta: float) -> void:
-	if is_cooldown and not parent is Player: return
+	if is_cooldown and not parent is Ally: return
 	if attacking:
 		if parent.check_anim(attacking) == false:
 			attacking = null

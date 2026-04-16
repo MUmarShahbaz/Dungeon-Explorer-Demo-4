@@ -1231,6 +1231,7 @@ avatar = SubResource("AtlasTexture_4a0eb")
 title = "Ally Knight"
 type = 1
 HitPoints = 20.0
+Attack_Range = 60.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")

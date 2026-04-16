@@ -79,7 +79,7 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_u1q06"]
 script = ExtResource("1_iaqwv")
-Text = "You can count on me!!"
+Text = "I will not fail you!"
 Sprite = ExtResource("8_85af3")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 

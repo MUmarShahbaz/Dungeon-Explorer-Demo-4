@@ -29,7 +29,7 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 size = Vector2(53, 313)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlh3"]
-size = Vector2(289, 20)
+size = Vector2(754.5, 20)
 
 [node name="Break into castle" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
@@ -57,7 +57,7 @@ Rate = 0.0
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Corrupt Knights/Spawner" unique_id=1784311418]
-position = Vector2(1069, 133)
+position = Vector2(836.25, 133)
 shape = SubResource("RectangleShape2D_8mlh3")
 
 [node name="Ally Knights" type="Node2D" parent="." unique_id=1983777057]

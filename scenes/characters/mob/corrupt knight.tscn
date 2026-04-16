@@ -27,7 +27,7 @@ script/source = "extends Enemy
 @export var shield : Shield
 
 func _process(_delta: float) -> void:
-	ANM_Animation_Tree.set(\"parameters/conditions/attack\", Primary_Move_Buffer.buffer and melee_controller.cooldown)
+	ANM_Animation_Tree.set(\"parameters/conditions/attack\", Primary_Move_Buffer.buffer and not melee_controller.is_cooldown)
 
 func primary():
 	Primary_Move_Buffer.start()
@@ -1149,7 +1149,7 @@ TDR_front = 500.0
 avatar = SubResource("AtlasTexture_4a0eb")
 title = "Corrupt Knight"
 type = 1
-HitPoints = 20.0
+HitPoints = 10.0
 Attack_Range = 60.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
