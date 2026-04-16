@@ -79,13 +79,17 @@ func flip() -> void:
 	RayBox.scale.x = facing
 #endregion
 
-#region ACT
+#region Movement
 var pause_on_anims : Array[String] = ["attack_1", "attack_2", "attack_3", "protect", "shoot", "die"]
 var force_pause : bool = false
 func pause_movement():
 	if force_pause: return true
 	for anim in pause_on_anims: if check_anim(anim) : return true
 	return false
+func quick_pause():
+	force_pause = true
+	await get_tree().create_timer(0.3).timeout
+	force_pause = false
 
 func move(x_dir : float, run : bool = false):
 	if pause_movement():

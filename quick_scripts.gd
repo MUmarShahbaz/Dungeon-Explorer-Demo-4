@@ -65,6 +65,7 @@ func spawn():
 	new_hud.avatar.region.size = Vector2(32, 32)
 	current_scene.add_child.call_deferred(new_hud)
 
+	if player: player.queue_free()
 	player = new_player
 	hud = new_hud
 	while not player.is_node_ready() and not hud.is_node_ready():

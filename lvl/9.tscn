@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://mdi2fwebcris"]
 
 [ext_resource type="PackedScene" uid="uid://myukpp1ey4ou" path="res://maps/castle_indoors.tscn" id="1_hmhoh"]
-[ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf_queen.tscn" id="2_v4rsh"]
-[ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf_king.tscn" id="3_v4rsh"]
+[ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf queen.tscn" id="2_v4rsh"]
+[ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf king.tscn" id="3_v4rsh"]
 [ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="4_r6bdr"]
 
 [sub_resource type="GDScript" id="GDScript_u1uom"]

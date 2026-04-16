@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://busbu0tw6ih52" path="res://assets/sprites/players/knight/Dead.png" id="5_dft1t"]
 [ext_resource type="Texture2D" uid="uid://djsucd7jnxavx" path="res://assets/sprites/players/knight/Jump.png" id="6_rf4qt"]
 [ext_resource type="Texture2D" uid="uid://bdflpt1lfh5m" path="res://assets/sprites/players/knight/Hurt.png" id="7_uo2v1"]
-[ext_resource type="Texture2D" uid="uid://birhnuf7oseei" path="res://assets/sprites/players/knight/Protect.png" id="8_kvb0q"]
 [ext_resource type="Texture2D" uid="uid://d3exw2tt5r34p" path="res://assets/sprites/players/knight/Run.png" id="9_6ymku"]
 [ext_resource type="Texture2D" uid="uid://c4eom8cbuu11v" path="res://assets/sprites/players/knight/Walk.png" id="10_ctpun"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_1g2gt"]
@@ -32,16 +31,6 @@ func _process(_delta: float) -> void:
 
 func primary():
 	Primary_Move_Buffer.start()
-
-func secondary():
-	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", false)
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", true)
-	shield.activate()
-	while Input.is_action_pressed(\"secondary\"):
-		await get_tree().physics_frame
-	shield.deactivate()
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", false)
-	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", true)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4a0eb"]
@@ -171,10 +160,6 @@ region = Rect2(512, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_335tu"]
 atlas = ExtResource("6_rf4qt")
 region = Rect2(640, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nna33"]
-atlas = ExtResource("8_kvb0q")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bvir"]
 atlas = ExtResource("9_6ymku")
@@ -375,14 +360,6 @@ animations = [{
 "loop": false,
 "name": &"land",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nna33")
-}],
-"loop": false,
-"name": &"protect",
-"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -877,47 +854,6 @@ tracks/2/keys = {
 "values": [Vector2(-1, -1)]
 }
 
-[sub_resource type="Animation" id="Animation_868je"]
-resource_name = "protect"
-length = 0.10001
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"protect"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_iqwwa"]
 resource_name = "run"
 length = 0.70001
@@ -1002,7 +938,6 @@ _data = {
 &"idle": SubResource("Animation_wfufo"),
 &"jump": SubResource("Animation_gu12u"),
 &"land": SubResource("Animation_jpmv8"),
-&"protect": SubResource("Animation_868je"),
 &"run": SubResource("Animation_iqwwa"),
 &"walk": SubResource("Animation_jue6h")
 }
@@ -1065,9 +1000,6 @@ animation = &"jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jue6h"]
 animation = &"land"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_868je"]
-animation = &"protect"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4bvir"]
 animation = &"run"
 
@@ -1092,10 +1024,6 @@ advance_expression = "get_parent().is_on_floor()"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dxeu0"]
-advance_mode = 2
-advance_condition = &"protect"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6e26"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wfufo"]
@@ -1115,10 +1043,6 @@ advance_expression = "get_parent().velocity.x == 0"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1fk6n"]
 advance_mode = 2
 advance_expression = "!get_parent().is_on_floor() && get_parent().velocity.y > 0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jue6h"]
-advance_mode = 2
-advance_condition = &"not_protect"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_335tu"]
 
@@ -1179,14 +1103,12 @@ states/jump/node = SubResource("AnimationNodeAnimation_xjcqi")
 states/jump/position = Vector2(320.884, 24.9544)
 states/land/node = SubResource("AnimationNodeAnimation_jue6h")
 states/land/position = Vector2(437.037, 24.7743)
-states/protect/node = SubResource("AnimationNodeAnimation_868je")
-states/protect/position = Vector2(749.333, 240.606)
 states/run/node = SubResource("AnimationNodeAnimation_4bvir")
 states/run/position = Vector2(675.711, 24.8822)
 states/walk/node = SubResource("AnimationNodeAnimation_ox6at")
 states/walk/position = Vector2(542.258, 25.38)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "protect", SubResource("AnimationNodeStateMachineTransition_dxeu0"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "protect", "idle", SubResource("AnimationNodeStateMachineTransition_jue6h"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_4bvir"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_7eb7e"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_mh47a"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_fpawd")]
-graph_offset = Vector2(0, 49.837337)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_4bvir"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_7eb7e"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_mh47a"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_fpawd")]
+graph_offset = Vector2(71.40014, 49.837337)
 
 [sub_resource type="Resource" id="Resource_sdnk0"]
 script = ExtResource("14_g0o3o")
@@ -1218,7 +1140,7 @@ size = Vector2(5, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4a0eb"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="Corrupt knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "collider", "shield", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
+[node name="Corrupt knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -1253,8 +1175,6 @@ libraries/ = SubResource("AnimationLibrary_gu12u")
 tree_root = SubResource("AnimationNodeStateMachine_wfufo")
 anim_player = NodePath("../anim_player")
 parameters/conditions/attack = false
-parameters/conditions/not_protect = false
-parameters/conditions/protect = false
 parameters/attack_1/TimeScale/scale = 1.0
 parameters/attack_2/TimeScale/scale = 1.0
 parameters/attack_3/TimeScale/scale = 1.0

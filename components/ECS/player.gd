@@ -32,7 +32,8 @@ func controller():
 	if Input.is_action_just_pressed("secondary"): secondary()
 	if Input.is_action_just_pressed("heal"): heal()
 	if Input.is_action_just_pressed("boost"): boost()
-	if pause_movement(): return
+	if Input.is_action_just_pressed("jump"): jump()
+	if Input.is_action_just_pressed("dodge"): dodge()
 	move(Input.get_axis("left", "right"), Input.is_action_pressed("sprint"))
 	if Input.is_action_just_pressed("jump"): jump()
 #endregion

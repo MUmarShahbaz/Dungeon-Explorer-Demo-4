@@ -32,15 +32,16 @@ func _process(_delta: float) -> void:
 
 func primary():
 	Primary_Move_Buffer.start()
+	quick_pause()
 
 func secondary():
 	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", false)
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", true)
+	quick_pause()
+	start_anim(\"protect\", true)
 	shield.activate()
 	while Input.is_action_pressed(\"secondary\"):
 		await get_tree().physics_frame
 	shield.deactivate()
-	ANM_Animation_Tree.set(\"parameters/conditions/protect\", false)
 	ANM_Animation_Tree.set(\"parameters/conditions/not_protect\", true)
 "
 
@@ -1093,8 +1094,6 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dxeu0"]
-advance_mode = 2
-advance_condition = &"protect"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6e26"]
 
@@ -1218,7 +1217,7 @@ size = Vector2(5, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4a0eb"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
+[node name="Knight" type="CharacterBody2D" unique_id=383885407 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "shield", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
 melee_controller = NodePath("Melee Controller")
@@ -1251,7 +1250,6 @@ tree_root = SubResource("AnimationNodeStateMachine_wfufo")
 anim_player = NodePath("../anim_player")
 parameters/conditions/attack = false
 parameters/conditions/not_protect = false
-parameters/conditions/protect = false
 parameters/attack_1/TimeScale/scale = 1.0
 parameters/attack_2/TimeScale/scale = 1.0
 parameters/attack_3/TimeScale/scale = 1.0

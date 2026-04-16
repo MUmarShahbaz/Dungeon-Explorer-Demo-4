@@ -10,7 +10,7 @@ func _ready() -> void:
 	set_collision_mask_value(3, parent is Enemy)
 	set_collision_mask_value(4, parent is Ally)
 	ray.enabled = false
-	ray.set_collision_mask_value(5, true)
+	ray.set_collision_mask_value(6, true)
 	await parent.ready
 	parent.RayBox.add_child.call_deferred(ray)
 
