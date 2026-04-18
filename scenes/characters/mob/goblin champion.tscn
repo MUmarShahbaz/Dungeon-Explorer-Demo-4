@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="10_nktqp"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="11_x0x4u"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="12_5wscf"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="14_olx4a"]
 
 [sub_resource type="GDScript" id="GDScript_x4ujb"]
 script/source = "extends Boss
@@ -851,6 +852,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 3
 Damage = 10.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_uuvfu"]
@@ -874,12 +876,12 @@ script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 TDR_front = 400.0
-Attack_Range = 80.0
-HitPoints = 120.0
 avatar = SubResource("AtlasTexture_yn02r")
 title = "Goblin Champion"
 type = 3
+HitPoints = 120.0
 Run_Speed = 230.0
+Attack_Range = 80.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -932,3 +934,8 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=1913537344]
 polygon = PackedVector2Array(0, 0, 31.5, 16.5, 89, 4, 68, -24, 16, -18)
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=1485717191]
+stream = ExtResource("14_olx4a")
+pitch_scale = 0.7
+max_distance = 300.0

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="6_i46ji"]
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="7_1scqc"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="7_krwm6"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="10_o8u3x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8apu"]
 atlas = ExtResource("2_cbddx")
@@ -657,6 +658,7 @@ Damage_Zone = NodePath("../attack_1")
 Animation_Name = &"attack_1"
 Animation_Frame = 1
 Damage = 1000.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
@@ -708,3 +710,8 @@ polygon = PackedVector2Array(0, 0, 30, -34, 54, -26, 65, -5, 58, 15, 41, 25)
 position = Vector2(0, 4)
 occluder = SubResource("OccluderPolygon2D_uqnqn")
 sdf_collision = false
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=1393014488]
+stream = ExtResource("10_o8u3x")
+pitch_scale = 1.25
+max_distance = 300.0

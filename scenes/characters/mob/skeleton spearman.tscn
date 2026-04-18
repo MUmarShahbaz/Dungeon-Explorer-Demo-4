@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="11_t58gj"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="11_ygnye"]
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="12_uscrk"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="13_bgy0v"]
 
 [sub_resource type="GDScript" id="GDScript_8krme"]
 script/source = "extends Enemy
@@ -753,6 +754,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 2
 Damage = 4.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_vxgsd"]
@@ -761,6 +763,7 @@ Damage_Zone = NodePath("../Attack 2")
 Animation_Name = "attack_2"
 Animation_Frame = 2
 Damage = 2.0
+SFX = NodePath("../atk_2")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Skeleton Spearman" type="CharacterBody2D" unique_id=776061347 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
@@ -817,3 +820,13 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 2" unique_id=1750868986]
 polygon = PackedVector2Array(0, -2, 38, 6, 66, -2, 38, -10)
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=502582855]
+stream = ExtResource("13_bgy0v")
+pitch_scale = 1.6
+max_distance = 300.0
+
+[node name="atk_2" type="AudioStreamPlayer2D" parent="." unique_id=1908751862]
+stream = ExtResource("13_bgy0v")
+pitch_scale = 1.8
+max_distance = 300.0

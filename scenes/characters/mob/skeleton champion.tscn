@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="11_q6jqe"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="12_ycoqu"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="13_k1mcq"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="14_lc5kp"]
 
 [sub_resource type="GDScript" id="GDScript_xej81"]
 script/source = "extends Boss
@@ -865,6 +866,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 3
 Damage = 9.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_uuvfu"]
@@ -873,6 +875,7 @@ Damage_Zone = NodePath("../Attack 2")
 Animation_Name = "attack_2"
 Animation_Frame = 3
 Damage = 9.0
+SFX = NodePath("../atk_2")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_6wvc4"]
@@ -881,6 +884,7 @@ Damage_Zone = NodePath("../Attack 3")
 Animation_Name = "attack_3"
 Animation_Frame = 2
 Damage = 12.0
+SFX = NodePath("../atk_3")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Skeleton Champion" type="CharacterBody2D" unique_id=270097652 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
@@ -888,11 +892,11 @@ script = SubResource("GDScript_xej81")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 TDR_front = 250.0
-Attack_Range = 80.0
 avatar = SubResource("AtlasTexture_xej81")
 title = "Skeleton Champion"
 type = 3
 Run_Speed = 280.0
+Attack_Range = 80.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -946,3 +950,18 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=263459870]
 polygon = PackedVector2Array(0, 0, 15, 29, 85, 51, 101, -4, 79, -58)
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=1338366839]
+stream = ExtResource("14_lc5kp")
+pitch_scale = 1.6
+max_distance = 300.0
+
+[node name="atk_2" type="AudioStreamPlayer2D" parent="." unique_id=772015551]
+stream = ExtResource("14_lc5kp")
+pitch_scale = 1.4
+max_distance = 300.0
+
+[node name="atk_3" type="AudioStreamPlayer2D" parent="." unique_id=2131922123]
+stream = ExtResource("14_lc5kp")
+pitch_scale = 1.8
+max_distance = 300.0

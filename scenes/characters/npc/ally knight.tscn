@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="15_1husa"]
 [ext_resource type="Script" uid="uid://vhohi773o038" path="res://components/AC/shield.gd" id="16_3knod"]
 [ext_resource type="AudioStream" uid="uid://f1psa8qthkty" path="res://assets/audio/humanoid_die.mp3" id="17_avxql"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="18_8c0s7"]
 
 [sub_resource type="GDScript" id="GDScript_ahx3g"]
 script/source = "extends Ally
@@ -1195,6 +1196,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 4
 Damage = 10.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_32tv2"]
@@ -1203,6 +1205,7 @@ Damage_Zone = NodePath("../Attack 2")
 Animation_Name = "attack_2"
 Animation_Frame = 2
 Damage = 12.0
+SFX = NodePath("../atk_2")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_1rr0u"]
@@ -1211,6 +1214,7 @@ Damage_Zone = NodePath("../Attack 3")
 Animation_Name = "attack_3"
 Animation_Frame = 2
 Damage = 5.0
+SFX = NodePath("../atk_3")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6kln"]
@@ -1308,3 +1312,17 @@ sdf_collision = false
 [node name="die" type="AudioStreamPlayer2D" parent="." unique_id=1088438543]
 stream = ExtResource("17_avxql")
 max_distance = 1000.0
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=512061721]
+stream = ExtResource("18_8c0s7")
+pitch_scale = 1.25
+max_distance = 300.0
+
+[node name="atk_2" type="AudioStreamPlayer2D" parent="." unique_id=1965343256]
+stream = ExtResource("18_8c0s7")
+pitch_scale = 0.8
+max_distance = 300.0
+
+[node name="atk_3" type="AudioStreamPlayer2D" parent="." unique_id=1203591932]
+stream = ExtResource("18_8c0s7")
+max_distance = 300.0

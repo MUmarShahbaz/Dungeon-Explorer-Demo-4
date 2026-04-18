@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bqxoijlpwtgvm" path="res://components/AC/damager/melee/melee_controller.gd" id="10_y1brm"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="11_pma8q"]
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="11_t2new"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="14_uemok"]
 
 [sub_resource type="GDScript" id="GDScript_j8d2y"]
 script/source = "extends Enemy
@@ -865,6 +866,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 3
 Damage = 3.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_uuvfu"]
@@ -873,6 +875,7 @@ Damage_Zone = NodePath("../Attack 2")
 Animation_Name = "attack_2"
 Animation_Frame = 3
 Damage = 3.0
+SFX = NodePath("../atk_2")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_6wvc4"]
@@ -881,6 +884,7 @@ Damage_Zone = NodePath("../Attack 3")
 Animation_Name = "attack_3"
 Animation_Frame = 2
 Damage = 4.0
+SFX = NodePath("../atk_3")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Skeleton Warrior" type="CharacterBody2D" unique_id=324656721 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
@@ -943,3 +947,18 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 3" unique_id=844549228]
 polygon = PackedVector2Array(0, 0, 8, 16, 47, 28, 56, -2, 44, -32)
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=1021913740]
+stream = ExtResource("14_uemok")
+pitch_scale = 1.6
+max_distance = 300.0
+
+[node name="atk_2" type="AudioStreamPlayer2D" parent="." unique_id=997600174]
+stream = ExtResource("14_uemok")
+pitch_scale = 1.4
+max_distance = 300.0
+
+[node name="atk_3" type="AudioStreamPlayer2D" parent="." unique_id=86738979]
+stream = ExtResource("14_uemok")
+pitch_scale = 1.8
+max_distance = 300.0
