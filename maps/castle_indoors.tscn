@@ -6,7 +6,9 @@
 script/source = "extends Node2D
 
 func _ready() -> void:
-	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(60, 960, 0, 194, 4, 1))
+	QuickScripts.player_spawned.connect(func (_x):
+		QuickScripts.clamp_camera(60, 960, 0, 194, 4, 1)
+		QuickScripts.hud.hide())
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1iro4"]

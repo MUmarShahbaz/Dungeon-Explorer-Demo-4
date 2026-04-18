@@ -9,6 +9,7 @@ script/source = "extends Level
 var cutscene_1_played : bool = false
 
 func _ready() -> void:
+	QuickScripts.selected = {}
 	super._ready()
 	await QuickScripts.player_spawned
 	QuickScripts.move_entity(150)

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bl3r31difxm2"]
+
+[ext_resource type="PackedScene" uid="uid://c7xdec6ruvtmc" path="res://maps/deepest_chamber.tscn" id="2_yad1s"]
+
+[sub_resource type="GDScript" id="GDScript_ru2nh"]
+script/source = "extends Level
+
+var cutscene_1_played : bool = false
+
+func _ready() -> void:
+	super._ready()
+	await QuickScripts.player_spawned
+	QuickScripts.move_entity(0)
+
+func _physics_process(_delta: float) -> void:
+	if not cutscene_1_played and QuickScripts.player and QuickScripts.player.global_position.x > 150:
+		cutscene_1()
+
+func cutscene_1():
+	cutscene_1_played = true
+
+func _on_next_level_body_entered(body: Node2D) -> void:
+	if body is Player and cutscene_1_played: QuickScripts.open_lvl(6)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru2nh"]
+size = Vector2(64, 281)
+
+[node name="5" type="Node2D" unique_id=1137905628]
+script = SubResource("GDScript_ru2nh")
+player_spawn_position = Vector2(-75, 155)
+metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
+
+[node name="Deepest Chamber" parent="." unique_id=1451006815 instance=ExtResource("2_yad1s")]
+
+[node name="next_level" type="Area2D" parent="." unique_id=1893176500]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=241447960]
+position = Vector2(-104, 134.5)
+shape = SubResource("RectangleShape2D_ru2nh")
+
+[connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

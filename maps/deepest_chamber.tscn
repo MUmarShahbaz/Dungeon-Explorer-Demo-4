@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://c7xdec6ruvtmc"]
+
+[ext_resource type="TileSet" uid="uid://5dslaak4yogr" path="res://assets/tilemap/deepest chamber/deepest_chamber.tres" id="1_lk33x"]
+
+[sub_resource type="GDScript" id="GDScript_lk33x"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	QuickScripts.player_spawned.connect(func (_x):
+		QuickScripts.clamp_camera(-48, 528, 0, 270, 3, 1)
+		QuickScripts.hud.hide())
+	
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lk33x"]
+normal = Vector2(1, 0)
+distance = -100.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_csgva"]
+normal = Vector2(-1, 0)
+distance = -528.0
+
+[sub_resource type="Gradient" id="Gradient_4d061"]
+offsets = PackedFloat32Array(0, 0.6875)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lk33x"]
+gradient = SubResource("Gradient_4d061")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Deepest Chamber" type="Node2D" unique_id=1451006815]
+script = SubResource("GDScript_lk33x")
+
+[node name="Tilemap" type="Node2D" parent="." unique_id=1609130781]
+scale = Vector2(0.25, 0.25)
+
+[node name="floor" type="TileMapLayer" parent="Tilemap" unique_id=1298550686]
+position = Vector2(-192, 0)
+scale = Vector2(1.2, 1)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_lk33x")
+
+[node name="bg" type="TileMapLayer" parent="Tilemap" unique_id=1001181204]
+position = Vector2(-192, 0)
+scale = Vector2(1.2, 1)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_lk33x")
+
+[node name="mg" type="TileMapLayer" parent="Tilemap" unique_id=1525585293]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_lk33x")
+
+[node name="lights" type="TileMapLayer" parent="Tilemap" unique_id=487881143]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_lk33x")
+
+[node name="fg" type="TileMapLayer" parent="Tilemap" unique_id=1669490355]
+z_index = 99
+position = Vector2(-192, 0)
+scale = Vector2(1.2, 1)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_lk33x")
+
+[node name="Darkness" type="DirectionalLight2D" parent="." unique_id=174264581]
+energy = 0.5
+blend_mode = 1
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1907032760]
+
+[node name="left" type="CollisionShape2D" parent="Borders" unique_id=1390402671]
+shape = SubResource("WorldBoundaryShape2D_lk33x")
+
+[node name="right" type="CollisionShape2D" parent="Borders" unique_id=2074335500]
+shape = SubResource("WorldBoundaryShape2D_csgva")
+
+[node name="lights" type="Node2D" parent="." unique_id=1168840316]
+
+[node name="left_candle" type="PointLight2D" parent="lights" unique_id=1542966383]
+position = Vector2(91.25, 63.75)
+color = Color(0.9647059, 0.5803922, 0.20784314, 1)
+energy = 0.6
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_lk33x")
+texture_scale = 8.0
+
+[node name="right_candle" type="PointLight2D" parent="lights" unique_id=715378923]
+position = Vector2(388.75, 63.75)
+color = Color(0.9647059, 0.5803922, 0.20784314, 1)
+energy = 0.6
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_lk33x")
+texture_scale = 8.0
+
+[node name="left_gargoyle" type="PointLight2D" parent="lights" unique_id=2124946898]
+position = Vector2(3, 245.00002)
+scale = Vector2(1.4399993, 1.4399993)
+color = Color(1, 0, 0, 1)
+energy = 0.6
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_lk33x")
+texture_scale = 8.0
+
+[node name="right_gargoyle" type="PointLight2D" parent="lights" unique_id=1363415325]
+position = Vector2(477.00003, 242.00002)
+scale = Vector2(1.4399993, 1.4399993)
+color = Color(1, 0, 0, 1)
+energy = 0.6
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_lk33x")
+texture_scale = 8.0
