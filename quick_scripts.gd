@@ -1,5 +1,11 @@
 extends Node
 
+func _ready() -> void:
+	var pause_menu = preload("res://ui/pause_menu.tscn").instantiate()
+	add_child.call_deferred(pause_menu)
+	prepare_bg_music()
+
+
 #region Playable Characters
 var playable : Array[StringName] = ["KNIGHT", "WIZARD", "SAMURAI"]
 var all_characters = {
@@ -75,15 +81,22 @@ func spawn():
 	return new_player
 #endregion
 
+#region Audio Handler
 @onready var bg_player = AudioStreamPlayer.new()
+@onready var audio_master_bus = AudioServer.get_bus_index("Master")
+@onready var audio_music_bus = AudioServer.get_bus_index("Music")
+@onready var audio_sfx_bus = AudioServer.get_bus_index("SFX")
 
-func _ready() -> void:
+func prepare_bg_music():
 	add_child.call_deferred(bg_player)
 	bg_player.stream = load("res://assets/audio/bg.mp3")
+	bg_player.bus = &"Music"
 	bg_player.autoplay = true
 	bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	bg_player.set_deferred("parameters/looping", true)
+#endregion
 
+#region Entities
 func move_entity(to : int, entity: Entity = player, run : bool = true, speed_boost : float = 1):
 	if entity is Player: entity.disable_controls = true
 	var dif = to - entity.global_position.x
@@ -98,9 +111,16 @@ func move_entity(to : int, entity: Entity = player, run : bool = true, speed_boo
 	entity.move(0)
 	if entity is Player: entity.disable_controls = false
 
-func camera_offset(off : Vector2 = Vector2.ZERO):
-	player.get_children().filter(func (x): return x is CAM)[0].set_target_offset(off)
+func get_bounds(entity: Entity):
+	var collider : CollisionShape2D = entity.get_children().filter(func (x): return x is CollisionShape2D)[0]
+	var gp : Vector2 = entity.global_position
+	var tl : Vector2 = collider.shape.get_rect().position
+	var br : Vector2 = collider.shape.get_rect().end
+	#     left, right, top, bottom, global left, global right, global top, global bottom
+	return [tl.x, br.x, tl.y, br.y, tl.x + gp.x, br.x + gp.x, tl.y + gp.y, br.y + gp.y]
+#endregion
 
+#region Dialogues
 func new_dialogue(dialogue = null, dialogue_resource = null):
 	player.disable_controls = true
 	var new_dialog_box := DialogueBox.new()
@@ -111,6 +131,11 @@ func new_dialogue(dialogue = null, dialogue_resource = null):
 	elif dialogue_resource: await new_dialog_box.begin_dialogue_from_resource(dialogue_resource)
 	new_dialog_box.queue_free()
 	player.disable_controls = false
+#endregion
+
+#region Camera
+func camera_offset(off : Vector2 = Vector2.ZERO):
+	player.get_children().filter(func (x): return x is CAM)[0].set_target_offset(off)
 
 func clamp_camera(left : float = -INF, right : float = INF, top : float = -INF, bottom : float = INF, zoom : float = INF, hud_zoom : float = INF):
 	var player_cam = player.get_children().filter(func (x): return x is CAM)[0]
@@ -129,15 +154,9 @@ func clamp_camera(left : float = -INF, right : float = INF, top : float = -INF, 
 		hud_cam.limit_bottom = bottom
 	if zoom != INF: player_cam.zoom = Vector2.ONE*zoom
 	if hud_zoom != INF: hud_cam.zoom = Vector2.ONE*hud_zoom
+#endregion
 
-func get_bounds(entity: Entity):
-	var collider : CollisionShape2D = entity.get_children().filter(func (x): return x is CollisionShape2D)[0]
-	var gp : Vector2 = entity.global_position
-	var tl : Vector2 = collider.shape.get_rect().position
-	var br : Vector2 = collider.shape.get_rect().end
-	#     left, right, top, bottom, global left, global right, global top, global bottom
-	return [tl.x, br.x, tl.y, br.y, tl.x + gp.x, br.x + gp.x, tl.y + gp.y, br.y + gp.y]
-
+#region Levels
 func get_lvl(num: int) -> PackedScene:
 	return load("res://lvl/%d.tscn" % num)
 
@@ -146,3 +165,4 @@ func open_lvl(num: int):
 	for this_connection in player_spawned.get_connections(): player_spawned.disconnect(this_connection.callable)
 	await get_tree().get_current_scene().fade.fade_out()
 	get_tree().change_scene_to_packed(new_lvl_file)
+#endregion

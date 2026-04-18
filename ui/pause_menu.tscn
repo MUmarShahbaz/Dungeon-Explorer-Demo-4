@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_2thiu"]
 [ext_resource type="PackedScene" uid="uid://cos5ex21hlpxf" path="res://ui/controls.tscn" id="2_ii2nf"]
+[ext_resource type="PackedScene" uid="uid://bm3cufrccaih6" path="res://ui/audio.tscn" id="2_npydk"]
 [ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="3_fob5h"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="4_avurv"]
 
@@ -9,14 +10,17 @@
 script/source = "extends CanvasLayer
 
 @onready var main = $Menu/Main
+@onready var audio = $Menu/Audio
 @onready var controls = $Menu/Controls
 @onready var entity_stats = $\"Menu/Entity Stats\"
 @onready var back = $Menu/Back
 @onready var resume = $Menu/Main/Resume
 
+enum states {Main, Audio, Controls, Entity_Stats}
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"interact\"): _on_back_pressed()
-	if Input.is_action_just_pressed(\"pause\"):
+	if Input.is_action_just_pressed(\"pause\") and get_tree().current_scene and not get_tree().current_scene.scene_file_path == \"res://ui/home.tscn\":
 		if get_tree().paused:
 			get_tree().set_deferred(\"paused\", false)
 			hide()
@@ -25,21 +29,35 @@ func _physics_process(_delta: float) -> void:
 			show()
 			resume.grab_focus()
 
+func change_state(new_state : states):
+	if new_state == states.Main:
+		main.show()
+		resume.grab_focus()
+		audio.hide()
+		controls.hide()
+		entity_stats.hide()
+		back.hide()
+	else:
+		main.hide()
+		back.show()
+		back.grab_focus()
+		match new_state:
+			states.Audio: audio.show()
+			states.Controls: controls.show()
+			states.Entity_Stats: entity_stats.show()
+
 func _on_resume_pressed() -> void:
 	get_tree().set_deferred(\"paused\", false)
 	hide()
 
+func _on_audio_pressed() -> void:
+	change_state(states.Audio)
+
 func _on_controls_pressed() -> void:
-	main.hide()
-	back.show()
-	back.grab_focus()
-	controls.show()
+	change_state(states.Controls)
 
 func _on_entity_stats_pressed() -> void:
-	main.hide()
-	back.show()
-	back.grab_focus()
-	entity_stats.show()
+	change_state(states.Entity_Stats)
 
 func _on_quit_pressed() -> void:
 	var home = load(\"res://ui/home.tscn\")
@@ -48,11 +66,7 @@ func _on_quit_pressed() -> void:
 	get_tree().change_scene_to_packed(home)
 
 func _on_back_pressed() -> void:
-	main.show()
-	resume.grab_focus()
-	back.hide()
-	controls.hide()
-	entity_stats.hide()
+	change_state(states.Main)
 "
 
 [node name="Pause Menu" type="CanvasLayer" unique_id=1918781953]
@@ -92,6 +106,11 @@ layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Resume"
 
+[node name="Audio" type="Button" parent="Menu/Main" unique_id=701159153]
+layout_mode = 2
+theme = ExtResource("1_2thiu")
+text = "Audio"
+
 [node name="Controls" type="Button" parent="Menu/Main" unique_id=727683323]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
@@ -106,6 +125,10 @@ text = "Entity Stats"
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Quit"
+
+[node name="Audio" parent="Menu" unique_id=579730665 instance=ExtResource("2_npydk")]
+visible = false
+layout_mode = 1
 
 [node name="Controls" parent="Menu" unique_id=77077679 instance=ExtResource("2_ii2nf")]
 visible = false
@@ -137,6 +160,7 @@ start_blank = true
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="pressed" from="Menu/Main/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/Main/Audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
 [connection signal="pressed" from="Menu/Main/Quit" to="." method="_on_quit_pressed"]

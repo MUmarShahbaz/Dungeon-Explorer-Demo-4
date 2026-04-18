@@ -51,6 +51,43 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 corner_detail = 5
 
+[sub_resource type="DPITexture" id="DPITexture_l7ie4"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jp5p"]
+bg_color = Color(1, 0, 0, 1)
+border_width_top = 6
+border_width_bottom = 6
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axtqm"]
+bg_color = Color(1, 0.34901962, 0.34901962, 1)
+border_width_top = 6
+border_width_bottom = 6
+border_color = Color(1, 0.34901962, 0.34901962, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6an04"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nre6y"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -123,6 +160,11 @@ Button/styles/focus = SubResource("StyleBoxFlat_l7ie4")
 Button/styles/hover = SubResource("StyleBoxFlat_vdwbc")
 Button/styles/normal = SubResource("StyleBoxFlat_lxycn")
 Button/styles/pressed = SubResource("StyleBoxFlat_lxycn")
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = SubResource("DPITexture_l7ie4")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_4jp5p")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_axtqm")
+HSlider/styles/slider = SubResource("StyleBoxFlat_6an04")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)

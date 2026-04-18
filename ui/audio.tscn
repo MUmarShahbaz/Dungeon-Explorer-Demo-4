@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://bm3cufrccaih6"]
+
+[ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_s60x5"]
+
+[sub_resource type="GDScript" id="GDScript_s60x5"]
+script/source = "extends Control
+
+@onready var master_slider = $Container/Master/Slider
+@onready var music_slider = $Container/Music/Slider
+@onready var sfx_slider = $Container/SFX/Slider
+var refreshing := false
+
+func _physics_process(_delta: float) -> void:
+	refresh_audio_sliders()
+
+func refresh_audio_sliders():
+	refreshing = true
+	master_slider.value = AudioServer.get_bus_volume_linear(QuickScripts.audio_master_bus)
+	music_slider.value = AudioServer.get_bus_volume_linear(QuickScripts.audio_music_bus)
+	sfx_slider.value = AudioServer.get_bus_volume_linear(QuickScripts.audio_sfx_bus)
+	refreshing = false
+
+func _volume_changed(_x) -> void:
+	if refreshing: return
+	AudioServer.set_bus_volume_linear(QuickScripts.audio_master_bus, master_slider.value)
+	AudioServer.set_bus_volume_linear(QuickScripts.audio_music_bus, music_slider.value)
+	AudioServer.set_bus_volume_linear(QuickScripts.audio_sfx_bus, sfx_slider.value)
+"
+
+[node name="Audio" type="Control" unique_id=579730665]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_s60x5")
+
+[node name="BG" type="ColorRect" parent="." unique_id=2131375772]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67058825)
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=756002035]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Master" type="HBoxContainer" parent="Container" unique_id=456056045]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Container/Master" unique_id=1161427122]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme = ExtResource("1_s60x5")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Container/Master" unique_id=1923212783]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_s60x5")
+max_value = 1.0
+step = 0.01
+
+[node name="Music" type="HBoxContainer" parent="Container" unique_id=839187708]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Container/Music" unique_id=1317329366]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme = ExtResource("1_s60x5")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Container/Music" unique_id=1554647357]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_s60x5")
+max_value = 1.0
+step = 0.01
+
+[node name="SFX" type="HBoxContainer" parent="Container" unique_id=1527315419]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Container/SFX" unique_id=487555772]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme = ExtResource("1_s60x5")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Container/SFX" unique_id=1685679714]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_s60x5")
+max_value = 1.0
+step = 0.01
+
+[connection signal="value_changed" from="Container/Master/Slider" to="." method="_volume_changed"]
+[connection signal="value_changed" from="Container/Music/Slider" to="." method="_volume_changed"]
+[connection signal="value_changed" from="Container/SFX/Slider" to="." method="_volume_changed"]

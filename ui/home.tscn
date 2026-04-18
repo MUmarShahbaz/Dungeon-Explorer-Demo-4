@@ -16,13 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://cos5ex21hlpxf" path="res://ui/controls.tscn" id="15_yyv38"]
 [ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="16_kdaw1"]
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="17_cd4ok"]
+[ext_resource type="PackedScene" uid="uid://bm3cufrccaih6" path="res://ui/audio.tscn" id="17_kdaw1"]
 [ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="18_wjhlv"]
 
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer
 
 func _ready() -> void:
-	QuickScripts.bg_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	await $Fade.fade_in()
 	$Menu/Main/Play.grab_focus()
 
@@ -30,17 +30,19 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"interact\") or Input.is_action_just_pressed(\"ui_cancel\"): _on_back_pressed()
 
 @onready var Main := $Menu/Main
+@onready var Audio := $Menu/Audio
 @onready var Controls := $Menu/Controls
 @onready var Missions := $Menu/Missions
 @onready var Stats := $\"Menu/Entity Stats\"
 @onready var Back := $Menu/Back
 
-enum states {Main, Controls, Missions, Stats}
+enum states {Main, Audio, Controls, Missions, Stats}
 
 func change_state(new_state : states):
 	if new_state == states.Main:
 		Main.show()
 		$Menu/Main/Play.grab_focus()
+		Audio.hide()
 		Controls.hide()
 		Missions.hide()
 		Stats.hide()
@@ -50,12 +52,16 @@ func change_state(new_state : states):
 		Back.show()
 		Back.grab_focus()
 		match new_state:
+			states.Audio: Audio.show()
 			states.Controls: Controls.show()
 			states.Missions: Missions.show()
 			states.Stats: Stats.show()
 
 func _on_back_pressed() -> void:
 	change_state(states.Main)
+
+func _on_audio_pressed() -> void:
+	change_state(states.Audio)
 
 func _on_controls_pressed() -> void:
 	change_state(states.Controls)
@@ -579,20 +585,29 @@ layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Play"
 
-[node name="Controls" type="Button" parent="Menu/Main" unique_id=1031803877]
-layout_mode = 2
-theme = ExtResource("17_cd4ok")
-text = "Controls"
-
 [node name="Missions" type="Button" parent="Menu/Main" unique_id=812705788]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Missions"
 
+[node name="Audio" type="Button" parent="Menu/Main" unique_id=484876782]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Audio"
+
+[node name="Controls" type="Button" parent="Menu/Main" unique_id=1031803877]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Controls"
+
 [node name="Entity Stats" type="Button" parent="Menu/Main" unique_id=624571742]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Entity Stats"
+
+[node name="Audio" parent="Menu" unique_id=579730665 instance=ExtResource("17_kdaw1")]
+visible = false
+layout_mode = 1
 
 [node name="Controls" parent="Menu" unique_id=77077679 instance=ExtResource("15_yyv38")]
 visible = false
@@ -661,7 +676,8 @@ start_blank = true
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="pressed" from="Menu/Main/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Menu/Main/Missions" to="." method="_on_missions_pressed"]
+[connection signal="pressed" from="Menu/Main/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
 [connection signal="pressed" from="Menu/Back" to="." method="_on_back_pressed"]
