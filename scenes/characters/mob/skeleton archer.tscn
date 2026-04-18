@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://o4kw3676x0i5" path="res://components/AC/damager/projectile/ProjectileAttack.gd" id="8_osokx"]
 [ext_resource type="PackedScene" uid="uid://da1rk8kecexds" path="res://scenes/projectile_scenes/arrow.tscn" id="9_7cuvh"]
 [ext_resource type="Script" uid="uid://cjyum5jemod6g" path="res://components/AC/damager/projectile/projectile_launcher.gd" id="10_bagv5"]
+[ext_resource type="AudioStream" uid="uid://ogul1b6108b3" path="res://assets/audio/arrow_shoot.mp3" id="10_g8otd"]
 
 [sub_resource type="GDScript" id="GDScript_kdj4h"]
 script/source = "extends Enemy
@@ -748,18 +749,19 @@ Spawn_Offset = Vector2(30, -21.5)
 Force = 600
 Animation_Name = "shoot"
 Animation_Frame = 11
+SFX = NodePath("../shoot")
 metadata/_custom_type_script = "uid://o4kw3676x0i5"
 
 [node name="Skeleton Archer" type="CharacterBody2D" unique_id=610114944 node_paths=PackedStringArray("projectile_launcher", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = SubResource("GDScript_kdj4h")
 projectile_launcher = NodePath("ProjectileLauncher")
 TDR_front = 400.0
-Attack_Range = 350.0
-HitPoints = 5.0
 avatar = SubResource("AtlasTexture_kdj4h")
 title = "Skeleton Archer"
 type = 2
+HitPoints = 5.0
 Run_Speed = 230.0
+Attack_Range = 350.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -784,3 +786,7 @@ anim_player = NodePath("../anim_player")
 script = ExtResource("10_bagv5")
 Move_List = Array[ExtResource("7_yncxf")]([SubResource("Resource_k7qhe")])
 metadata/_custom_type_script = "uid://cjyum5jemod6g"
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="." unique_id=1327699265]
+stream = ExtResource("10_g8otd")
+max_distance = 500.0

@@ -11,7 +11,10 @@ func attack(projectile_attack : AttackInfo):
 	new_projectile.damage *= multiplier
 	get_tree().get_current_scene().add_child(new_projectile)
 	await parent.await_frame(projectile_attack.Animation_Name, projectile_attack.Launch_Frame)
-	if new_projectile: new_projectile.launch(projectile_attack.Force)
+	if new_projectile:
+		var sfx_player : AudioStreamPlayer2D = get_node_or_null(projectile_attack.SFX)
+		if sfx_player: sfx_player.play()
+		new_projectile.launch(projectile_attack.Force)
 
 func get_avg_damage():
 	var sum_damages : float = 0

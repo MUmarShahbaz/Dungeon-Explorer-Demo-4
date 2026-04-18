@@ -9,3 +9,5 @@ class_name AttackInfo
 @export var Animation_Frame : int
 ## Damage done by this attack
 @export var Damage : float
+## The SFX to start playing when damage is done
+@export var SFX: NodePath

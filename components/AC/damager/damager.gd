@@ -9,6 +9,11 @@ var attacks_since_last_cooldown : int = 0
 var multiplier : float = 1
 var attacking = null
 
+func _ready() -> void:
+	for this_attack in Move_List:
+		var player : AudioStreamPlayer2D = get_node_or_null(this_attack.SFX)
+		if player: player.bus = &"SFX"
+
 func _process(_delta: float) -> void:
 	if is_cooldown and not parent is Ally: return
 	if attacking:
@@ -35,5 +40,6 @@ func get_avg_damage():
 		sum_damages += this_attack.Damage
 	return int(sum_damages / Move_List.size())
 
-func attack(_attack_info : AttackInfo):
-	pass
+func attack(attack_info : AttackInfo):
+	var sfx_player : AudioStreamPlayer2D = get_node_or_null(attack_info.SFX)
+	if sfx_player: sfx_player.play()
