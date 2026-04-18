@@ -1,7 +1,8 @@
 extends Node
 
+@onready var pause_menu = preload("res://ui/pause_menu.tscn").instantiate()
+
 func _ready() -> void:
-	var pause_menu = preload("res://ui/pause_menu.tscn").instantiate()
 	add_child.call_deferred(pause_menu)
 	prepare_bg_music()
 
@@ -163,6 +164,9 @@ func get_lvl(num: int) -> PackedScene:
 func open_lvl(num: int):
 	var new_lvl_file = QuickScripts.get_lvl(num)
 	for this_connection in player_spawned.get_connections(): player_spawned.disconnect(this_connection.callable)
-	await get_tree().get_current_scene().fade.fade_out()
+	await fade_out()
 	get_tree().change_scene_to_packed(new_lvl_file)
+
+func fade_in(): await pause_menu.fade.fade_in()
+func fade_out(): await pause_menu.fade.fade_out()
 #endregion

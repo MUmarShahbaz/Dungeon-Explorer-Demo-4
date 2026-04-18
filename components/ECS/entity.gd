@@ -50,8 +50,6 @@ func get_card_data() -> Dictionary:
 @export var DIA_Special : Texture2D
 @export var DIA_Talk : Texture2D
 @export_group("Sound Effects", "SFX")
-@export var SFX_Walk : AudioStreamPlayer2D
-@export var SFX_Run : AudioStreamPlayer2D
 @export var SFX_Jump : AudioStreamPlayer2D
 @export var SFX_Hurt : AudioStreamPlayer2D
 @export var SFX_Die : AudioStreamPlayer2D
@@ -67,6 +65,9 @@ func _ready() -> void:
 	add_to_group("entities")
 	add_child.call_deferred(RayBox)
 	set_collision_mask_value(2, true)
+	if SFX_Die: SFX_Die.bus = &"SFX"
+	if SFX_Jump: SFX_Jump.bus = &"SFX"
+	if SFX_Hurt: SFX_Hurt.bus = &"SFX"
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -133,7 +134,11 @@ func die():
 	velocity.x = 0
 	name = str(title + "-dead_" + str(randi()))
 	collider.set_deferred("disabled", true)
-	await force_anim("die")
+	if SFX_Die:
+		SFX_Die.play()
+		force_anim("die")
+		await get_tree().create_timer(max(SFX_Die.stream.get_length(), ANM_Animation_Player.get_animation("die").length), false).timeout
+	else: await force_anim("die")
 	entity_died.emit()
 	queue_free()
 #endregion

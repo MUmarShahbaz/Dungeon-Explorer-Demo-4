@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://djla2y8h31c68" path="res://assets/sprites/npc/elf queen/Idle.png" id="1_6jpg0"]
 [ext_resource type="Script" uid="uid://byl2pwnbi7c1h" path="res://components/ECS/ally.gd" id="1_qlpfc"]
 [ext_resource type="Texture2D" uid="uid://dqfyuvhu54pmk" path="res://assets/sprites/npc/elf queen/Walk.png" id="2_qlpfc"]
-[ext_resource type="AudioStream" uid="uid://dhy42b7v1262j" path="res://assets/audio/player_walk.mp3" id="15_4hup8"]
-[ext_resource type="AudioStream" uid="uid://o08th5osuh6c" path="res://assets/audio/player_run.mp3" id="16_fxk4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlpfc"]
 atlas = ExtResource("1_6jpg0")
@@ -463,7 +461,7 @@ graph_offset = Vector2(0, -84.2036)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Walk", "SFX_Run")]
+[node name="Elf Queen" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = ExtResource("1_qlpfc")
 avatar = SubResource("AtlasTexture_qlpfc")
 title = "Elf Queen"
@@ -473,8 +471,6 @@ collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
 ANM_Animation_Tree = NodePath("anim_tree")
-SFX_Walk = NodePath("walk")
-SFX_Run = NodePath("run")
 metadata/_custom_type_script = "uid://byl2pwnbi7c1h"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=640456716]
@@ -497,15 +493,3 @@ anim_player = NodePath("../anim_player")
 position = Vector2(0, 4)
 occluder = SubResource("OccluderPolygon2D_uqnqn")
 sdf_collision = false
-
-[node name="walk" type="AudioStreamPlayer2D" parent="." unique_id=1978047857]
-stream = ExtResource("15_4hup8")
-autoplay = true
-max_distance = 500.0
-parameters/looping = true
-
-[node name="run" type="AudioStreamPlayer2D" parent="." unique_id=880696874]
-stream = ExtResource("16_fxk4i")
-autoplay = true
-max_distance = 500.0
-parameters/looping = true

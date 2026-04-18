@@ -111,7 +111,7 @@ func move_in_formation(x_dir, run := false):
 
 func find_closest_target_outer(outside_range : bool = false) -> Entity:
 	var allies := get_tree().get_nodes_in_group("allies").filter(func (x : Ally): return not x.puppet and not x is Player and not x == self)
-	var all_targets := get_tree().get_nodes_in_group("enemies")
+	var all_targets := get_tree().get_nodes_in_group("enemies").filter(func (x : Enemy): return not x.name.contains("dead"))
 	var closest_target = find_closest_target(all_targets.filter(func (x:Entity): return not check_engagement(x, allies)), outside_range)
 	if not closest_target: closest_target = find_closest_target(all_targets.filter(func (x:Entity): return check_engagement(x, allies)), outside_range)
 	return closest_target

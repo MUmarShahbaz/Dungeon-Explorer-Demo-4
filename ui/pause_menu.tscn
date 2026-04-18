@@ -15,6 +15,7 @@ script/source = "extends CanvasLayer
 @onready var entity_stats = $\"Menu/Entity Stats\"
 @onready var back = $Menu/Back
 @onready var resume = $Menu/Main/Resume
+@onready var fade = $Fade
 
 enum states {Main, Audio, Controls, Entity_Stats}
 
@@ -61,9 +62,10 @@ func _on_entity_stats_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	var home = load(\"res://ui/home.tscn\")
-	await $Fade.fade_out()
+	await fade.fade_out()
 	get_tree().set_deferred(\"paused\", false)
 	get_tree().change_scene_to_packed(home)
+	hide()
 
 func _on_back_pressed() -> void:
 	change_state(states.Main)

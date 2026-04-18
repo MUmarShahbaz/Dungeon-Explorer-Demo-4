@@ -72,4 +72,5 @@ texture_scale = 40.0
 stream = ExtResource("2_vhkr5")
 autoplay = true
 max_distance = 1500.0
+bus = &"SFX"
 parameters/looping = true

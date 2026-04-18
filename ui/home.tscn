@@ -17,13 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="16_kdaw1"]
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="17_cd4ok"]
 [ext_resource type="PackedScene" uid="uid://bm3cufrccaih6" path="res://ui/audio.tscn" id="17_kdaw1"]
-[ext_resource type="Script" uid="uid://1uygfo1ei3w4" path="res://components/UI/fade.gd" id="18_wjhlv"]
 
 [sub_resource type="GDScript" id="GDScript_tt30a"]
 script/source = "extends CanvasLayer
 
 func _ready() -> void:
-	await $Fade.fade_in()
+	if QuickScripts.pause_menu.is_node_ready(): await QuickScripts.fade_in()
+	AudioServer.set_bus_volume_linear(QuickScripts.audio_music_bus, 1)
 	$Menu/Main/Play.grab_focus()
 
 func _physics_process(_delta: float) -> void:
@@ -74,7 +74,7 @@ func _on_entity_stats_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	var start_lvl = QuickScripts.get_lvl(1)
-	await $Fade.fade_out()
+	await QuickScripts.fade_out()
 	get_tree().change_scene_to_packed(start_lvl)
 "
 
@@ -668,12 +668,6 @@ offset_bottom = -30.0
 grow_vertical = 0
 theme = ExtResource("17_cd4ok")
 text = "Back"
-
-[node name="Fade" type="CanvasLayer" parent="." unique_id=1740989572]
-script = ExtResource("18_wjhlv")
-duration = 2.0
-start_blank = true
-metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
 [connection signal="pressed" from="Menu/Main/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Main/Missions" to="." method="_on_missions_pressed"]
