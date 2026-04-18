@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="14_efbjb"]
 [ext_resource type="Script" uid="uid://vhohi773o038" path="res://components/AC/shield.gd" id="15_ee0wj"]
 [ext_resource type="AudioStream" uid="uid://f1psa8qthkty" path="res://assets/audio/humanoid_die.mp3" id="17_7vbuv"]
-[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/sword_slash.mp3" id="18_nxysx"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="18_nxysx"]
 
 [sub_resource type="GDScript" id="GDScript_ahx3g"]
 script/source = "extends Player
