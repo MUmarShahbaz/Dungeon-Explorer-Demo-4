@@ -34,6 +34,7 @@ func create_area(cell, local_position, size, handler):
 	area.body_entered.connect(Callable(self, handler).bind(area, cell))
 	area.set_collision_mask_value(1, false)
 	area.set_collision_mask_value(3, true)
+	area.set_collision_mask_value(4, true)
 	area.name = handler + "(" + str(cell.x) + "," + str(cell.y) + ")"
 	
 	TRAPS_CONTAINER.add_child.call_deferred(area)
@@ -50,6 +51,6 @@ func activate_spike(body, spike_piece : Area2D, cell):
 		await get_tree().create_timer(0.5).timeout
 		set_cell(cell, 0, cells.spikes_out, 0)
 	for this_body in spike_piece.get_overlapping_bodies():
-		if this_body is Player: (this_body as Player).die()
+		if this_body is Entity: (this_body as Entity).die()
 	await get_tree().create_timer(1.5).timeout
 	set_cell(cell, 0, cells.spikes_in, 0)
