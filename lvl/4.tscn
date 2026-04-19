@@ -158,7 +158,6 @@ script = ExtResource("5_5tki5")
 Mob_Scenes = Array[PackedScene]([ExtResource("6_d3d0d")])
 Spawn_Root = NodePath("..")
 Rate = 0.0
-Initial_Spawns = 50
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Green Slimes/Spawner" unique_id=2122097683]
@@ -206,7 +205,6 @@ script = ExtResource("5_5tki5")
 Mob_Scenes = Array[PackedScene]([ExtResource("9_8p16u")])
 Spawn_Root = NodePath("..")
 Rate = 0.0
-Initial_Spawns = 30
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Goblins/Spawner" unique_id=1006409227]
@@ -238,7 +236,6 @@ script = ExtResource("5_5tki5")
 Mob_Scenes = Array[PackedScene]([ExtResource("11_jkqin")])
 Spawn_Root = NodePath("..")
 Rate = 0.0
-Initial_Spawns = 20
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Hellhounds/Spawner" unique_id=539109613]
@@ -270,7 +267,7 @@ script = ExtResource("5_5tki5")
 Mob_Scenes = Array[PackedScene]([ExtResource("13_4p4r1"), ExtResource("14_sdv70"), ExtResource("15_5tki5")])
 Spawn_Root = NodePath("..")
 Rate = 0.0
-Initial_Spawns = 47
+Initial_Spawns = 20
 metadata/_custom_type_script = "uid://k0njues52nl2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Skeleton Army/Army" unique_id=762342748]
