@@ -6,7 +6,7 @@ class_name Level
 func _ready() -> void:
 	AudioServer.set_bus_volume_db(QuickScripts.audio_music_bus, linear_to_db(0.1))
 	prepare_map()
-	if QuickScripts.pause_menu.is_node_ready(): QuickScripts.fade_in()
+	QuickScripts.fade_in()
 	QuickScripts.spawn()
 
 # to be overwritten

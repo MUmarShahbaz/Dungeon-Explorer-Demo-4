@@ -22,7 +22,7 @@
 script/source = "extends CanvasLayer
 
 func _ready() -> void:
-	if QuickScripts.pause_menu.is_node_ready(): await QuickScripts.fade_in()
+	await QuickScripts.fade_in()
 	AudioServer.set_bus_volume_linear(QuickScripts.audio_music_bus, 1)
 	$Menu/Main/Play.grab_focus()
 
@@ -72,7 +72,10 @@ func _on_missions_pressed() -> void:
 func _on_entity_stats_pressed() -> void:
 	change_state(states.Stats)
 
+var play_pressed := false
 func _on_play_pressed() -> void:
+	if play_pressed: return
+	play_pressed = true
 	var start_lvl = QuickScripts.get_lvl(1)
 	await QuickScripts.fade_out()
 	get_tree().change_scene_to_packed(start_lvl)

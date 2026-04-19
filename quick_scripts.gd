@@ -125,7 +125,7 @@ func get_bounds(entity: Entity):
 func new_dialogue(dialogue = null, dialogue_resource = null):
 	player.disable_controls = true
 	var new_dialog_box := DialogueBox.new()
-	add_child.call_deferred(new_dialog_box)
+	get_tree().get_current_scene().add_child.call_deferred(new_dialog_box)
 	await new_dialog_box.ready
 	await get_tree().physics_frame
 	if dialogue: await new_dialog_box.begin_dialogue(dialogue)
@@ -167,6 +167,6 @@ func open_lvl(num: int):
 	await fade_out()
 	get_tree().change_scene_to_packed(new_lvl_file)
 
-func fade_in(): await pause_menu.fade.fade_in()
-func fade_out(): await pause_menu.fade.fade_out()
+func fade_in(): if pause_menu.is_node_ready(): await pause_menu.fade.fade_in()
+func fade_out(): if pause_menu.is_node_ready(): await pause_menu.fade.fade_out()
 #endregion

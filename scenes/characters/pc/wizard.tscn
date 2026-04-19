@@ -27,11 +27,11 @@ func SP_Handler(delta):
 		ANM_Animation_Tree.set(\"parameters/attack_1/TimeScale/scale\", 1)
 
 func primary():
-	if pause_movement(): return
+	quick_pause()
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_1\")
 
 func secondary():
-	if pause_movement(): return
+	quick_pause()
 	if SP < 5: return
 	else:
 		ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")

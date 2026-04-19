@@ -876,6 +876,7 @@ script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 TDR_front = 400.0
+TDR_back = 100.0
 avatar = SubResource("AtlasTexture_yn02r")
 title = "Goblin Champion"
 type = 3

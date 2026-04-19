@@ -33,8 +33,10 @@ func _process(_delta: float) -> void:
 
 func primary():
 	Primary_Move_Buffer.start()
+	quick_pause()
 
 func secondary():
+	quick_pause()
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"shoot\")
 "
 

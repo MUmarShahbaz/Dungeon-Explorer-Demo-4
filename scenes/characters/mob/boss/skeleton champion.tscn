@@ -892,6 +892,7 @@ script = SubResource("GDScript_xej81")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
 TDR_front = 250.0
+TDR_back = 100.0
 avatar = SubResource("AtlasTexture_xej81")
 title = "Skeleton Champion"
 type = 3

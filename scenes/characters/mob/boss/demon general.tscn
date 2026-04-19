@@ -731,13 +731,15 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
+path_checker = Vector2(400, 5)
 TDR_front = 5000.0
-Attack_Range = 160.0
-HitPoints = 500.0
+TDR_back = 300.0
 avatar = SubResource("AtlasTexture_yn02r")
 title = "Demon General"
 type = 3
+HitPoints = 500.0
 Run_Speed = 230.0
+Attack_Range = 160.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")
 ANM_Animation_Player = NodePath("anim_player")
@@ -775,4 +777,4 @@ script = ExtResource("12_1ue2v")
 metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=1385871789]
-polygon = PackedVector2Array(0, 0, 55.8, 108, 133, 106, 225, -13.5, 160, -84, 43.8, -55.8)
+polygon = PackedVector2Array(0, 0, 0, 108, 133, 106, 225, -13.5, 160, -84, 43.8, -55.8)
