@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://ef4lkdtjmq57"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_8hq4p"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_6mjl5"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_2d2se"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="4_vvd0s"]
+
+[sub_resource type="Resource" id="Resource_r5yi1"]
+script = ExtResource("1_8hq4p")
+Text = "Now I should focus on how to fight"
+Sprite = ExtResource("2_6mjl5")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_hgo86"]
+script = ExtResource("1_8hq4p")
+Text = "My Primary Move is to 
+attack with my sword"
+Sprite = ExtResource("3_2d2se")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_aeqqj"]
+script = ExtResource("1_8hq4p")
+Text = "and my Secondary Move is
+shooting arrows with my bow"
+Sprite = ExtResource("3_2d2se")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("4_vvd0s")
+array = Array[ExtResource("1_8hq4p")]([SubResource("Resource_r5yi1"), SubResource("Resource_hgo86"), SubResource("Resource_aeqqj")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

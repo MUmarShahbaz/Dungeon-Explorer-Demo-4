@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://cl6y06eokmuxs"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_v7q3k"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_c8aqp"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_87mva"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="4_nvw8e"]
+
+[sub_resource type="Resource" id="Resource_r5yi1"]
+script = ExtResource("1_v7q3k")
+Text = "Now I should focus on how to fight"
+Sprite = ExtResource("2_c8aqp")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_hgo86"]
+script = ExtResource("1_v7q3k")
+Text = "My Primary Move is to 
+shoot a magic bolt"
+Sprite = ExtResource("3_87mva")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_aeqqj"]
+script = ExtResource("1_v7q3k")
+Text = "and my Secondary Move is
+shooting a magic bomb"
+Sprite = ExtResource("3_87mva")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_v7q3k"]
+script = ExtResource("1_v7q3k")
+Text = "but it works only when I am boosted
+and takes 5s of boost for every bomb"
+Sprite = ExtResource("3_87mva")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_c8aqp"]
+script = ExtResource("1_v7q3k")
+Text = "Since I only use half the normal boost,
+I can use each bottle twice as long"
+Sprite = ExtResource("3_87mva")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("4_nvw8e")
+array = Array[ExtResource("1_v7q3k")]([SubResource("Resource_r5yi1"), SubResource("Resource_hgo86"), SubResource("Resource_aeqqj"), SubResource("Resource_v7q3k"), SubResource("Resource_c8aqp")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://b3xvo3h4stibl"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_tj4nr"]
+[ext_resource type="Texture2D" uid="uid://cvtnvhyb4deob" path="res://assets/sprites/dialogues/knight/Special.png" id="2_1e18i"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="3_bcqqd"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="4_xvrdb"]
+[ext_resource type="Texture2D" uid="uid://clo2wff0pkfev" path="res://assets/sprites/dialogues/knight/Sadness.png" id="5_6gctu"]
+[ext_resource type="Texture2D" uid="uid://bxmicwy6pqxpa" path="res://assets/sprites/dialogues/knight/Smile.png" id="6_cjdyi"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="7_81flt"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="8_ekfpc"]
+
+[sub_resource type="Resource" id="Resource_3nftx"]
+script = ExtResource("1_tj4nr")
+Text = "The trip to the deepest chamber
+of the dungeon will be difficult"
+Sprite = ExtResource("2_1e18i")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_10k5h"]
+script = ExtResource("1_tj4nr")
+Text = "I should recall my training!!
+I can walk, jump and look around."
+Sprite = ExtResource("3_bcqqd")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_5wrm0"]
+script = ExtResource("1_tj4nr")
+Text = "I can sprint to travel faster
+I can also dodge attacks
+(pause and check the controls)"
+Sprite = ExtResource("4_xvrdb")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_nw2wf"]
+script = ExtResource("1_tj4nr")
+Text = "I can open doors by
+interacting with them
+(pause and check the controls)"
+Sprite = ExtResource("5_6gctu")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_6p78w"]
+script = ExtResource("1_tj4nr")
+Text = "I don't have a healing potion
+but I have 5 boost potions 
+(pause and check the controls)"
+Sprite = ExtResource("6_cjdyi")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_luhlu"]
+script = ExtResource("1_tj4nr")
+Text = "A boost potion lasts 34s and
+can be stacked to 100s.
+With boost I can attack harder and faster"
+Sprite = ExtResource("7_81flt")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_153mf"]
+script = ExtResource("1_tj4nr")
+Text = "I also have the authority
+to command troops
+(pause and check the controls)"
+Sprite = ExtResource("2_1e18i")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("8_ekfpc")
+array = Array[ExtResource("1_tj4nr")]([SubResource("Resource_3nftx"), SubResource("Resource_10k5h"), SubResource("Resource_5wrm0"), SubResource("Resource_nw2wf"), SubResource("Resource_6p78w"), SubResource("Resource_luhlu"), SubResource("Resource_153mf")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

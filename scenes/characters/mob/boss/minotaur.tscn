@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="8_l0t3r"]
 [ext_resource type="Script" uid="uid://n2liqouspgxa" path="res://components/MISC/buffer.gd" id="9_wntxb"]
 [ext_resource type="Script" uid="uid://cpask11raf8hx" path="res://components/AC/damage_zone.gd" id="10_2pte3"]
+[ext_resource type="AudioStream" uid="uid://l7eq1ne0nhac" path="res://assets/audio/slash.mp3" id="11_lsy3d"]
 
 [sub_resource type="GDScript" id="GDScript_x4ujb"]
 script/source = "extends Boss
@@ -767,6 +768,7 @@ Damage_Zone = NodePath("../Attack 1")
 Animation_Name = "attack_1"
 Animation_Frame = 3
 Damage = 20.0
+SFX = NodePath("../atk_1")
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [node name="Minotaur" type="CharacterBody2D" unique_id=952172728 node_paths=PackedStringArray("attack_buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
@@ -821,3 +823,6 @@ metadata/_custom_type_script = "uid://cpask11raf8hx"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack 1" unique_id=1385871789]
 polygon = PackedVector2Array(0, 0, 0, 73, 150, 73, 175, -4, 153, -93, 63, -75)
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="." unique_id=1411673585]
+stream = ExtResource("11_lsy3d")

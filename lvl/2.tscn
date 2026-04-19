@@ -9,8 +9,15 @@ func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
 	await QuickScripts.move_entity(1910)
-	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/2.tres\")
-
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/base.tres\")
+	await QuickScripts.move_entity(1500)
+	match QuickScripts.player.scene_file_path:
+		\"res://scenes/characters/pc/knight.tscn\":
+			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/knight.tres\")
+		\"res://scenes/characters/pc/samurai.tscn\":
+			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/samurai.tres\")
+		\"res://scenes/characters/pc/wizard.tscn\":
+			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/wizard.tres\")
 
 func prepare_map():
 	$\"Castle Outdoors/Darkness\".queue_free()
