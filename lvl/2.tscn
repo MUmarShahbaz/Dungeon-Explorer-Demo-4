@@ -8,7 +8,7 @@ script/source = "extends Level
 func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
-	await QuickScripts.move_entity(3050)
+	await QuickScripts.move_entity(1910)
 	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/2.tres\")
 
 
@@ -30,7 +30,7 @@ size = Vector2(70.5, 508)
 
 [node name="Pass through Castle Outdoors" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
-player_spawn_position = Vector2(3250, 75)
+player_spawn_position = Vector2(2100, 75)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_p2nvj")]
@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=2143341115]
-position = Vector2(-1067.75, 43)
+position = Vector2(-570, 43)
 shape = SubResource("RectangleShape2D_rxky6")
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://dxnhseqlct8x7"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_6ksqk"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_4v7y1"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_r8p7p"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="3_f2hsl"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="4_vv74u"]
+[ext_resource type="Texture2D" uid="uid://cvtnvhyb4deob" path="res://assets/sprites/dialogues/knight/Special.png" id="5_o2j01"]
+
+[sub_resource type="Resource" id="Resource_ysqxj"]
+script = ExtResource("1_6ksqk")
+Text = "Those corrupt buffons!!!
+They've blocked the way!!"
+Sprite = ExtResource("2_r8p7p")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_6s1ph"]
+script = ExtResource("1_6ksqk")
+Text = "I should have my allies fight them!!"
+Sprite = ExtResource("3_f2hsl")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_h5jm6"]
+script = ExtResource("1_6ksqk")
+Text = "In the chaos
+I can climb the fountain and the trees"
+Sprite = ExtResource("4_vv74u")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_gfopw"]
+script = ExtResource("1_6ksqk")
+Text = "and use the rooftop to get
+to the other side!!"
+Sprite = ExtResource("5_o2j01")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_4v7y1")
+array = Array[ExtResource("1_6ksqk")]([SubResource("Resource_ysqxj"), SubResource("Resource_6s1ph"), SubResource("Resource_h5jm6"), SubResource("Resource_gfopw")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

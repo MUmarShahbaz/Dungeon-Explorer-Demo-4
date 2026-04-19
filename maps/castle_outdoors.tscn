@@ -8,7 +8,7 @@
 script/source = "extends Node2D
 
 func _ready() -> void:
-	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(-1000, 3110, -190, 300, INF, 0.5))
+	QuickScripts.player_spawned.connect(func (_x): QuickScripts.clamp_camera(-500, 2000, -190, 300, INF, 0.5))
 
 func entity_z_index(entity : Entity):
 	var global_bounds = QuickScripts.get_bounds(entity).slice(4, 8)
@@ -35,15 +35,15 @@ b = Vector2(2310, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yhcpw"]
 normal = Vector2(1, 0)
-distance = -2220.0
+distance = -1215.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_duvhj"]
 normal = Vector2(-1, 0)
-distance = -5455.0
+distance = -3471.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_cogm1"]
-a = Vector2(4618, 197)
-b = Vector2(4466, 320)
+a = Vector2(2890, 197)
+b = Vector2(2738, 320)
 
 [node name="Castle Outdoors" type="Node2D" unique_id=2112943336]
 script = SubResource("GDScript_yhcpw")
@@ -66,7 +66,7 @@ tile_set = ExtResource("1_cogm1")
 [node name="Inner Floor" type="TileMapLayer" parent="Tilemap" unique_id=446558916]
 z_index = -1
 position = Vector2(-277, -82)
-tile_map_data = PackedByteArray("AAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAgAAAAAAAAAJAAAAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAAAAQAAAAAAAAAFAAAAAgAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAA=")
 tile_set = ExtResource("1_cogm1")
 
 [node name="Inner Garden" type="TileMapLayer" parent="Tilemap" unique_id=797896836]
@@ -106,7 +106,7 @@ tile_set = ExtResource("2_h2dug")
 
 [node name="Floor" type="TileMapLayer" parent="Tilemap" unique_id=519015618]
 z_index = -1
-tile_map_data = PackedByteArray("AAD9/wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAgAAAAAAAAACAAAAAQAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAA=")
 tile_set = ExtResource("2_h2dug")
 
 [node name="Borders" type="Node2D" parent="." unique_id=596152502]
@@ -146,5 +146,6 @@ scale = Vector2(-1, 1)
 position = Vector2(2266.667, 516.667)
 
 [node name="Darkness" type="DirectionalLight2D" parent="." unique_id=1575385351]
+visible = false
 energy = 0.5
 blend_mode = 1
