@@ -79,7 +79,7 @@ func patrol():
 		await get_tree().create_timer(randf_range(3, 5)).timeout
 		pause = false
 
-@export var path_checker : Vector2 = Vector2(50, 5)
+@export var path_checker : Vector2 = Vector2(200, 5)
 func prepare_block_check_ray():
 	block_check_ray.target_position = Vector2(path_checker.x, 0)
 	block_check_ray.global_position = collider.shape.get_rect().end
@@ -99,6 +99,7 @@ func charge(target : Entity):
 	var to_target := target.global_position - global_position
 	if to_target.length() > Attack_Range: move_in_formation(to_target.normalized().x, true)
 	else:
+		if to_target.x * facing < 0: flip()
 		move(0)
 		engaged_with = target
 		primary()

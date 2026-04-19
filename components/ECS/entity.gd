@@ -93,6 +93,7 @@ func quick_pause(duration : float = 0.3):
 	force_pause = false
 
 func move(x_dir : float, run : bool = false):
+	if x_dir * facing < 0 : flip()
 	if pause_movement():
 		velocity.x = 0
 		return
@@ -108,7 +109,6 @@ func move(x_dir : float, run : bool = false):
 				start_anim("walk")
 	else:
 		velocity.x = 0
-	if x_dir * facing < 0 : flip()
 
 func jump(force := Jump_Force):
 	if pause_movement() or not is_on_floor() or check_anim("jump"): return

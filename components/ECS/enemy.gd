@@ -33,11 +33,13 @@ func patrol():
 		pause = true
 		home = global_position.x
 		next_dist = randi_range(50, 100) * (1 if randf() < 0.5 else -1)
-		if block_check_ray.is_colliding(): next_dist = abs(next_dist) * -facing
+		if block_check_ray.is_colliding():
+			next_dist = abs(next_dist) * -facing
+			flip()
 		await get_tree().create_timer(randf_range(3, 5)).timeout
 		pause = false
 
-@export var path_checker : Vector2 = Vector2(50, 5)
+@export var path_checker : Vector2 = Vector2(200, 5)
 func prepare_block_check_ray():
 	block_check_ray.target_position = Vector2(path_checker.x, 0)
 	block_check_ray.global_position = collider.shape.get_rect().end
@@ -54,6 +56,7 @@ func charge(target : Entity):
 	var to_target := target.global_position - global_position
 	if to_target.length() > Attack_Range: move(to_target.normalized().x, true)
 	else:
+		if to_target.x * facing < 0: flip()
 		move(0)
 		primary()
 
