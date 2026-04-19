@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="8_iba8s"]
 [ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally knight.tscn" id="8_ksetj"]
 [ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
+[ext_resource type="PackedScene" uid="uid://81v3h8p5wuu1" path="res://scenes/characters/npc/dark lady.tscn" id="8_s0jrw"]
 [ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
 [ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
 [ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="11_jqmen"]
@@ -129,6 +130,10 @@ entity = ExtResource("6_32ap0")
 [node name="Elf Queen" parent="ScrollContainer/HFlowContainer/NPC" unique_id=939757395 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("7_iba8s")
+
+[node name="Dark Lady" parent="ScrollContainer/HFlowContainer/NPC" unique_id=337937120 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("8_s0jrw")
 
 [node name="Ally Knight" parent="ScrollContainer/HFlowContainer/NPC" unique_id=969170581 instance=ExtResource("2_yqeip")]
 layout_mode = 2

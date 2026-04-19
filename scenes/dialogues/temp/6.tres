@@ -7,39 +7,53 @@
 [sub_resource type="Resource" id="Resource_q8nfi"]
 script = ExtResource("1_7xweb")
 Text = "note from developer:
-These are the 3 levels in a row that were skipped."
+These are the 2 levels that were skipped."
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_2fqcq"]
 script = ExtResource("1_7xweb")
-Text = "You've had your audience with the dark lady
-and she gave you the miracle potion"
+Text = "This dungeon is supposed
+to have some more mobs
+but it's empty"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_7xweb"]
 script = ExtResource("1_7xweb")
-Text = "Now you must escape this dungeon.
-Only problem is that the dungeon is empty
-This lvl is still wip after all"
+Text = "and after this you get ambushed.
+That's also missing"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_2jpv5"]
 script = ExtResource("1_7xweb")
-Text = "But the next one is totally worth it!!!
-You command an army!!!!"
+Text = "You defeat the ambushers and
+find out that the King is being poisoned"
 Sprite = ExtResource("2_2jpv5")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_cnfls"]
 script = ExtResource("1_7xweb")
-Text = "30/30 cookies/hr please!!!"
+Text = "It's a coup!! The entry to the
+castle is blocked!!
+You gather knights to break in."
 Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_e42a0"]
+script = ExtResource("1_7xweb")
+Text = "Yes, this means in the next level
+you will have a small army"
+Sprite = ExtResource("2_2jpv5")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_xewem"]
+script = ExtResource("1_7xweb")
+Text = "(Remember!! 9/9 stars!!)"
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [resource]
 script = ExtResource("3_cnfls")
-array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_7xweb"), SubResource("Resource_2jpv5"), SubResource("Resource_cnfls")])
+array = Array[ExtResource("1_7xweb")]([SubResource("Resource_q8nfi"), SubResource("Resource_2fqcq"), SubResource("Resource_7xweb"), SubResource("Resource_2jpv5"), SubResource("Resource_cnfls"), SubResource("Resource_e42a0"), SubResource("Resource_xewem")])
 metadata/_custom_type_script = "uid://0jqxed4lfalo"

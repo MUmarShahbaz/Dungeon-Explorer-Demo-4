@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://gcj5hvpen4kp"]
 
+[ext_resource type="PackedScene" uid="uid://81v3h8p5wuu1" path="res://scenes/characters/npc/dark lady.tscn" id="2_81bpc"]
 [ext_resource type="PackedScene" uid="uid://c7xdec6ruvtmc" path="res://maps/deepest_chamber.tscn" id="2_yad1s"]
 
 [sub_resource type="GDScript" id="GDScript_ru2nh"]
@@ -13,11 +14,17 @@ func _ready() -> void:
 	QuickScripts.move_entity(0)
 
 func _physics_process(_delta: float) -> void:
-	if not cutscene_1_played and QuickScripts.player and QuickScripts.player.global_position.x > 150:
+	if not cutscene_1_played and QuickScripts.player and QuickScripts.player.global_position.x > 110:
 		cutscene_1()
 
 func cutscene_1():
 	cutscene_1_played = true
+	QuickScripts.player.disable_controls = true
+	QuickScripts.player.move(0)
+	QuickScripts.camera_offset(Vector2.RIGHT)
+	%\"Dark Lady\".flip()
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/5/audience.tres\")
+	QuickScripts.move_entity(-75)
 
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player and cutscene_1_played: QuickScripts.open_lvl(6)
@@ -32,6 +39,7 @@ player_spawn_position = Vector2(-75, 155)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Deepest Chamber" parent="." unique_id=1451006815 instance=ExtResource("2_yad1s")]
+position = Vector2(-7, 1)
 
 [node name="next_level" type="Area2D" parent="." unique_id=1893176500]
 collision_mask = 4
@@ -39,5 +47,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=241447960]
 position = Vector2(-104, 134.5)
 shape = SubResource("RectangleShape2D_ru2nh")
+
+[node name="Dark Lady" parent="." unique_id=40547968 instance=ExtResource("2_81bpc")]
+unique_name_in_owner = true
+position = Vector2(341, 155)
 
 [connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

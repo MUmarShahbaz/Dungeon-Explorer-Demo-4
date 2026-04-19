@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://481m78wf8k1i"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_twdt8"]
+[ext_resource type="Texture2D" uid="uid://dp4n75kuh8spu" path="res://assets/sprites/dialogues/dark queen/Calm.png" id="2_at307"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_sres3"]
+[ext_resource type="Texture2D" uid="uid://s61ekmxgk2nh" path="res://assets/sprites/dialogues/dark queen/Talk.png" id="3_g20rx"]
+[ext_resource type="Texture2D" uid="uid://ebds6ij2c334" path="res://assets/sprites/dialogues/dark queen/Aggression.png" id="4_rngjb"]
+[ext_resource type="Texture2D" uid="uid://dti0s776v7nnq" path="res://assets/sprites/dialogues/knight/Talk.png" id="5_vh01k"]
+[ext_resource type="Texture2D" uid="uid://clo2wff0pkfev" path="res://assets/sprites/dialogues/knight/Sadness.png" id="6_hq2xv"]
+[ext_resource type="Texture2D" uid="uid://d1pqxgx2pvxbb" path="res://assets/sprites/dialogues/dark queen/Smile.png" id="7_xokue"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="8_l0iqh"]
+[ext_resource type="Texture2D" uid="uid://s743mvpvhlhp" path="res://assets/sprites/dialogues/dark queen/Sadness.png" id="9_g20rx"]
+
+[sub_resource type="Resource" id="Resource_urh42"]
+script = ExtResource("1_twdt8")
+Text = "There aren't many who would
+dare to come here"
+Sprite = ExtResource("2_at307")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_xlkqv"]
+script = ExtResource("1_twdt8")
+Text = "and even less who actually do"
+Sprite = ExtResource("3_g20rx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_4ho6n"]
+script = ExtResource("1_twdt8")
+Text = "Well? Here I am.
+Now speak your buisness"
+Sprite = ExtResource("4_rngjb")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_bj31u"]
+script = ExtResource("1_twdt8")
+Text = "I have been sent here to deliver
+a request from the Elf Queen"
+Sprite = ExtResource("5_vh01k")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_y6c67"]
+script = ExtResource("1_twdt8")
+Text = "The Elf King is bedridden.
+The situation is dire.
+We need your healing potion."
+Sprite = ExtResource("6_hq2xv")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_6tuxq"]
+script = ExtResource("1_twdt8")
+Text = "I see......."
+Sprite = ExtResource("3_g20rx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_xyith"]
+script = ExtResource("1_twdt8")
+Text = "The Elf Queen is an 
+old friend of mine."
+Sprite = ExtResource("7_xokue")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_fy80o"]
+script = ExtResource("1_twdt8")
+Text = "Very Well.
+You may take the potion"
+Sprite = ExtResource("3_g20rx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_t5hx6"]
+script = ExtResource("1_twdt8")
+Text = "I give my thanks
+on behalf of the crown"
+Sprite = ExtResource("8_l0iqh")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_rngjb"]
+script = ExtResource("1_twdt8")
+Text = "Yes Yes.......
+You still need to escape this dungeon
+on your own."
+Sprite = ExtResource("9_g20rx")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_sres3")
+array = Array[ExtResource("1_twdt8")]([SubResource("Resource_urh42"), SubResource("Resource_xlkqv"), SubResource("Resource_4ho6n"), SubResource("Resource_bj31u"), SubResource("Resource_y6c67"), SubResource("Resource_6tuxq"), SubResource("Resource_xyith"), SubResource("Resource_fy80o"), SubResource("Resource_t5hx6"), SubResource("Resource_rngjb")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

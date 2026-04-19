@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 [sub_resource type="Resource" id="Resource_buby4"]
 script = ExtResource("1_6fohp")
 Text = "This game is still a WIP so
-there are a few missing levels"
+there are a 2 missing levels"
 Sprite = ExtResource("2_cuimj")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
@@ -28,16 +28,14 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_abe57"]
 script = ExtResource("1_6fohp")
-Text = "P.S: I am aiming for the MacBook M5 Air
-And I need almost 30/30 cookies/hr"
+Text = "P.S: I am aiming for 5000 cookies
+And I need you to give me a 9/9 vote!!"
 Sprite = ExtResource("2_cuimj")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_tj5r5"]
 script = ExtResource("1_6fohp")
-Text = "So please be a little
-generous in your vote.
-I promise it'll be worth it!!"
+Text = "I promise it'll be worth it!!"
 Sprite = ExtResource("2_cuimj")
 metadata/_custom_type_script = "uid://86nuwqny3eip"
 
