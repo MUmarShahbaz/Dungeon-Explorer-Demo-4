@@ -164,6 +164,7 @@ script = ExtResource("1_87c0s")
 blast_radius = NodePath("Blast Radius")
 sprite = NodePath("sprite")
 collider = NodePath("collider")
+damage = 20
 metadata/_custom_type_script = "uid://b4fsecdbecsaj"
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1632803012]
