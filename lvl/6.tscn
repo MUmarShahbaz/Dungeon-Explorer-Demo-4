@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dd1exaennxeix"]
 
+[ext_resource type="PackedScene" uid="uid://cslpoftconrkv" path="res://scenes/characters/mob/boss/minotaur.tscn" id="2_gd4qn"]
+[ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_y5plx"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="3_sluun"]
+[ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/lesser demon.tscn" id="3_vk2nq"]
 
 [sub_resource type="GDScript" id="GDScript_3283v"]
 script/source = "extends Level
@@ -21,14 +24,141 @@ func prepare_map():
 		door.unlock()
 
 var death_count : int = -1
-func _on_player_spawned(_player: Player) -> void:
+func _on_player_spawned(player: Player) -> void:
+	player.entity_died.connect(QuickScripts.spawn)
 	death_count += 1
 	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/temp/6.tres\")
 	$Dungeon/Vignette.add_mini_map_vignette(QuickScripts.hud)
 "
+
+[sub_resource type="GDScript" id="GDScript_y5plx"]
+script/source = "extends Spawner
+
+func _ready(): pass
+func _on_body_entered(_body: Node2D) -> void:
+	begin()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk2nq"]
+size = Vector2(87, 2)
 
 [node name="Exit the Dungeon" type="Node2D" unique_id=353818878]
 script = SubResource("GDScript_3283v")
 player_spawn_position = Vector2(9900, 1006)
 
 [node name="Dungeon" parent="." unique_id=935988611 instance=ExtResource("3_sluun")]
+
+[node name="Mob Waves" type="Node2D" parent="." unique_id=1986823925]
+
+[node name="Minotaur" parent="Mob Waves" unique_id=952172728 instance=ExtResource("2_gd4qn")]
+position = Vector2(8735, 960)
+
+[node name="lesser demons" type="Node2D" parent="Mob Waves" unique_id=1759641221]
+script = ExtResource("2_y5plx")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/lesser demons" unique_id=1991533281 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner" unique_id=632659663]
+position = Vector2(7505.5, 443)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner2" type="Area2D" parent="Mob Waves/lesser demons" unique_id=1777026634 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner2" unique_id=116279400]
+position = Vector2(7505.5, 1020)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner3" type="Area2D" parent="Mob Waves/lesser demons" unique_id=388915489 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner3" unique_id=141709988]
+position = Vector2(5766, 925)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner4" type="Area2D" parent="Mob Waves/lesser demons" unique_id=645899692 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner4" unique_id=668987089]
+position = Vector2(5766, 584)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner5" type="Area2D" parent="Mob Waves/lesser demons" unique_id=1898773878 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner5" unique_id=2033961009]
+position = Vector2(4067, 439)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner6" type="Area2D" parent="Mob Waves/lesser demons" unique_id=1179657464 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner6" unique_id=393603407]
+position = Vector2(4444, 6)
+scale = Vector2(12.64001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[node name="Spawner7" type="Area2D" parent="Mob Waves/lesser demons" unique_id=123546557 node_paths=PackedStringArray("Spawn_Root")]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_y5plx")
+Mob_Scenes = Array[PackedScene]([ExtResource("3_vk2nq")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/lesser demons/Spawner7" unique_id=1937884580]
+position = Vector2(3764, 726)
+scale = Vector2(9.40001, 1)
+shape = SubResource("RectangleShape2D_vk2nq")
+
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner" to="Mob Waves/lesser demons/Spawner" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner2" to="Mob Waves/lesser demons/Spawner2" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner3" to="Mob Waves/lesser demons/Spawner3" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner4" to="Mob Waves/lesser demons/Spawner4" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner5" to="Mob Waves/lesser demons/Spawner5" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner6" to="Mob Waves/lesser demons/Spawner6" method="_on_body_entered"]
+[connection signal="body_entered" from="Mob Waves/lesser demons/Spawner7" to="Mob Waves/lesser demons/Spawner7" method="_on_body_entered"]

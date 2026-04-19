@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://byl2pwnbi7c1h" path="res://components/ECS/ally.gd" id="1_06lmc"]
 [ext_resource type="Texture2D" uid="uid://ch5er11ukt1db" path="res://assets/sprites/npc/dark lady/Idle.png" id="3_7yk43"]
 [ext_resource type="Texture2D" uid="uid://cqphr2cw8d01n" path="res://assets/sprites/npc/dark lady/Walk.png" id="4_7yk43"]
+[ext_resource type="Script" uid="uid://bjg260sg4isxl" path="res://components/AC/damager/damager.gd" id="4_8be3w"]
+[ext_resource type="Script" uid="uid://cnxaqrr6haynw" path="res://components/AC/damager/AttackInfo.gd" id="5_2ilny"]
+[ext_resource type="Script" uid="uid://otxwfmoatx33" path="res://components/AC/damager/melee/MeleeAttack.gd" id="6_3sufb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlpfc"]
 atlas = ExtResource("3_7yk43")
@@ -461,6 +464,11 @@ graph_offset = Vector2(0, -84.2036)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqnqn"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
+[sub_resource type="Resource" id="Resource_kxifh"]
+script = ExtResource("6_3sufb")
+Damage = 1000.0
+metadata/_custom_type_script = "uid://otxwfmoatx33"
+
 [node name="Dark Lady" type="CharacterBody2D" unique_id=40547968 node_paths=PackedStringArray("collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree")]
 script = ExtResource("1_06lmc")
 avatar = SubResource("AtlasTexture_qlpfc")
@@ -494,3 +502,8 @@ anim_player = NodePath("../anim_player")
 position = Vector2(0, 4)
 occluder = SubResource("OccluderPolygon2D_uqnqn")
 sdf_collision = false
+
+[node name="Damager" type="Node" parent="." unique_id=246932099]
+script = ExtResource("4_8be3w")
+Move_List = Array[ExtResource("5_2ilny")]([SubResource("Resource_kxifh")])
+metadata/_custom_type_script = "uid://bjg260sg4isxl"
