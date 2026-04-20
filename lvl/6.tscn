@@ -12,7 +12,20 @@ func _ready() -> void:
 	super._ready()
 	QuickScripts.player_spawned.connect(_on_player_spawned)
 
+func _physics_process(_delta: float) -> void:
+	if not QuickScripts.player or not QuickScripts.player.is_node_ready(): return
+	var bounds = QuickScripts.get_bounds(QuickScripts.player)
+	if bounds[5] > 1450 and bounds[5] < 3360 and bounds[6] > 50 and bounds[7] < 500:
+		$Dungeon/Vignette.vignette_out()
+		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_out()
+		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 1)
+	elif bounds[5] < 1450:
+		$Dungeon/Vignette.vignette_in()
+		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_in()
+		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 2.5)
+
 func prepare_map():
+	$\"Dungeon/Torches/Entry Torches\".queue_free()
 	$Dungeon/Torches.ghost_flame()
 	$Dungeon/Vignette.show()
 	$\"Dungeon/Tilemap layers/Entry platforms\".queue_free()

@@ -25,8 +25,9 @@ func _ready() -> void:
 	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(5))
 
 func prepare_map():
-	$Dungeon/Torches.normal()
+	$\"Dungeon/Torches/Exit Torches\".queue_free()
 	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
+	$Dungeon/Torches.normal()
 	$Dungeon/Doors/door1.unlock()
 	$Dungeon/Doors/door2.unlock()
 	$Dungeon/Doors/door3.unlock()

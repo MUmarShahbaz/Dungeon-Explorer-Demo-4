@@ -28,8 +28,13 @@ func add_mini_map_vignette(hud):
 	var clone = get_node(\"TexRect\").duplicate(DUPLICATE_USE_INSTANTIATION)
 	var texture = clone.get(\"texture\").duplicate(true)
 	clone.set(\"texture\", texture)
+	clone.set_script($TexRect.get_script())
 	clone.texture.gradient.offsets[1] = 0.4
+	clone.view_radius = 0.4
 	hud.get_node(\"Control/Minimap Container\").add_child.call_deferred(clone)
+
+func vignette_in(): $TexRect.vignette_in()
+func vignette_out(): $TexRect.vignette_out()
 "
 
 [sub_resource type="Gradient" id="Gradient_dnfnu"]
@@ -41,6 +46,43 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_dnfnu")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_pjnkd"]
+script/source = "extends TextureRect
+
+var view_radius: float = 0.7
+var transition: bool = false
+var vignette_mode = 1
+var rate : float = 5
+
+func vignette_in():
+	if vignette_mode == 1 and transition: return
+	vignette_mode = 1
+	await quick_break()
+	transition = true
+	while texture.gradient.offsets[1] > view_radius and transition:
+		texture.gradient.offsets[1] = move_toward(texture.gradient.offsets[1], view_radius, get_physics_process_delta_time()*rate)
+		await get_tree().physics_frame
+	if not transition: return
+	texture.gradient.offsets[1] = view_radius
+	transition = false
+
+func vignette_out():
+	if vignette_mode == 0 and transition: return
+	vignette_mode = 0
+	await quick_break()
+	transition = true
+	while texture.gradient.offsets[1] < 2 and transition:
+		texture.gradient.offsets[1] = move_toward(texture.gradient.offsets[1], 2, get_physics_process_delta_time()*rate/2)
+		await get_tree().physics_frame
+	if not transition: return
+	texture.gradient.offsets[1] = 5
+	transition = false
+
+func quick_break():
+	transition = false
+	await get_tree().physics_frame
+"
 
 [node name="Dungeon" type="Node2D" unique_id=935988611]
 
@@ -155,6 +197,91 @@ blend_mode = 1
 [node name="Torches" type="Node2D" parent="." unique_id=392126176]
 script = SubResource("GDScript_dnfnu")
 
+[node name="Entry Torches" type="Node2D" parent="Torches" unique_id=1917091687]
+script = SubResource("GDScript_dnfnu")
+
+[node name="Torch1" parent="Torches/Entry Torches" unique_id=1487242433 instance=ExtResource("4_dnfnu")]
+position = Vector2(1990, 266)
+frame_progress = 0.3288282
+
+[node name="Torch2" parent="Torches/Entry Torches" unique_id=2132295060 instance=ExtResource("4_dnfnu")]
+position = Vector2(2369, 166)
+frame_progress = 0.3288282
+
+[node name="Torch3" parent="Torches/Entry Torches" unique_id=460038944 instance=ExtResource("4_dnfnu")]
+position = Vector2(2753, 83)
+frame_progress = 0.3288282
+
+[node name="Torch4" parent="Torches/Entry Torches" unique_id=1573122194 instance=ExtResource("4_dnfnu")]
+position = Vector2(3131, -3)
+frame_progress = 0.3288282
+
+[node name="Exit Torches" type="Node2D" parent="Torches" unique_id=2024479269]
+script = SubResource("GDScript_dnfnu")
+
+[node name="Torch1" parent="Torches/Exit Torches" unique_id=471157407 instance=ExtResource("4_dnfnu")]
+position = Vector2(1701, 345)
+
+[node name="Torch2" parent="Torches/Exit Torches" unique_id=1743213061 instance=ExtResource("4_dnfnu")]
+position = Vector2(1701, 179)
+
+[node name="Torch3" parent="Torches/Exit Torches" unique_id=843330257 instance=ExtResource("4_dnfnu")]
+position = Vector2(1701, 24)
+
+[node name="Torch4" parent="Torches/Exit Torches" unique_id=1627931394 instance=ExtResource("4_dnfnu")]
+position = Vector2(1965, 345)
+
+[node name="Torch5" parent="Torches/Exit Torches" unique_id=266128241 instance=ExtResource("4_dnfnu")]
+position = Vector2(1965, 179)
+
+[node name="Torch6" parent="Torches/Exit Torches" unique_id=1506176667 instance=ExtResource("4_dnfnu")]
+position = Vector2(1965, 24)
+
+[node name="Torch7" parent="Torches/Exit Torches" unique_id=1425760794 instance=ExtResource("4_dnfnu")]
+position = Vector2(2230, 345)
+
+[node name="Torch8" parent="Torches/Exit Torches" unique_id=1366419926 instance=ExtResource("4_dnfnu")]
+position = Vector2(2230, 179)
+
+[node name="Torch9" parent="Torches/Exit Torches" unique_id=463381751 instance=ExtResource("4_dnfnu")]
+position = Vector2(2230, 24)
+
+[node name="Torch10" parent="Torches/Exit Torches" unique_id=692453049 instance=ExtResource("4_dnfnu")]
+position = Vector2(2506, 345)
+
+[node name="Torch11" parent="Torches/Exit Torches" unique_id=1317741130 instance=ExtResource("4_dnfnu")]
+position = Vector2(2506, 179)
+
+[node name="Torch12" parent="Torches/Exit Torches" unique_id=1010496273 instance=ExtResource("4_dnfnu")]
+position = Vector2(2506, 24)
+
+[node name="Torch13" parent="Torches/Exit Torches" unique_id=990086996 instance=ExtResource("4_dnfnu")]
+position = Vector2(2770, 345)
+
+[node name="Torch14" parent="Torches/Exit Torches" unique_id=1090958789 instance=ExtResource("4_dnfnu")]
+position = Vector2(2770, 179)
+
+[node name="Torch15" parent="Torches/Exit Torches" unique_id=340015801 instance=ExtResource("4_dnfnu")]
+position = Vector2(2770, 24)
+
+[node name="Torch16" parent="Torches/Exit Torches" unique_id=674930755 instance=ExtResource("4_dnfnu")]
+position = Vector2(3035, 345)
+
+[node name="Torch17" parent="Torches/Exit Torches" unique_id=567023613 instance=ExtResource("4_dnfnu")]
+position = Vector2(3035, 179)
+
+[node name="Torch18" parent="Torches/Exit Torches" unique_id=2050068903 instance=ExtResource("4_dnfnu")]
+position = Vector2(3035, 24)
+
+[node name="Torch19" parent="Torches/Exit Torches" unique_id=819383866 instance=ExtResource("4_dnfnu")]
+position = Vector2(3288, 345)
+
+[node name="Torch20" parent="Torches/Exit Torches" unique_id=1991037795 instance=ExtResource("4_dnfnu")]
+position = Vector2(3288, 179)
+
+[node name="Torch21" parent="Torches/Exit Torches" unique_id=1446836995 instance=ExtResource("4_dnfnu")]
+position = Vector2(3288, 24)
+
 [node name="Torch" parent="Torches" unique_id=1193113312 instance=ExtResource("4_dnfnu")]
 position = Vector2(154, -3)
 frame_progress = 0.3288282
@@ -171,195 +298,179 @@ frame_progress = 0.3288282
 position = Vector2(1418, 381)
 frame_progress = 0.3288282
 
-[node name="Torch4" parent="Torches" unique_id=556279459 instance=ExtResource("4_dnfnu")]
-position = Vector2(1990, 266)
-frame_progress = 0.3288282
-
-[node name="Torch5" parent="Torches" unique_id=1750534951 instance=ExtResource("4_dnfnu")]
-position = Vector2(2369, 166)
-frame_progress = 0.3288282
-
-[node name="Torch6" parent="Torches" unique_id=26775988 instance=ExtResource("4_dnfnu")]
-position = Vector2(2753, 83)
-frame_progress = 0.3288282
-
-[node name="Torch7" parent="Torches" unique_id=1396065993 instance=ExtResource("4_dnfnu")]
-position = Vector2(3131, -3)
-frame_progress = 0.3288282
-
-[node name="Torch8" parent="Torches" unique_id=1364044910 instance=ExtResource("4_dnfnu")]
+[node name="Torch4" parent="Torches" unique_id=1364044910 instance=ExtResource("4_dnfnu")]
 position = Vector2(3478, -51)
 frame_progress = 0.3288282
 
-[node name="Torch9" parent="Torches" unique_id=1765790204 instance=ExtResource("4_dnfnu")]
+[node name="Torch5" parent="Torches" unique_id=1765790204 instance=ExtResource("4_dnfnu")]
 position = Vector2(3707, 381)
 frame_progress = 0.3288282
 
-[node name="Torch10" parent="Torches" unique_id=944878721 instance=ExtResource("4_dnfnu")]
+[node name="Torch6" parent="Torches" unique_id=944878721 instance=ExtResource("4_dnfnu")]
 position = Vector2(4012, 381)
 frame_progress = 0.3288282
 
-[node name="Torch11" parent="Torches" unique_id=1404960182 instance=ExtResource("4_dnfnu")]
+[node name="Torch7" parent="Torches" unique_id=1404960182 instance=ExtResource("4_dnfnu")]
 position = Vector2(4313, 381)
 frame_progress = 0.3288282
 
-[node name="Torch12" parent="Torches" unique_id=1001799240 instance=ExtResource("4_dnfnu")]
+[node name="Torch8" parent="Torches" unique_id=1001799240 instance=ExtResource("4_dnfnu")]
 position = Vector2(4567, 381)
 frame_progress = 0.3288282
 
-[node name="Torch13" parent="Torches" unique_id=795263148 instance=ExtResource("4_dnfnu")]
+[node name="Torch9" parent="Torches" unique_id=795263148 instance=ExtResource("4_dnfnu")]
 position = Vector2(3991, -51)
 frame_progress = 0.3288282
 
-[node name="Torch14" parent="Torches" unique_id=2146884366 instance=ExtResource("4_dnfnu")]
+[node name="Torch10" parent="Torches" unique_id=2146884366 instance=ExtResource("4_dnfnu")]
 position = Vector2(4296, -51)
 frame_progress = 0.3288282
 
-[node name="Torch15" parent="Torches" unique_id=1662485435 instance=ExtResource("4_dnfnu")]
+[node name="Torch11" parent="Torches" unique_id=1662485435 instance=ExtResource("4_dnfnu")]
 position = Vector2(4597, -51)
 frame_progress = 0.3288282
 
-[node name="Torch16" parent="Torches" unique_id=1278662384 instance=ExtResource("4_dnfnu")]
+[node name="Torch12" parent="Torches" unique_id=1278662384 instance=ExtResource("4_dnfnu")]
 position = Vector2(4851, -51)
 frame_progress = 0.3288282
 
-[node name="Torch17" parent="Torches" unique_id=1035450375 instance=ExtResource("4_dnfnu")]
+[node name="Torch13" parent="Torches" unique_id=1035450375 instance=ExtResource("4_dnfnu")]
 position = Vector2(3449, 669)
 frame_progress = 0.3288282
 
-[node name="Torch18" parent="Torches" unique_id=1782551673 instance=ExtResource("4_dnfnu")]
+[node name="Torch14" parent="Torches" unique_id=1782551673 instance=ExtResource("4_dnfnu")]
 position = Vector2(3754, 669)
 frame_progress = 0.3288282
 
-[node name="Torch19" parent="Torches" unique_id=545732564 instance=ExtResource("4_dnfnu")]
+[node name="Torch15" parent="Torches" unique_id=545732564 instance=ExtResource("4_dnfnu")]
 position = Vector2(4055, 669)
 frame_progress = 0.3288282
 
-[node name="Torch20" parent="Torches" unique_id=1876945636 instance=ExtResource("4_dnfnu")]
+[node name="Torch16" parent="Torches" unique_id=1876945636 instance=ExtResource("4_dnfnu")]
 position = Vector2(4573, 669)
 frame_progress = 0.3288282
 
-[node name="Torch21" parent="Torches" unique_id=1485957328 instance=ExtResource("4_dnfnu")]
+[node name="Torch17" parent="Torches" unique_id=1485957328 instance=ExtResource("4_dnfnu")]
 position = Vector2(4956, 610)
 frame_progress = 0.3288282
 
-[node name="Torch22" parent="Torches" unique_id=1586800045 instance=ExtResource("4_dnfnu")]
+[node name="Torch18" parent="Torches" unique_id=1586800045 instance=ExtResource("4_dnfnu")]
 position = Vector2(4956, 811)
 frame_progress = 0.3288282
 
-[node name="Torch23" parent="Torches" unique_id=574561503 instance=ExtResource("4_dnfnu")]
+[node name="Torch19" parent="Torches" unique_id=574561503 instance=ExtResource("4_dnfnu")]
 position = Vector2(5243, 861)
 frame_progress = 0.3288282
 
-[node name="Torch24" parent="Torches" unique_id=891003381 instance=ExtResource("4_dnfnu")]
+[node name="Torch20" parent="Torches" unique_id=891003381 instance=ExtResource("4_dnfnu")]
 position = Vector2(5243, 525)
 frame_progress = 0.3288282
 
-[node name="Torch25" parent="Torches" unique_id=18439003 instance=ExtResource("4_dnfnu")]
+[node name="Torch21" parent="Torches" unique_id=18439003 instance=ExtResource("4_dnfnu")]
 position = Vector2(5580, 861)
 frame_progress = 0.3288282
 
-[node name="Torch26" parent="Torches" unique_id=1322438770 instance=ExtResource("4_dnfnu")]
+[node name="Torch22" parent="Torches" unique_id=1322438770 instance=ExtResource("4_dnfnu")]
 position = Vector2(5580, 525)
 frame_progress = 0.3288282
 
-[node name="Torch27" parent="Torches" unique_id=948137391 instance=ExtResource("4_dnfnu")]
+[node name="Torch23" parent="Torches" unique_id=948137391 instance=ExtResource("4_dnfnu")]
 position = Vector2(5935, 867)
 frame_progress = 0.3288282
 
-[node name="Torch28" parent="Torches" unique_id=1672062530 instance=ExtResource("4_dnfnu")]
+[node name="Torch24" parent="Torches" unique_id=1672062530 instance=ExtResource("4_dnfnu")]
 position = Vector2(5935, 531)
 frame_progress = 0.3288282
 
-[node name="Torch29" parent="Torches" unique_id=1481515478 instance=ExtResource("4_dnfnu")]
+[node name="Torch25" parent="Torches" unique_id=1481515478 instance=ExtResource("4_dnfnu")]
 position = Vector2(6302, 867)
 frame_progress = 0.3288282
 
-[node name="Torch30" parent="Torches" unique_id=608867837 instance=ExtResource("4_dnfnu")]
+[node name="Torch26" parent="Torches" unique_id=608867837 instance=ExtResource("4_dnfnu")]
 position = Vector2(6302, 531)
 frame_progress = 0.3288282
 
-[node name="Torch31" parent="Torches" unique_id=784025355 instance=ExtResource("4_dnfnu")]
+[node name="Torch27" parent="Torches" unique_id=784025355 instance=ExtResource("4_dnfnu")]
 position = Vector2(6575, 613)
 frame_progress = 0.3288282
 
-[node name="Torch32" parent="Torches" unique_id=2104209761 instance=ExtResource("4_dnfnu")]
+[node name="Torch28" parent="Torches" unique_id=2104209761 instance=ExtResource("4_dnfnu")]
 position = Vector2(6575, 810)
 frame_progress = 0.3288282
 
-[node name="Torch33" parent="Torches" unique_id=58475339 instance=ExtResource("4_dnfnu")]
+[node name="Torch29" parent="Torches" unique_id=58475339 instance=ExtResource("4_dnfnu")]
 position = Vector2(6884, 669)
 frame_progress = 0.3288282
 
-[node name="Torch34" parent="Torches" unique_id=2018035879 instance=ExtResource("4_dnfnu")]
+[node name="Torch30" parent="Torches" unique_id=2018035879 instance=ExtResource("4_dnfnu")]
 position = Vector2(7176, 669)
 frame_progress = 0.3288282
 
-[node name="Torch35" parent="Torches" unique_id=1144354886 instance=ExtResource("4_dnfnu")]
+[node name="Torch31" parent="Torches" unique_id=1144354886 instance=ExtResource("4_dnfnu")]
 position = Vector2(7083, 381)
 frame_progress = 0.3288282
 
-[node name="Torch36" parent="Torches" unique_id=1969576520 instance=ExtResource("4_dnfnu")]
+[node name="Torch32" parent="Torches" unique_id=1969576520 instance=ExtResource("4_dnfnu")]
 position = Vector2(7388, 381)
 frame_progress = 0.3288282
 
-[node name="Torch37" parent="Torches" unique_id=1560989067 instance=ExtResource("4_dnfnu")]
+[node name="Torch33" parent="Torches" unique_id=1560989067 instance=ExtResource("4_dnfnu")]
 position = Vector2(7689, 381)
 frame_progress = 0.3288282
 
-[node name="Torch38" parent="Torches" unique_id=412778172 instance=ExtResource("4_dnfnu")]
+[node name="Torch34" parent="Torches" unique_id=412778172 instance=ExtResource("4_dnfnu")]
 position = Vector2(7943, 381)
 frame_progress = 0.3288282
 
-[node name="Torch39" parent="Torches" unique_id=1852673005 instance=ExtResource("4_dnfnu")]
+[node name="Torch35" parent="Torches" unique_id=1852673005 instance=ExtResource("4_dnfnu")]
 position = Vector2(7093, 957)
 frame_progress = 0.3288282
 
-[node name="Torch40" parent="Torches" unique_id=1239514898 instance=ExtResource("4_dnfnu")]
+[node name="Torch36" parent="Torches" unique_id=1239514898 instance=ExtResource("4_dnfnu")]
 position = Vector2(7398, 957)
 frame_progress = 0.3288282
 
-[node name="Torch41" parent="Torches" unique_id=2085664236 instance=ExtResource("4_dnfnu")]
+[node name="Torch37" parent="Torches" unique_id=2085664236 instance=ExtResource("4_dnfnu")]
 position = Vector2(7699, 957)
 frame_progress = 0.3288282
 
-[node name="Torch42" parent="Torches" unique_id=1969073214 instance=ExtResource("4_dnfnu")]
+[node name="Torch38" parent="Torches" unique_id=1969073214 instance=ExtResource("4_dnfnu")]
 position = Vector2(7953, 957)
 frame_progress = 0.3288282
 
-[node name="Torch43" parent="Torches" unique_id=2109278824 instance=ExtResource("4_dnfnu")]
+[node name="Torch39" parent="Torches" unique_id=2109278824 instance=ExtResource("4_dnfnu")]
 position = Vector2(7628, 669)
 frame_progress = 0.3288282
 
-[node name="Torch44" parent="Torches" unique_id=1207827324 instance=ExtResource("4_dnfnu")]
+[node name="Torch40" parent="Torches" unique_id=1207827324 instance=ExtResource("4_dnfnu")]
 position = Vector2(7933, 669)
 frame_progress = 0.3288282
 
-[node name="Torch45" parent="Torches" unique_id=338071139 instance=ExtResource("4_dnfnu")]
+[node name="Torch41" parent="Torches" unique_id=338071139 instance=ExtResource("4_dnfnu")]
 position = Vector2(8234, 669)
 frame_progress = 0.3288282
 
-[node name="Torch46" parent="Torches" unique_id=1456298345 instance=ExtResource("4_dnfnu")]
+[node name="Torch42" parent="Torches" unique_id=1456298345 instance=ExtResource("4_dnfnu")]
 position = Vector2(8496, 904)
 frame_progress = 0.3288282
 
-[node name="Torch47" parent="Torches" unique_id=138998426 instance=ExtResource("4_dnfnu")]
+[node name="Torch43" parent="Torches" unique_id=138998426 instance=ExtResource("4_dnfnu")]
 position = Vector2(8801, 904)
 frame_progress = 0.3288282
 
-[node name="Torch48" parent="Torches" unique_id=1839163841 instance=ExtResource("4_dnfnu")]
+[node name="Torch44" parent="Torches" unique_id=1839163841 instance=ExtResource("4_dnfnu")]
 position = Vector2(9102, 904)
 frame_progress = 0.3288282
 
-[node name="Torch49" parent="Torches" unique_id=1344881601 instance=ExtResource("4_dnfnu")]
+[node name="Torch45" parent="Torches" unique_id=1344881601 instance=ExtResource("4_dnfnu")]
 position = Vector2(9356, 904)
 frame_progress = 0.3288282
 
-[node name="Torch50" parent="Torches" unique_id=204588621 instance=ExtResource("4_dnfnu")]
+[node name="Torch46" parent="Torches" unique_id=204588621 instance=ExtResource("4_dnfnu")]
 position = Vector2(9612, 904)
 frame_progress = 0.3288282
 
-[node name="Torch51" parent="Torches" unique_id=1728151831 instance=ExtResource("4_dnfnu")]
+[node name="Torch47" parent="Torches" unique_id=1728151831 instance=ExtResource("4_dnfnu")]
 position = Vector2(9917, 904)
 frame_progress = 0.3288282
 
@@ -376,3 +487,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_llb8c")
+script = SubResource("GDScript_pjnkd")
