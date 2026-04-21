@@ -22,6 +22,9 @@ func _physics_process(delta: float) -> void:
 #region Patrol
 @onready var block_check_ray : RayCast2D = RayCast2D.new()
 @onready var home = global_position.x
+@export_group("Patrol Dist", "PDist")
+@export var PDist_min : int = 50
+@export var PDist_max : int = 100
 var next_dist: float = 0
 var pause: bool = false
 
@@ -32,7 +35,7 @@ func patrol():
 		move(0)
 		pause = true
 		home = global_position.x
-		next_dist = randi_range(50, 100) * (1 if randf() < 0.5 else -1)
+		next_dist = randi_range(PDist_min, PDist_max) * (1 if randf() < 0.5 else -1)
 		if block_check_ray.is_colliding():
 			next_dist = abs(next_dist) * -facing
 			flip()

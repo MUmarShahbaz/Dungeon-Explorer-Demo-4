@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/boss/skeleton champion.tscn" id="16_wir3w"]
 [ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/boss/demon general.tscn" id="17_wgmab"]
 [ext_resource type="PackedScene" uid="uid://cslpoftconrkv" path="res://scenes/characters/mob/boss/minotaur.tscn" id="23_4fgu2"]
+[ext_resource type="PackedScene" uid="uid://dc0xavqpescsx" path="res://scenes/characters/mob/boss/dragon.tscn" id="25_s6jkj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cw5t"]
 content_margin_left = 30.0
@@ -237,13 +238,17 @@ entity = ExtResource("15_70a2y")
 layout_mode = 2
 entity = ExtResource("16_wir3w")
 
+[node name="Minotaur" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=1168721238 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("23_4fgu2")
+
 [node name="Demon General" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=702520306 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("17_wgmab")
 
-[node name="Minotaur" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=1168721238 instance=ExtResource("2_yqeip")]
+[node name="Dragon" parent="ScrollContainer/HFlowContainer/BOSS" unique_id=2073133516 instance=ExtResource("2_yqeip")]
 layout_mode = 2
-entity = ExtResource("23_4fgu2")
+entity = ExtResource("25_s6jkj")
 
 [editable path="ScrollContainer/HFlowContainer/NPC/Ally Knight"]
 [editable path="ScrollContainer/HFlowContainer/ENM/Corrupt Knight"]

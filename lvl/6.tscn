@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_y5plx"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="3_sluun"]
 [ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/lesser demon.tscn" id="3_vk2nq"]
+[ext_resource type="PackedScene" uid="uid://dc0xavqpescsx" path="res://scenes/characters/mob/boss/dragon.tscn" id="5_s2kvt"]
 
 [sub_resource type="GDScript" id="GDScript_3283v"]
 script/source = "extends Level
@@ -19,10 +20,12 @@ func _physics_process(_delta: float) -> void:
 		$Dungeon/Vignette.vignette_out()
 		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_out()
 		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 1)
+		Input.action_press(\"cam_up\")
 	elif bounds[5] < 1450:
 		$Dungeon/Vignette.vignette_in()
 		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_in()
 		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 2.5)
+		Input.action_release(\"cam_up\")
 
 func prepare_map():
 	$\"Dungeon/Torches/Entry Torches\".queue_free()
@@ -179,6 +182,9 @@ shape = SubResource("RectangleShape2D_vk2nq")
 [node name="Dragon" type="Node2D" parent="Mob Waves" unique_id=1636007339]
 script = ExtResource("2_y5plx")
 metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Dragon" parent="Mob Waves/Dragon" unique_id=874390175 instance=ExtResource("5_s2kvt")]
+position = Vector2(2181, 404)
 
 [connection signal="wave_finished" from="Mob Waves/Minotaur" to="." method="_on_minotaur_finished"]
 [connection signal="body_entered" from="Mob Waves/Lesser Demons/Spawner" to="Mob Waves/Lesser Demons/Spawner" method="_on_body_entered"]
