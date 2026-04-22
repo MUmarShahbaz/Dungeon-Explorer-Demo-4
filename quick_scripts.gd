@@ -98,6 +98,8 @@ func prepare_bg_music():
 #endregion
 
 #region Entities
+var shadows : bool = false
+
 func move_entity(to : int, entity: Entity = player, run : bool = true, speed_boost : float = 1):
 	if entity is Player: entity.disable_controls = true
 	var dif = to - entity.global_position.x

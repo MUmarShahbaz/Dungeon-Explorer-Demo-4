@@ -27,6 +27,7 @@ func _ready() -> void:
 func prepare_map():
 	$\"Dungeon/Torches/Exit Torches\".queue_free()
 	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
+	$\"Dungeon/Tilemap layers/Blockage\".queue_free()
 	$Dungeon/Torches.normal()
 	$Dungeon/Doors/door1.unlock()
 	$Dungeon/Doors/door2.unlock()

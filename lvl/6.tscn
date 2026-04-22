@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="3_sluun"]
 [ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/lesser demon.tscn" id="3_vk2nq"]
 [ext_resource type="PackedScene" uid="uid://dc0xavqpescsx" path="res://scenes/characters/mob/boss/dragon.tscn" id="5_s2kvt"]
+[ext_resource type="PackedScene" uid="uid://njse68a42wiw" path="res://ui/boss_hp.tscn" id="6_l4g5w"]
 
 [sub_resource type="GDScript" id="GDScript_3283v"]
 script/source = "extends Level
@@ -19,13 +20,13 @@ func _physics_process(_delta: float) -> void:
 	if bounds[5] > 1450 and bounds[5] < 3360 and bounds[6] > 50 and bounds[7] < 500:
 		$Dungeon/Vignette.vignette_out()
 		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_out()
-		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 1)
-		Input.action_press(\"cam_up\")
+		QuickScripts.clamp_camera(-INF, INF, -INF, 600, 1)
+		if get_node_or_null(\"Dragon HP\"): $\"Dragon HP\".show()
 	elif bounds[5] < 1450:
 		$Dungeon/Vignette.vignette_in()
 		QuickScripts.hud.get_node(\"Control/Minimap Container/TexRect\").vignette_in()
 		QuickScripts.clamp_camera(-INF, INF, -INF, INF, 2.5)
-		Input.action_release(\"cam_up\")
+		if get_node_or_null(\"Dragon HP\"): $\"Dragon HP\".hide()
 
 func prepare_map():
 	$\"Dungeon/Torches/Entry Torches\".queue_free()
@@ -38,7 +39,6 @@ func prepare_map():
 	$Dungeon/Doors/door0.door_opened.connect(func (_x): QuickScripts.open_lvl(8))
 	$Dungeon/Doors/door4.door_opened.connect(func (_x): if get_node_or_null(\"Mob Waves/Lesser Demons\"): $\"Mob Waves/Lesser Demons\".queue_free())
 	$Dungeon/Doors/door16.lock()
-	$Dungeon/Doors/door2.lock()
 
 func _on_player_spawned(player: Player) -> void:
 	player.entity_died.connect(QuickScripts.spawn)
@@ -48,7 +48,8 @@ func _on_minotaur_finished() -> void:
 	$Dungeon/Doors/door16.unlock()
 
 func _on_dragon_finished() -> void:
-	$Dungeon/Doors/door2.unlock()
+	$\"Dungeon/Tilemap layers/Blockage\".queue_free()
+	$\"Dragon HP\".queue_free()
 "
 
 [sub_resource type="GDScript" id="GDScript_y5plx"]
@@ -65,6 +66,12 @@ size = Vector2(87, 2)
 [node name="Exit the Dungeon" type="Node2D" unique_id=353818878]
 script = SubResource("GDScript_3283v")
 player_spawn_position = Vector2(9900, 1006)
+
+[node name="Dragon HP" type="CanvasLayer" parent="." unique_id=1459266638]
+visible = false
+
+[node name="BossHp" parent="Dragon HP" unique_id=1147545071 node_paths=PackedStringArray("boss") instance=ExtResource("6_l4g5w")]
+boss = NodePath("../../Mob Waves/Dragon/Dragon")
 
 [node name="Dungeon" parent="." unique_id=935988611 instance=ExtResource("3_sluun")]
 
@@ -184,7 +191,7 @@ script = ExtResource("2_y5plx")
 metadata/_custom_type_script = "uid://5u3surwy2bde"
 
 [node name="Dragon" parent="Mob Waves/Dragon" unique_id=874390175 instance=ExtResource("5_s2kvt")]
-position = Vector2(2181, 404)
+position = Vector2(2497, 407)
 
 [connection signal="wave_finished" from="Mob Waves/Minotaur" to="." method="_on_minotaur_finished"]
 [connection signal="body_entered" from="Mob Waves/Lesser Demons/Spawner" to="Mob Waves/Lesser Demons/Spawner" method="_on_body_entered"]

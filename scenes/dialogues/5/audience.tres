@@ -21,7 +21,8 @@ metadata/_custom_type_script = "uid://86nuwqny3eip"
 
 [sub_resource type="Resource" id="Resource_xlkqv"]
 script = ExtResource("1_twdt8")
-Text = "and even less who actually do"
+Text = "and even less who actually 
+reach this chamber"
 Sprite = ExtResource("3_g20rx")
 Right_Side = true
 metadata/_custom_type_script = "uid://86nuwqny3eip"

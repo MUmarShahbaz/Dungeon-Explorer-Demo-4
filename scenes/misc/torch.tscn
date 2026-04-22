@@ -101,8 +101,9 @@ animations = [{
 [sub_resource type="GDScript" id="GDScript_4d061"]
 script/source = "extends AnimatedSprite2D
 
-func _ready() -> void:
-	if OS.has_feature(\"web\"): $Light.shadow_enabled = false
+func _physics_process(_delta: float) -> void:
+	if QuickScripts.shadows: $Light.shadow_enabled = true
+	else: $Light.shadow_enabled = false
 
 func normal():
 	play(\"default\")

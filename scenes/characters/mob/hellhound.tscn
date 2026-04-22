@@ -903,6 +903,7 @@ metadata/_custom_type_script = "uid://otxwfmoatx33"
 script = SubResource("GDScript_x4ujb")
 attack_buffer = NodePath("Attack Buffer")
 melee_controller = NodePath("Melee Controller")
+path_checker = Vector2(200, 15)
 TDR_front = 600.0
 avatar = SubResource("AtlasTexture_s2akx")
 title = "Hellhound"

@@ -170,6 +170,7 @@ army_charge={
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="Projectiles"
 2d_physics/layer_6="Sheild"
+2d_physics/layer_7="Ghost"
 
 [physics]
 

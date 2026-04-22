@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ipw7eytfeigv" path="res://assets/tilemap/dungeon/dungeon.png" id="1_rpuk4"]
 [ext_resource type="Texture2D" uid="uid://ccq1l5i00u0jq" path="res://assets/tilemap/dungeon/stairs.png" id="2_m4b1l"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cy0pf"]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m4b1l"]
 polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 
@@ -167,6 +170,8 @@ texture = ExtResource("1_rpuk4")
 margins = Vector2i(16, 16)
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_cy0pf")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 1:0/0 = 0
 1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ucjgb")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
@@ -625,5 +630,6 @@ texture_region_size = Vector2i(48, 48)
 tile_size = Vector2i(48, 48)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_v1q01")
 sources/1 = SubResource("TileSetAtlasSource_x8xsr")

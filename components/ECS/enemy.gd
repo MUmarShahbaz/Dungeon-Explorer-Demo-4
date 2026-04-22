@@ -22,9 +22,10 @@ func _physics_process(delta: float) -> void:
 #region Patrol
 @onready var block_check_ray : RayCast2D = RayCast2D.new()
 @onready var home = global_position.x
-@export_group("Patrol Dist", "PDist")
-@export var PDist_min : int = 50
-@export var PDist_max : int = 100
+@export_group("Patrol", "P")
+@export var P_min : int = 50
+@export var P_max : int = 100
+@export var P_block_checker : Vector2 = Vector2(200, 5)
 var next_dist: float = 0
 var pause: bool = false
 
@@ -35,18 +36,17 @@ func patrol():
 		move(0)
 		pause = true
 		home = global_position.x
-		next_dist = randi_range(PDist_min, PDist_max) * (1 if randf() < 0.5 else -1)
+		next_dist = randi_range(P_min, P_max) * (1 if randf() < 0.5 else -1)
 		if block_check_ray.is_colliding():
 			next_dist = abs(next_dist) * -facing
 			flip()
 		await get_tree().create_timer(randf_range(3, 5)).timeout
 		pause = false
 
-@export var path_checker : Vector2 = Vector2(200, 5)
 func prepare_block_check_ray():
-	block_check_ray.target_position = Vector2(path_checker.x, 0)
+	block_check_ray.target_position = Vector2(P_block_checker.x, 0)
 	block_check_ray.global_position = collider.shape.get_rect().end
-	block_check_ray.global_position.y -= path_checker.y
+	block_check_ray.global_position.y -= P_block_checker.y
 #endregion
 
 #region Charge
