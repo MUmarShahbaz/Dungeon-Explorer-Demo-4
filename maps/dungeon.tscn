@@ -62,7 +62,7 @@ func vignette_in():
 	transition = true
 	while texture.gradient.offsets[1] > view_radius and transition:
 		texture.gradient.offsets[1] = move_toward(texture.gradient.offsets[1], view_radius, get_physics_process_delta_time()*rate)
-		if not get_tree(): queue_free()
+		if get_tree() == null: break
 		await get_tree().physics_frame
 	if not transition: return
 	texture.gradient.offsets[1] = view_radius
