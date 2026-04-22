@@ -31,13 +31,14 @@ func primary():
 	ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_1\")
 
 func secondary():
+	if check_anim(\"attack_2\"): return
 	quick_pause()
 	if SP < 5: return
 	else:
 		ANM_Animation_Tree.get(\"parameters/playback\").travel(\"attack_2\")
-		var timer = get_tree().create_timer(5)
+		var timer = get_tree().create_timer(1.65)
 		var timeout := false
-		while not (timeout or check_anim(\"attack_2\")):
+		while not (timeout or check_anim_end(\"attack_2\")):
 			timeout = (timer.time_left <= 0)
 			await get_tree().physics_frame
 		if not timeout: SP -= 5

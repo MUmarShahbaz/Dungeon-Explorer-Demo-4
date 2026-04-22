@@ -150,8 +150,16 @@ func check_anim(animation : String) -> bool:
 func check_frame(animation : String, frame : int) -> bool:
 	return ANM_Animated_Sprite.animation == animation and ANM_Animated_Sprite.frame == frame
 
+func check_anim_end(animation : String) -> bool:
+	return ANM_Animated_Sprite.animation == animation and ANM_Animated_Sprite.frame == ANM_Animated_Sprite.sprite_frames.get_frame_count(animation) - 1
+
 func await_frame(animation: String, frame : int) -> void:
 	while !check_frame(animation, frame):
+		await get_tree().process_frame
+	return
+
+func await_anim_end(animation: String):
+	while not check_anim_end(animation):
 		await get_tree().process_frame
 	return
 
@@ -160,7 +168,7 @@ func start_anim(animation : String, force : bool = false):
 	else: ANM_Animation_Tree.get("parameters/playback").travel(animation)
 
 func force_anim(animation : String):
-	while not check_frame(animation, ANM_Animated_Sprite.sprite_frames.get_frame_count(animation) - 1):
+	while not check_anim_end(animation):
 		if not check_anim(animation): start_anim(animation, true)
 		await get_tree().process_frame
 	return
