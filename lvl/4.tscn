@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://btbryvu3frjcr"]
 
+[ext_resource type="PackedScene" uid="uid://njse68a42wiw" path="res://ui/boss_hp.tscn" id="1_amskc"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="1_onalh"]
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="4_3283v"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="5_5tki5"]
@@ -74,6 +75,7 @@ func _on_cereberus_wave_finished() -> void:
 
 func _on_demon_general_wave_finished() -> void:
 	$Dungeon/Doors/door17.unlock()
+	$Demon_General_HP.queue_free()
 	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/granted_audience.tres\")
 "
 
@@ -132,7 +134,10 @@ func _on_hellhounds_defeated() -> void:
 		$\"Skeleton Army/Champion\".begin()
 
 func _on_skeletons_defeated() -> void:
-	$\"Demon General/Spawner\".begin()
+	$\"Demon General/Demon General\".puppet = false
+	$\"Demon General/StaticBody2D\".queue_free()
+	$\"Demon General/Demon General\".show()
+	$\"../Demon_General_HP\".show()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvksx"]
@@ -145,6 +150,12 @@ size = Vector2(1424, 261)
 script = SubResource("GDScript_3283v")
 player_spawn_position = Vector2(-31, 46)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
+
+[node name="Demon_General_HP" type="CanvasLayer" parent="." unique_id=867674065]
+visible = false
+
+[node name="BossHp" parent="Demon_General_HP" unique_id=1147545071 node_paths=PackedStringArray("boss") instance=ExtResource("1_amskc")]
+boss = NodePath("../../Mob Waves/Demon General/Demon General")
 
 [node name="Dungeon" parent="." unique_id=935988611 instance=ExtResource("1_onalh")]
 
@@ -292,17 +303,15 @@ shape = SubResource("RectangleShape2D_p1l7f")
 script = ExtResource("4_3283v")
 metadata/_custom_type_script = "uid://5u3surwy2bde"
 
-[node name="Spawner" type="Area2D" parent="Mob Waves/Demon General" unique_id=24265124 node_paths=PackedStringArray("Spawn_Root")]
-script = ExtResource("5_5tki5")
-Mob_Scenes = Array[PackedScene]([ExtResource("16_cce0b")])
-Spawn_Root = NodePath("..")
-Rate = 0.0
-Initial_Spawns = 1
-metadata/_custom_type_script = "uid://k0njues52nl2"
+[node name="Demon General" parent="Mob Waves/Demon General" unique_id=952172728 instance=ExtResource("16_cce0b")]
+visible = false
+position = Vector2(8516, 481)
+puppet = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Demon General/Spawner" unique_id=1869459412]
-position = Vector2(9151, 821)
-shape = SubResource("RectangleShape2D_p1l7f")
+[node name="StaticBody2D" type="StaticBody2D" parent="Mob Waves/Demon General" unique_id=1854997192]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mob Waves/Demon General/StaticBody2D" unique_id=674021465]
+polygon = PackedVector2Array(8313, 599, 8708, 599, 8736, 339, 8741, 624)
 
 [connection signal="goblins_defeated" from="Mob Waves" to="Mob Waves" method="_on_goblins_defeated"]
 [connection signal="hellhounds_defeated" from="Mob Waves" to="Mob Waves" method="_on_hellhounds_defeated"]
