@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://bdknuxfyo418"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_rubwq"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_0xlks"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_6iaqk"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="4_bts4o"]
+
+[sub_resource type="Resource" id="Resource_r5yi1"]
+script = ExtResource("1_rubwq")
+Text = "Now I should focus on how to fight"
+Sprite = ExtResource("2_0xlks")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_hgo86"]
+script = ExtResource("1_rubwq")
+Text = "My Primary Move is to 
+attack with my chain whip
+It's quite strong!!"
+Sprite = ExtResource("3_6iaqk")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_aeqqj"]
+script = ExtResource("1_rubwq")
+Text = "and my Secondary Move is
+throwing a dagger!! It's quick
+but weak!!"
+Sprite = ExtResource("3_6iaqk")
+Right_Side = true
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("4_bts4o")
+array = Array[ExtResource("1_rubwq")]([SubResource("Resource_r5yi1"), SubResource("Resource_hgo86"), SubResource("Resource_aeqqj")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

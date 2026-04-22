@@ -66,6 +66,8 @@ func charge(target : Entity):
 func find_closest_target() -> Entity:
 	var closest_target : Entity = null
 	var closest_target_distance : float = INF
+	var all_targets = get_tree().get_nodes_in_group("allies").filter(func (x : Ally): return not x.name.contains("dead"))
+	all_targets.append_array(get_tree().get_nodes_in_group("civillian").filter(func (x : Civillian): return not x.name.contains("dead")))
 	for target : Entity in get_tree().get_nodes_in_group("allies").filter(func (x : Ally): return not x.name.contains("dead")):
 		var to_target : Vector2 = target.global_position - global_position
 		if to_target.length() > closest_target_distance or \

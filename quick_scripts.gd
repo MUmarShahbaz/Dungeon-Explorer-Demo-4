@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 #region Playable Characters
-var playable : Array[StringName] = ["KNIGHT", "WIZARD", "SAMURAI"]
+var playable : Array[StringName] = ["KNIGHT", "WIZARD", "SAMURAI", "NINJA"]
 var all_characters = {
 	"KNIGHT": {
 		"scene": "res://scenes/characters/pc/knight.tscn",
@@ -22,13 +22,17 @@ var all_characters = {
 		"scene": "res://scenes/characters/pc/samurai.tscn",
 		"image": "res://assets/sprites/samurai.png"
 	},
-	"NINJA": {},
+	"NINJA": {
+		"scene": "res://scenes/characters/pc/ninja.tscn",
+		"image": "res://assets/sprites/ninja.png"
+	},
 	"DWARF": {},
-	"ELF": {},
-	"WITCH": {},
-	"GLADIATOR": {},
-	"AMAZON": {},
-	"PYROMANCER": {}
+	"WITCH": {}
+	# Mercenraries
+	#"ELF": {},
+	#"GLADIATOR": {},
+	#"AMAZON": {},
+	#"PYROMANCER": {}
 }
 #endregion
 

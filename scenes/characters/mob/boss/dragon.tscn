@@ -1195,7 +1195,7 @@ script = ExtResource("13_nvno3")
 Damage_Zone = NodePath("../bite")
 Animation_Name = &"attack_1"
 Animation_Frame = 3
-Damage = 10.0
+Damage = 20.0
 metadata/_custom_type_script = "uid://otxwfmoatx33"
 
 [sub_resource type="Resource" id="Resource_filxg"]

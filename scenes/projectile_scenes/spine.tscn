@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://jay16skxj2xv"]
+
+[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_qrkvv"]
+[ext_resource type="Texture2D" uid="uid://brrk5dwdj113y" path="res://assets/sprites/players/ninja/Spine.png" id="2_o8tmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrkvv"]
+atlas = ExtResource("2_o8tmf")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8tmf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrkvv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrkvv"]
+radius = 2.0
+
+[node name="Spine" type="RigidBody2D" unique_id=815962124 node_paths=PackedStringArray("sprite", "collider")]
+script = ExtResource("1_qrkvv")
+sprite = NodePath("Sprite2D")
+collider = NodePath("CollisionShape2D")
+damage = 5
+metadata/_custom_type_script = "uid://c0irv2blollmd"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1642594125]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_o8tmf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1347993242]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_qrkvv")

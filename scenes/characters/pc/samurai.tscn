@@ -26,7 +26,6 @@
 script/source = "extends Player
 
 @export var Primary_Move_Buffer : Buffer
-@export var melee_controller : MeleeController
 
 func _process(_delta: float) -> void:
 	ANM_Animation_Tree.set(\"parameters/conditions/attack\", Primary_Move_Buffer.buffer)
@@ -1388,7 +1387,7 @@ states/die/position = Vector2(740, 124.902)
 states/fall/node = SubResource("AnimationNodeAnimation_wfufo")
 states/fall/position = Vector2(512.472, -77.5437)
 states/hurt/node = SubResource("AnimationNodeAnimation_mh47a")
-states/hurt/position = Vector2(739.851, 169.452)
+states/hurt/position = Vector2(739.9702, 181.452)
 states/idle/node = SubResource("AnimationNodeAnimation_ku7g3")
 states/idle/position = Vector2(512, 124.222)
 states/jump/node = SubResource("AnimationNodeAnimation_xjcqi")
@@ -1402,7 +1401,7 @@ states/shoot/position = Vector2(693.2, 315.9263)
 states/walk/node = SubResource("AnimationNodeAnimation_ox6at")
 states/walk/position = Vector2(542.258, 25.38)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_iqwwa"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_gu12u"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_ku7g3"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_jpmv8"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_868je"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_p6e26"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wfufo"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_xjcqi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ov28q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_xs2k8"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_1fk6n"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_335tu"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_slg3v"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_4380a"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_y1nkr"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_ox6at"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_0ekmf"), "attack_3", "idle", SubResource("AnimationNodeStateMachineTransition_mh47a"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_4bvir"), "attack_2", "idle", SubResource("AnimationNodeStateMachineTransition_7eb7e"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_fpawd"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_jue6h"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_dxeu0")]
-graph_offset = Vector2(0, 102.406555)
+graph_offset = Vector2(0, 55.34728)
 
 [sub_resource type="Resource" id="Resource_sdnk0"]
 script = ExtResource("13_uprf7")
@@ -1445,10 +1444,9 @@ metadata/_custom_type_script = "uid://o4kw3676x0i5"
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcwo"]
 polygon = PackedVector2Array(0, -19, 3, -13, 4.5, 0, 3, 5, 0, 8, -3, 5, -4.5, 0, -3, -13)
 
-[node name="Samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "melee_controller", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Die")]
+[node name="Samurai" type="CharacterBody2D" unique_id=1551951454 node_paths=PackedStringArray("Primary_Move_Buffer", "collider", "ANM_Animated_Sprite", "ANM_Animation_Player", "ANM_Animation_Tree", "SFX_Die")]
 script = SubResource("GDScript_ahx3g")
 Primary_Move_Buffer = NodePath("Melee Buffer")
-melee_controller = NodePath("Melee Controller")
 HP_Regeneration_Rate = 2.0
 avatar = SubResource("AtlasTexture_f7nts")
 title = "Samurai"

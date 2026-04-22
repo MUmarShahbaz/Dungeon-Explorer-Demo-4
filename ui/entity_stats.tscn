@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="4_iba8s"]
 [ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="5_ksetj"]
 [ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf king.tscn" id="6_32ap0"]
+[ext_resource type="PackedScene" uid="uid://bjwprndwtpepx" path="res://scenes/characters/pc/ninja.tscn" id="6_fsk3l"]
 [ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_s0jrw"]
 [ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
 [ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf queen.tscn" id="7_iba8s"]
@@ -106,6 +107,10 @@ entity = ExtResource("4_iba8s")
 [node name="Samurai" parent="ScrollContainer/HFlowContainer/PC" unique_id=1623953694 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("5_ksetj")
+
+[node name="Ninja" parent="ScrollContainer/HFlowContainer/PC" unique_id=757080935 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("6_fsk3l")
 
 [node name="NPC_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=188986695]
 custom_minimum_size = Vector2(1000, 200)

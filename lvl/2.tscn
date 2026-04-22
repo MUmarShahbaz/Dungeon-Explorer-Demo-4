@@ -18,6 +18,8 @@ func _ready() -> void:
 			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/samurai.tres\")
 		\"res://scenes/characters/pc/wizard.tscn\":
 			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/wizard.tres\")
+		\"res://scenes/characters/pc/ninja.tscn\":
+			QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/ninja.tres\")
 
 func prepare_map():
 	$\"Castle Outdoors/Darkness\".queue_free()
