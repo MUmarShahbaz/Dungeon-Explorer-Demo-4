@@ -27,8 +27,7 @@ This project was very important in teaching me not only game development, but al
 
 ## ECS - Entity Component System
 
-<img width="2687" height="2256" alt="ECS" src="https://github.com/user-attachments/assets/332e97e1-64e3-419e-8bf5-e78c35303375" />
-
+<img width="2597" height="902" alt="Debugging Error Handling-2026-04-22-235858" src="https://github.com/user-attachments/assets/61393124-65e8-4bc3-bfb8-72c954093716" />
 
 The ECS is an extremely fragile piece of work as it greatly depends on "Standardization", since it uses Inheritance and Polymorphism.
 
