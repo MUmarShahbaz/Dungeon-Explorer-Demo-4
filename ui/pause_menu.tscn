@@ -30,8 +30,10 @@ func _physics_process(_delta: float) -> void:
 			show()
 			resume.grab_focus()
 
+var at_pause_home : bool = true
 func change_state(new_state : states):
 	if new_state == states.Main:
+		at_pause_home = true
 		main.show()
 		resume.grab_focus()
 		audio.hide()
@@ -39,6 +41,7 @@ func change_state(new_state : states):
 		entity_stats.hide()
 		back.hide()
 	else:
+		at_pause_home = false
 		main.hide()
 		back.show()
 		back.grab_focus()
@@ -68,7 +71,8 @@ func _on_quit_pressed() -> void:
 	hide()
 
 func _on_back_pressed() -> void:
-	change_state(states.Main)
+	if at_pause_home: _on_resume_pressed()
+	else: change_state(states.Main)
 "
 
 [node name="Pause Menu" type="CanvasLayer" unique_id=1918781953]

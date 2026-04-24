@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://327g2eu41mrs" path="res://assets/sprites/players/samurai/Attack_2.png" id="11_5qoy7"]
 [ext_resource type="Texture2D" uid="uid://dj37b4o8sm2cb" path="res://assets/sprites/players/samurai/Attack_3.png" id="12_2wl3p"]
 [ext_resource type="Texture2D" uid="uid://drtcsm1sqe21t" path="res://assets/sprites/players/wizard/Magic_sphere.png" id="13_ec50y"]
+[ext_resource type="PackedScene" uid="uid://bmmwnwd3yk1c3" path="res://ui/mission_button.tscn" id="15_kdaw1"]
 [ext_resource type="PackedScene" uid="uid://cos5ex21hlpxf" path="res://ui/controls.tscn" id="15_yyv38"]
 [ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="16_kdaw1"]
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="17_cd4ok"]
@@ -24,41 +25,64 @@ script/source = "extends CanvasLayer
 func _ready() -> void:
 	await QuickScripts.fade_in()
 	AudioServer.set_bus_volume_linear(QuickScripts.audio_music_bus, 1)
-	$Menu/Main/Play.grab_focus()
+	$Menu/Home/Play.grab_focus()
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"interact\") or Input.is_action_just_pressed(\"ui_cancel\"): _on_back_pressed()
 
-@onready var Main := $Menu/Main
+@onready var Home := $Menu/Home
+@onready var Play := $Menu/Play
+@onready var Missions := $Menu/Missions
 @onready var Audio := $Menu/Audio
 @onready var Controls := $Menu/Controls
-@onready var Missions := $Menu/Missions
 @onready var Stats := $\"Menu/Entity Stats\"
 @onready var Back := $Menu/Back
 
-enum states {Main, Audio, Controls, Missions, Stats}
+enum states {Home, Play, Missions, Audio, Controls, Stats}
+var opening_a_level : bool = false
 
 func change_state(new_state : states):
-	if new_state == states.Main:
-		Main.show()
-		$Menu/Main/Play.grab_focus()
+	if new_state != states.Missions: Missions.set_meta(\"visible\", false)
+	if new_state == states.Home:
+		Home.show()
+		$Menu/Home/Play.grab_focus()
+		Play.hide()
 		Audio.hide()
 		Controls.hide()
-		Missions.hide()
 		Stats.hide()
 		Back.hide()
 	else:
-		Main.hide()
+		Home.hide()
 		Back.show()
 		Back.grab_focus()
 		match new_state:
-			states.Audio: Audio.show()
-			states.Controls: Controls.show()
-			states.Missions: Missions.show()
-			states.Stats: Stats.show()
+			states.Play:
+				Play.show()
+				Missions.hide()
+				$Menu/Play/Start.grab_focus()
+			states.Missions:
+				Missions.show()
+				Missions.set_meta(\"visible\", true)
+			states.Audio:
+				Audio.show()
+				Audio.master_slider.grab_focus()
+			states.Controls:
+				Controls.show()
+				Controls.get_node(\"Next\").grab_focus()
+			states.Stats:
+				Stats.show()
+				Stats.get_node(\"ScrollContainer/HFlowContainer/PC_LABEL\").grab_focus()
+
+func go_to_lvl(number : int):
+	if opening_a_level: return
+	opening_a_level = true
+	var opened_lvl = QuickScripts.get_lvl(number)
+	await QuickScripts.fade_out()
+	get_tree().change_scene_to_packed(opened_lvl)
 
 func _on_back_pressed() -> void:
-	change_state(states.Main)
+	if Missions.get_meta(\"visible\") == true: change_state(states.Play)
+	else: change_state(states.Home)
 
 func _on_audio_pressed() -> void:
 	change_state(states.Audio)
@@ -72,13 +96,14 @@ func _on_missions_pressed() -> void:
 func _on_entity_stats_pressed() -> void:
 	change_state(states.Stats)
 
-var play_pressed := false
 func _on_play_pressed() -> void:
-	if play_pressed: return
-	play_pressed = true
-	var start_lvl = QuickScripts.get_lvl(1)
-	await QuickScripts.fade_out()
-	get_tree().change_scene_to_packed(start_lvl)
+	change_state(states.Play)
+
+func _on_play_from_start_pressed() -> void:
+	go_to_lvl(1)
+
+func _on_mission_pressed(number : int) -> void:
+	go_to_lvl(number)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qra41"]
@@ -569,7 +594,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Main" type="VBoxContainer" parent="Menu" unique_id=342506106]
+[node name="Home" type="VBoxContainer" parent="Menu" unique_id=342506106]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -583,47 +608,59 @@ offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="Menu/Main" unique_id=1970747116]
+[node name="Play" type="Button" parent="Menu/Home" unique_id=1970747116]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Play"
 
-[node name="Missions" type="Button" parent="Menu/Main" unique_id=812705788]
-layout_mode = 2
-theme = ExtResource("17_cd4ok")
-text = "Missions"
-
-[node name="Audio" type="Button" parent="Menu/Main" unique_id=484876782]
+[node name="Audio" type="Button" parent="Menu/Home" unique_id=484876782]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Audio"
 
-[node name="Controls" type="Button" parent="Menu/Main" unique_id=1031803877]
+[node name="Controls" type="Button" parent="Menu/Home" unique_id=1031803877]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Controls"
 
-[node name="Entity Stats" type="Button" parent="Menu/Main" unique_id=624571742]
+[node name="Entity Stats" type="Button" parent="Menu/Home" unique_id=624571742]
 layout_mode = 2
 theme = ExtResource("17_cd4ok")
 text = "Entity Stats"
 
-[node name="Audio" parent="Menu" unique_id=579730665 instance=ExtResource("17_kdaw1")]
+[node name="Play" type="VBoxContainer" parent="Menu" unique_id=1809481535]
 visible = false
 layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -129.0
+offset_right = 201.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Controls" parent="Menu" unique_id=77077679 instance=ExtResource("15_yyv38")]
-visible = false
-layout_mode = 1
+[node name="Start" type="Button" parent="Menu/Play" unique_id=489569240]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "From Start"
+
+[node name="Skip" type="Button" parent="Menu/Play" unique_id=49910724]
+layout_mode = 2
+theme = ExtResource("17_cd4ok")
+text = "Skip Ahead"
 
 [node name="Missions" type="Control" parent="Menu" unique_id=1617418718]
 visible = false
-layout_mode = 1
-anchors_preset = 15
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/visible = false
 
 [node name="BG" type="ColorRect" parent="Menu/Missions" unique_id=968130398]
 layout_mode = 1
@@ -645,14 +682,50 @@ offset_right = -30.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
 
-[node name="Grid" type="HFlowContainer" parent="Menu/Missions/ScrollContainer" unique_id=1581904565]
+[node name="HFow Container" type="HFlowContainer" parent="Menu/Missions/ScrollContainer" unique_id=1581904565]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 alignment = 1
+
+[node name="1" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=1617970656 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+
+[node name="2" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=167713606 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 2
+
+[node name="3" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=1435587630 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 3
+
+[node name="4" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=139909476 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 4
+
+[node name="5" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=138674730 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 5
+
+[node name="7" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=803298863 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 7
+
+[node name="8" parent="Menu/Missions/ScrollContainer/HFow Container" unique_id=579573172 instance=ExtResource("15_kdaw1")]
+layout_mode = 2
+mission_number = 8
+
+[node name="Audio" parent="Menu" unique_id=579730665 instance=ExtResource("17_kdaw1")]
+visible = false
+layout_mode = 1
+
+[node name="Controls" parent="Menu" unique_id=77077679 instance=ExtResource("15_yyv38")]
+visible = false
+layout_mode = 1
 
 [node name="Entity Stats" parent="Menu" unique_id=256849622 instance=ExtResource("16_kdaw1")]
 visible = false
@@ -672,9 +745,17 @@ grow_vertical = 0
 theme = ExtResource("17_cd4ok")
 text = "Back"
 
-[connection signal="pressed" from="Menu/Main/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/Main/Missions" to="." method="_on_missions_pressed"]
-[connection signal="pressed" from="Menu/Main/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
+[connection signal="pressed" from="Menu/Home/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Home/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="Menu/Home/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Menu/Home/Entity Stats" to="." method="_on_entity_stats_pressed"]
+[connection signal="pressed" from="Menu/Play/Start" to="." method="_on_play_from_start_pressed"]
+[connection signal="pressed" from="Menu/Play/Skip" to="." method="_on_missions_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/1" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/2" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/3" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/4" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/5" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/7" to="." method="_on_mission_pressed"]
+[connection signal="begin_mission" from="Menu/Missions/ScrollContainer/HFow Container/8" to="." method="_on_mission_pressed"]
 [connection signal="pressed" from="Menu/Back" to="." method="_on_back_pressed"]

@@ -1,88 +1,72 @@
-[gd_scene format=3 uid="uid://dtqu2i6wvcrtc"]
+[gd_scene format=3 uid="uid://mdi2fwebcris"]
 
-[ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_mmdjw"]
-[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="2_oqyht"]
-[ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_qq4ve"]
-[ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="3_nhe16"]
-[ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally knight.tscn" id="5_8mlh3"]
+[ext_resource type="PackedScene" uid="uid://myukpp1ey4ou" path="res://maps/castle_indoors.tscn" id="1_hmhoh"]
+[ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf queen.tscn" id="2_v4rsh"]
+[ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf king.tscn" id="3_v4rsh"]
+[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="4_r6bdr"]
 
-[sub_resource type="GDScript" id="GDScript_p2nvj"]
+[sub_resource type="GDScript" id="GDScript_u1uom"]
 script/source = "extends Level
 
-func _ready() -> void:   
+var cutscene_1_played : bool = false
+var cutscene_2_played : bool = false
+var cutscene_3_played : bool = false
+
+func _ready() -> void:
 	super._ready()
 	await QuickScripts.player_spawned
-	await $\"Ally Knights/Spawner\".begin()
-	Input.action_press(\"army_follow\")
-	await get_tree().physics_frame
-	Input.action_release(\"army_follow\")
-	await QuickScripts.move_entity(-400)
-	QuickScripts.camera_offset(Vector2.RIGHT*13)
-	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/8/climb_fountain.tres\")
-	$\"Corrupt Knights/Spawner\".begin()
-	
+	QuickScripts.move_entity(150)
 
 func _physics_process(_delta: float) -> void:
-	var entities = get_tree().get_nodes_in_group(\"entities\")
-	for this_entity in entities:
-		$\"Castle Outdoors\".entity_z_index(this_entity)
+	if not cutscene_1_played and QuickScripts.player and QuickScripts.player.global_position.x > 500:
+		await cutscene_1()
+		QuickScripts.player.disable_controls = true
+		await cutscene_2()
+		await cutscene_3()
+		QuickScripts.player.disable_controls = true
+		if QuickScripts.pause_menu.is_node_ready(): QuickScripts.pause_menu._on_quit_pressed()
 
-func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player: QuickScripts.open_lvl(9)
+func cutscene_1():
+	cutscene_1_played = true
+	QuickScripts.player.disable_controls = true
+	QuickScripts.player.move(0)
+	QuickScripts.camera_offset(Vector2.RIGHT)
+	await QuickScripts.move_entity(675, %\"Elf Queen\", true)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/8/give_potion.tres\")
+	QuickScripts.camera_offset()
+
+func cutscene_2():
+	cutscene_2_played = true
+	await QuickScripts.move_entity(950, %\"Elf Queen\", true)
+	QuickScripts.move_entity(430, %\"Corrupt knight\", true)
+	await get_tree().create_timer(1).timeout
+	QuickScripts.move_entity(630, %\"Elf Queen\")
+	await QuickScripts.move_entity(410, %\"Elf King\", true, 5)
+	%\"Elf King\".flip()
+	await %\"Elf King\".force_anim(\"attack_1\")
+	QuickScripts.player.flip()
+
+func cutscene_3():
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/8/king_returns.tres\")
+	%\"Elf King\".move(-1)
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxky6"]
-size = Vector2(41.5, 126.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gc7l"]
-size = Vector2(359, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlh3"]
-size = Vector2(130.25, 20)
-
-[node name="Break into castle" type="Node2D" unique_id=1580822662]
-script = SubResource("GDScript_p2nvj")
-player_spawn_position = Vector2(-550, 150)
+[node name="End" type="Node2D" unique_id=1512458389]
+script = SubResource("GDScript_u1uom")
+player_spawn_position = Vector2(50, 140)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
-[node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_mmdjw")]
-position = Vector2(-4, 0)
+[node name="Castle Indoors" parent="." unique_id=77318229 instance=ExtResource("1_hmhoh")]
 
-[node name="next_level" type="Area2D" parent="." unique_id=581464720]
-collision_mask = 4
+[node name="Corrupt knight" parent="." unique_id=383885407 instance=ExtResource("4_r6bdr")]
+unique_name_in_owner = true
+position = Vector2(20, 140)
+puppet = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="next_level" unique_id=2143341115]
-position = Vector2(2044.75, 54.75)
-shape = SubResource("RectangleShape2D_rxky6")
+[node name="Elf Queen" parent="." unique_id=40547968 instance=ExtResource("2_v4rsh")]
+unique_name_in_owner = true
+position = Vector2(950, 140)
 
-[node name="Corrupt Knights" type="Node2D" parent="." unique_id=517810782]
-script = ExtResource("2_qq4ve")
-metadata/_custom_type_script = "uid://5u3surwy2bde"
-
-[node name="Spawner" type="Area2D" parent="Corrupt Knights" unique_id=618807397 node_paths=PackedStringArray("Spawn_Root")]
-script = ExtResource("3_nhe16")
-Mob_Scenes = Array[PackedScene]([ExtResource("2_oqyht")])
-Spawn_Root = NodePath("..")
-Rate = 0.0
-metadata/_custom_type_script = "uid://k0njues52nl2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Corrupt Knights/Spawner" unique_id=1784311418]
-position = Vector2(1035.5, 133)
-shape = SubResource("RectangleShape2D_7gc7l")
-
-[node name="Ally Knights" type="Node2D" parent="." unique_id=1983777057]
-script = ExtResource("2_qq4ve")
-metadata/_custom_type_script = "uid://5u3surwy2bde"
-
-[node name="Spawner" type="Area2D" parent="Ally Knights" unique_id=220484700 node_paths=PackedStringArray("Spawn_Root")]
-script = ExtResource("3_nhe16")
-Mob_Scenes = Array[PackedScene]([ExtResource("5_8mlh3")])
-Spawn_Root = NodePath("..")
-Rate = 0.0
-metadata/_custom_type_script = "uid://k0njues52nl2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ally Knights/Spawner" unique_id=419901067]
-position = Vector2(-647.875, 122)
-shape = SubResource("RectangleShape2D_8mlh3")
-
-[connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]
+[node name="Elf King" parent="." unique_id=1976621861 instance=ExtResource("3_v4rsh")]
+unique_name_in_owner = true
+position = Vector2(950, 140)

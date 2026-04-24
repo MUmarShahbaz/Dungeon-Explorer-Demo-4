@@ -35,7 +35,7 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1uom"]
 size = Vector2(80, 215)
 
-[node name="Start" type="Node2D" unique_id=1512458389]
+[node name="Elf Queen\'s Request" type="Node2D" unique_id=1512458389]
 script = SubResource("GDScript_u1uom")
 player_spawn_position = Vector2(50, 140)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"

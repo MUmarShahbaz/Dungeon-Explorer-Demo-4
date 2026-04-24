@@ -1,0 +1,327 @@
+[gd_scene format=3 uid="uid://btbryvu3frjcr"]
+
+[ext_resource type="PackedScene" uid="uid://njse68a42wiw" path="res://ui/boss_hp.tscn" id="1_amskc"]
+[ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="1_onalh"]
+[ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="4_3283v"]
+[ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="5_5tki5"]
+[ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_d3d0d"]
+[ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_wbpek"]
+[ext_resource type="PackedScene" uid="uid://l5fcp0cx14mo" path="res://scenes/characters/mob/boss/red slime.tscn" id="8_viwuw"]
+[ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="9_8p16u"]
+[ext_resource type="PackedScene" uid="uid://be3xdfq2ly1iy" path="res://scenes/characters/mob/boss/goblin champion.tscn" id="10_gvggy"]
+[ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="11_jkqin"]
+[ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/boss/cerberus.tscn" id="12_s2l0u"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="13_4p4r1"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="14_sdv70"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="15_5tki5"]
+[ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/boss/skeleton champion.tscn" id="15_sbtkl"]
+[ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/boss/demon general.tscn" id="16_cce0b"]
+
+[sub_resource type="GDScript" id="GDScript_3283v"]
+script/source = "extends Level
+
+func _ready() -> void:
+	super._ready()
+	QuickScripts.player_spawned.connect(_on_player_spawned)
+	$Dungeon/Doors/door17.door_opened.connect(func (_x): QuickScripts.open_lvl(4))
+
+func prepare_map():
+	$\"Dungeon/Torches/Exit Torches\".queue_free()
+	$\"Dungeon/Tilemap layers/Exit Stairs\".queue_free()
+	$\"Dungeon/Tilemap layers/Blockage\".queue_free()
+	$Dungeon/Torches.normal()
+	$Dungeon/Doors/door1.unlock()
+	$Dungeon/Doors/door2.unlock()
+	$Dungeon/Doors/door3.unlock()
+	$Dungeon/Doors/door16.unlock()
+	for door in $Dungeon/Doors.get_children(): door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
+
+var death_count = -1
+
+func _on_player_spawned(player: Player) -> void:
+	player.entity_died.connect(QuickScripts.spawn)
+	death_count += 1
+	if death_count == 0: QuickScripts.new_dialogue(null, \"res://scenes/dialogues/3/enter_the_dungeon.tres\")
+
+func _on_green_slimes_wave_finished() -> void:
+	$Dungeon/Doors/door4.unlock()
+	$Dungeon/Doors/door5.unlock()
+
+func _on_blue_slimes_wave_finished() -> void:
+	$Dungeon/Doors/door6.unlock()
+	$Dungeon/Doors/door7.unlock()
+
+func _on_red_slimes_wave_finished() -> void:
+	$Dungeon/Doors/door8.unlock()
+	$Dungeon/Doors/door9.unlock()
+
+func _on_goblins_wave_finished() -> void:
+	$Dungeon/Doors/door10.unlock()
+	$Dungeon/Doors/door11.unlock()
+
+func _on_hellhounds_wave_finished() -> void:
+	$Dungeon/Doors/door10.unlock()
+	$Dungeon/Doors/door12.unlock()
+
+func _on_goblin_champion_wave_finished() -> void:
+	$Dungeon/Doors/door14.unlock()
+	if $Dungeon/Doors/door15.state == $Dungeon/Doors/door15.door_state.opened:
+		$Dungeon/Doors/door13.unlock()
+
+func _on_cereberus_wave_finished() -> void:
+	$Dungeon/Doors/door15.unlock()
+	if $Dungeon/Doors/door14.state == $Dungeon/Doors/door14.door_state.opened:
+		$Dungeon/Doors/door13.unlock()
+
+func _on_demon_general_wave_finished() -> void:
+	$Dungeon/Doors/door17.unlock()
+	$Demon_General_HP.queue_free()
+	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/3/granted_audience.tres\")
+"
+
+[sub_resource type="GDScript" id="GDScript_5tki5"]
+resource_name = "mob wave handler"
+script/source = "extends Node2D
+
+signal slimes_defeated
+signal goblins_defeated
+signal hellhounds_defeated
+signal skeletons_defeated
+signal demons_defeated
+
+var slimes_finished := false
+var goblins_finished := false
+var hellhounds_finished := false
+var skeletons_finished := false
+var demons_finished := false
+
+func _ready() -> void:
+	$\"Green Slimes/Spawner\".begin()
+	$\"Blue Slimes/Spawner\".begin()
+	$\"Red Slimes/Spawner\".begin()
+
+func _physics_process(_delta: float) -> void:
+	if not get_node_or_null(\"Green Slimes\") and not get_node_or_null(\"Blue Slimes\") and not get_node_or_null(\"Red Slimes\") and not slimes_finished:
+		slimes_finished = true
+		slimes_defeated.emit()
+	if not get_node_or_null(\"Goblins\") and not get_node_or_null(\"Goblin Champion\") and not goblins_finished:
+		goblins_finished = true
+		goblins_defeated.emit()
+	if not get_node_or_null(\"Hellhounds\") and not get_node_or_null(\"Cereberus\") and not hellhounds_finished:
+		hellhounds_finished = false
+		hellhounds_defeated.emit()
+	if not get_node_or_null(\"Skeleton Army\") and not skeletons_finished:
+		skeletons_finished = true
+		skeletons_defeated.emit()
+	if not get_node_or_null(\"Demon General\") and not demons_finished:
+		demons_finished = true
+		demons_defeated.emit()
+
+func _on_slimes_defeated() -> void:
+	$Goblins/Spawner.begin()
+	$\"Goblin Champion/Spawner\".begin()
+	$Hellhounds/Spawner.begin()
+	$Cereberus/Spawner.begin()
+
+func _on_goblins_defeated() -> void:
+	if get_node_or_null(\"Skeleton Army/Army\"):
+		$\"Skeleton Army/Army\".begin()
+		$\"Skeleton Army/Champion\".begin()
+
+func _on_hellhounds_defeated() -> void:
+	if get_node_or_null(\"Skeleton Army/Army\"):
+		$\"Skeleton Army/Army\".begin()
+		$\"Skeleton Army/Champion\".begin()
+
+func _on_skeletons_defeated() -> void:
+	$\"Demon General/Demon General\".puppet = false
+	$\"Demon General/StaticBody2D\".queue_free()
+	$\"Demon General/Demon General\".show()
+	$\"../Demon_General_HP\".show()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvksx"]
+size = Vector2(428, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1l7f"]
+size = Vector2(1424, 261)
+
+[node name="Enter the Dungeon" type="Node2D" unique_id=1808679160]
+script = SubResource("GDScript_3283v")
+player_spawn_position = Vector2(-31, 46)
+metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
+
+[node name="Demon_General_HP" type="CanvasLayer" parent="." unique_id=867674065]
+visible = false
+
+[node name="BossHp" parent="Demon_General_HP" unique_id=1147545071 node_paths=PackedStringArray("boss") instance=ExtResource("1_amskc")]
+boss = NodePath("../../Mob Waves/Demon General/Demon General")
+
+[node name="Dungeon" parent="." unique_id=935988611 instance=ExtResource("1_onalh")]
+
+[node name="Mob Waves" type="Node2D" parent="." unique_id=1965918414]
+script = SubResource("GDScript_5tki5")
+
+[node name="Green Slimes" type="Node2D" parent="Mob Waves" unique_id=298795598]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Green Slimes" unique_id=1436587745 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("6_d3d0d")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Green Slimes/Spawner" unique_id=2122097683]
+position = Vector2(4034, 430)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Blue Slimes" type="Node2D" parent="Mob Waves" unique_id=718394111]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Blue Slimes" unique_id=686366191 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("7_wbpek")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 5
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Blue Slimes/Spawner" unique_id=660233873]
+position = Vector2(4424, -13)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Red Slimes" type="Node2D" parent="Mob Waves" unique_id=153513056]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Red Slimes" unique_id=1303465699 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("8_viwuw")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 1
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Red Slimes/Spawner" unique_id=1847700136]
+position = Vector2(3766, 712)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Goblins" type="Node2D" parent="Mob Waves" unique_id=1159618675]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Goblins" unique_id=1578007041 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("9_8p16u")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Goblins/Spawner" unique_id=1006409227]
+position = Vector2(5755, 559)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Goblin Champion" type="Node2D" parent="Mob Waves" unique_id=483132915]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Goblin Champion" unique_id=869668936 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("10_gvggy")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 1
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Goblin Champion/Spawner" unique_id=551457519]
+position = Vector2(7682, 410)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Hellhounds" type="Node2D" parent="Mob Waves" unique_id=466393678]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Hellhounds" unique_id=1454731386 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("11_jkqin")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Hellhounds/Spawner" unique_id=539109613]
+position = Vector2(5759, 899)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Cereberus" type="Node2D" parent="Mob Waves" unique_id=898696326]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Spawner" type="Area2D" parent="Mob Waves/Cereberus" unique_id=1527855931 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("12_s2l0u")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 1
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Cereberus/Spawner" unique_id=1687189537]
+position = Vector2(7682, 994)
+shape = SubResource("RectangleShape2D_kvksx")
+
+[node name="Skeleton Army" type="Node2D" parent="Mob Waves" unique_id=1939263449]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Army" type="Area2D" parent="Mob Waves/Skeleton Army" unique_id=1194104672 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("13_4p4r1"), ExtResource("14_sdv70"), ExtResource("15_5tki5")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 20
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Skeleton Army/Army" unique_id=762342748]
+position = Vector2(9151, 821)
+shape = SubResource("RectangleShape2D_p1l7f")
+
+[node name="Champion" type="Area2D" parent="Mob Waves/Skeleton Army" unique_id=1950773905 node_paths=PackedStringArray("Spawn_Root")]
+script = ExtResource("5_5tki5")
+Mob_Scenes = Array[PackedScene]([ExtResource("15_sbtkl")])
+Spawn_Root = NodePath("..")
+Rate = 0.0
+Initial_Spawns = 3
+metadata/_custom_type_script = "uid://k0njues52nl2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob Waves/Skeleton Army/Champion" unique_id=633511540]
+position = Vector2(9151, 821)
+shape = SubResource("RectangleShape2D_p1l7f")
+
+[node name="Demon General" type="Node2D" parent="Mob Waves" unique_id=300077235]
+script = ExtResource("4_3283v")
+metadata/_custom_type_script = "uid://5u3surwy2bde"
+
+[node name="Demon General" parent="Mob Waves/Demon General" unique_id=952172728 instance=ExtResource("16_cce0b")]
+visible = false
+position = Vector2(8516, 481)
+puppet = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Mob Waves/Demon General" unique_id=1854997192]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mob Waves/Demon General/StaticBody2D" unique_id=674021465]
+polygon = PackedVector2Array(8313, 599, 8708, 599, 8736, 339, 8741, 624)
+
+[connection signal="goblins_defeated" from="Mob Waves" to="Mob Waves" method="_on_goblins_defeated"]
+[connection signal="hellhounds_defeated" from="Mob Waves" to="Mob Waves" method="_on_hellhounds_defeated"]
+[connection signal="skeletons_defeated" from="Mob Waves" to="Mob Waves" method="_on_skeletons_defeated"]
+[connection signal="slimes_defeated" from="Mob Waves" to="Mob Waves" method="_on_slimes_defeated"]
+[connection signal="wave_finished" from="Mob Waves/Green Slimes" to="." method="_on_green_slimes_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Blue Slimes" to="." method="_on_blue_slimes_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Red Slimes" to="." method="_on_red_slimes_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Goblins" to="." method="_on_goblins_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Goblin Champion" to="." method="_on_goblin_champion_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Hellhounds" to="." method="_on_hellhounds_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Cereberus" to="." method="_on_cereberus_wave_finished"]
+[connection signal="wave_finished" from="Mob Waves/Demon General" to="." method="_on_demon_general_wave_finished"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkalwlo4pjron"]
 
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_y2xwm"]
-[ext_resource type="PackedScene" uid="uid://83howi64ipha" path="res://scenes/characters/character_card.tscn" id="2_yqeip"]
+[ext_resource type="PackedScene" uid="uid://83howi64ipha" path="res://ui/character_card.tscn" id="2_yqeip"]
 [ext_resource type="PackedScene" uid="uid://bbd0aduf4k1tp" path="res://scenes/characters/pc/knight.tscn" id="3_32ap0"]
 [ext_resource type="PackedScene" uid="uid://dy7gi0gjpojrs" path="res://scenes/characters/pc/wizard.tscn" id="4_iba8s"]
 [ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="5_ksetj"]

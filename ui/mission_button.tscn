@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bmmwnwd3yk1c3"]
+
+[ext_resource type="Texture2D" uid="uid://c55bi244oh5h7" path="res://assets/thumbnails/1.png" id="1_t77uo"]
+[ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_ug8rl"]
+
+[sub_resource type="GDScript" id="GDScript_xnn10"]
+script/source = "extends Button
+
+@export var mission_name : String
+@export var mission_number : int
+@onready var parent : Control = get_parent()
+
+signal begin_mission(number : int)
+
+func _ready() -> void:
+	if mission_name == \"\":
+		var temp = QuickScripts.get_lvl(mission_number).instantiate()
+		mission_name = temp.name
+		temp.queue_free()
+	text = \"(%d) %s\" % [mission_number, mission_name]
+	icon = load(\"res://assets/thumbnails/%d.png\" % mission_number)
+	pressed.connect(begin_mission.emit.bind(mission_number))
+
+func _process(_delta: float) -> void:
+	var parent_size = parent.get_parent_area_size()
+	self.custom_minimum_size = Vector2(parent_size.y, parent_size.y / 1.5)
+"
+
+[node name="Mission" type="Button" unique_id=1617970656]
+custom_minimum_size = Vector2(500, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ug8rl")
+text = "escape"
+icon = ExtResource("1_t77uo")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+script = SubResource("GDScript_xnn10")
+mission_number = 1
