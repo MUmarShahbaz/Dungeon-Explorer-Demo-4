@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dxu8wbjqmkp3d"]
+
+[ext_resource type="Script" uid="uid://c0irv2blollmd" path="res://components/MISC/projectile.gd" id="1_qm5v4"]
+[ext_resource type="Texture2D" uid="uid://bdvl0d86spqfy" path="res://assets/sprites/mobs/witch/Charge.png" id="2_va6re"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sacjv"]
+atlas = ExtResource("2_va6re")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v32a6"]
+atlas = ExtResource("2_va6re")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htlqg"]
+atlas = ExtResource("2_va6re")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1vy5"]
+atlas = ExtResource("2_va6re")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvf7l"]
+atlas = ExtResource("2_va6re")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vv6ae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sacjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v32a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htlqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1vy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvf7l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qm5v4"]
+radius = 2.236068
+
+[node name="Witch Charge" type="RigidBody2D" unique_id=1736211204 node_paths=PackedStringArray("sprite", "collider")]
+script = ExtResource("1_qm5v4")
+sprite = NodePath("sprite")
+collider = NodePath("CollisionShape2D")
+damage = 5
+metadata/_custom_type_script = "uid://c0irv2blollmd"
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=581190056]
+sprite_frames = SubResource("SpriteFrames_vv6ae")
+autoplay = "default"
+offset = Vector2(-5.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696986980]
+shape = SubResource("CircleShape2D_qm5v4")
