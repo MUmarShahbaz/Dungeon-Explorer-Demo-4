@@ -31,7 +31,9 @@ func _physics_process(_delta: float) -> void:
 		$\"Castle Outdoors\".entity_z_index(this_entity)
 
 func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player: QuickScripts.open_lvl(3)
+	if body is Player:
+		await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/2/pass_through_village.tres\")
+		QuickScripts.open_lvl(3)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxky6"]

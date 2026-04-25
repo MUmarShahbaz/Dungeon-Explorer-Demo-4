@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://cn6vdmqsi6dgo"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_buv5x"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_gkfb7"]
+
+[sub_resource type="Resource" id="Resource_buv5x"]
+script = ExtResource("1_buv5x")
+Text = "You pass by the mercernary guild
+and notice it is strangely busy.
+You ignore it and head inside the dungeon."
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_gkfb7")
+array = Array[ExtResource("1_buv5x")]([SubResource("Resource_buv5x")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://6addh66ubpqb"]
+
+[ext_resource type="Script" uid="uid://bbg6fsrcyvfow" path="res://components/MISC/level.gd" id="1_y5plx"]
+[ext_resource type="PackedScene" uid="uid://qc6y2r101yqr" path="res://maps/mercenary_guild.tscn" id="2_vk2nq"]
+
+[node name="Ambush" type="Node2D" unique_id=1970056131]
+script = ExtResource("1_y5plx")
+player_spawn_position = Vector2(50, 100)
+metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
+
+[node name="MercenaryGuild" parent="." unique_id=1027294771 instance=ExtResource("2_vk2nq")]
