@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ciuubul3d4wm1" path="res://scenes/characters/mob/enemy/witch.tscn" id="3_vk2nq"]
 [ext_resource type="PackedScene" uid="uid://cvwjmyu7mpr77" path="res://scenes/characters/mob/enemy/elven archer.tscn" id="4_gd4qn"]
 [ext_resource type="PackedScene" uid="uid://bcm1ycae5k5wl" path="res://scenes/characters/mob/enemy/gladiator.tscn" id="5_s2kvt"]
+[ext_resource type="PackedScene" uid="uid://bscerisq317hb" path="res://scenes/characters/mob/enemy/pyromancer.tscn" id="6_l4g5w"]
 
 [node name="Ambush" type="Node2D" unique_id=1970056131]
 script = ExtResource("1_y5plx")
@@ -23,3 +24,6 @@ position = Vector2(1381, 217)
 
 [node name="Gladiator" parent="Mercenaries" unique_id=205144350 instance=ExtResource("5_s2kvt")]
 position = Vector2(1336, 216)
+
+[node name="Pyromancer" parent="Mercenaries" unique_id=933659021 instance=ExtResource("6_l4g5w")]
+position = Vector2(1301, 219)
