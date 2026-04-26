@@ -7,20 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://fdklui3d6kmg" path="res://scenes/characters/pc/samurai.tscn" id="5_ksetj"]
 [ext_resource type="PackedScene" uid="uid://d2xuwtajb241q" path="res://scenes/characters/npc/elf king.tscn" id="6_32ap0"]
 [ext_resource type="PackedScene" uid="uid://bjwprndwtpepx" path="res://scenes/characters/pc/ninja.tscn" id="6_fsk3l"]
-[ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/green slime.tscn" id="6_s0jrw"]
-[ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/blue slime.tscn" id="7_4fgu2"]
+[ext_resource type="PackedScene" uid="uid://cfa38nakwttmy" path="res://scenes/characters/mob/monsters/green slime.tscn" id="6_s0jrw"]
+[ext_resource type="PackedScene" uid="uid://bifw7qas2femy" path="res://scenes/characters/mob/monsters/blue slime.tscn" id="7_4fgu2"]
 [ext_resource type="PackedScene" uid="uid://bgadipced6uys" path="res://scenes/characters/npc/elf queen.tscn" id="7_iba8s"]
-[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="8_iba8s"]
+[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/enemy/corrupt knight.tscn" id="8_iba8s"]
 [ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally knight.tscn" id="8_ksetj"]
-[ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/goblin.tscn" id="8_qcnil"]
+[ext_resource type="PackedScene" uid="uid://bmlc0e4m8sapq" path="res://scenes/characters/mob/monsters/goblin.tscn" id="8_qcnil"]
 [ext_resource type="PackedScene" uid="uid://81v3h8p5wuu1" path="res://scenes/characters/npc/dark lady.tscn" id="8_s0jrw"]
-[ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/hellhound.tscn" id="9_s6jkj"]
-[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/skeleton warrior.tscn" id="10_fsk3l"]
-[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/skeleton spearman.tscn" id="11_jqmen"]
-[ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/lesser demon.tscn" id="11_qcnil"]
-[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/skeleton archer.tscn" id="12_crryw"]
+[ext_resource type="PackedScene" uid="uid://cw78pquw83hwo" path="res://scenes/characters/mob/monsters/hellhound.tscn" id="9_s6jkj"]
+[ext_resource type="PackedScene" uid="uid://bels7wc0jjdav" path="res://scenes/characters/mob/monsters/skeleton warrior.tscn" id="10_fsk3l"]
+[ext_resource type="PackedScene" uid="uid://bgt00d8spir50" path="res://scenes/characters/mob/monsters/skeleton spearman.tscn" id="11_jqmen"]
+[ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/monsters/lesser demon.tscn" id="11_qcnil"]
+[ext_resource type="PackedScene" uid="uid://bcm1ycae5k5wl" path="res://scenes/characters/mob/enemy/gladiator.tscn" id="12_c7flg"]
+[ext_resource type="PackedScene" uid="uid://54ny3m7kmgsf" path="res://scenes/characters/mob/monsters/skeleton archer.tscn" id="12_crryw"]
+[ext_resource type="PackedScene" uid="uid://cvwjmyu7mpr77" path="res://scenes/characters/mob/enemy/elven archer.tscn" id="13_2eb4v"]
 [ext_resource type="PackedScene" uid="uid://l5fcp0cx14mo" path="res://scenes/characters/mob/boss/red slime.tscn" id="13_c7flg"]
 [ext_resource type="PackedScene" uid="uid://be3xdfq2ly1iy" path="res://scenes/characters/mob/boss/goblin champion.tscn" id="14_2eb4v"]
+[ext_resource type="PackedScene" uid="uid://ciuubul3d4wm1" path="res://scenes/characters/mob/enemy/witch.tscn" id="14_70a2y"]
 [ext_resource type="PackedScene" uid="uid://b25tl31ia5xmc" path="res://scenes/characters/mob/boss/cerberus.tscn" id="15_70a2y"]
 [ext_resource type="PackedScene" uid="uid://c6beiwhjtrb7d" path="res://scenes/characters/mob/boss/skeleton champion.tscn" id="16_wir3w"]
 [ext_resource type="PackedScene" uid="uid://cnhnlcn2jkj00" path="res://scenes/characters/mob/boss/demon general.tscn" id="17_wgmab"]
@@ -176,35 +179,66 @@ entity = ExtResource("8_iba8s")
 [node name="Avatar" parent="ScrollContainer/HFlowContainer/ENM/Corrupt Knight/BG/Container/Sub" parent_id_path=PackedInt32Array(492799347, 317594288) index="1" unique_id=404912874]
 self_modulate = Color(1, 0.8117647, 0.8117647, 1)
 
-[node name="Lesser Demon" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1878001946 instance=ExtResource("2_yqeip")]
+[node name="Gladiator" parent="ScrollContainer/HFlowContainer/ENM" unique_id=877563802 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("12_c7flg")
+
+[node name="Elven Archer" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1950122084 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("13_2eb4v")
+
+[node name="Witch" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1112720985 instance=ExtResource("2_yqeip")]
+layout_mode = 2
+entity = ExtResource("14_70a2y")
+
+[node name="MON_LABEL" type="Label" parent="ScrollContainer/HFlowContainer" unique_id=963232385]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme = ExtResource("1_y2xwm")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cw5t")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1rxty")
+text = "Monsters"
+vertical_alignment = 2
+
+[node name="MON" type="HFlowContainer" parent="ScrollContainer/HFlowContainer" unique_id=1784616594]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Lesser Demon" parent="ScrollContainer/HFlowContainer/MON" unique_id=735451848 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("11_qcnil")
 
-[node name="Green Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=868646207 instance=ExtResource("2_yqeip")]
+[node name="Green Slime" parent="ScrollContainer/HFlowContainer/MON" unique_id=1505488411 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("6_s0jrw")
 
-[node name="Blue Slime" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1605394717 instance=ExtResource("2_yqeip")]
+[node name="Blue Slime" parent="ScrollContainer/HFlowContainer/MON" unique_id=1452517232 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("7_4fgu2")
 
-[node name="Goblin" parent="ScrollContainer/HFlowContainer/ENM" unique_id=2042488285 instance=ExtResource("2_yqeip")]
+[node name="Goblin" parent="ScrollContainer/HFlowContainer/MON" unique_id=1209621569 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("8_qcnil")
 
-[node name="Hellhound" parent="ScrollContainer/HFlowContainer/ENM" unique_id=406711136 instance=ExtResource("2_yqeip")]
+[node name="Hellhound" parent="ScrollContainer/HFlowContainer/MON" unique_id=1083164238 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("9_s6jkj")
 
-[node name="Skeleton Warrior" parent="ScrollContainer/HFlowContainer/ENM" unique_id=1896920148 instance=ExtResource("2_yqeip")]
+[node name="Skeleton Warrior" parent="ScrollContainer/HFlowContainer/MON" unique_id=1236953722 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("10_fsk3l")
 
-[node name="Skeleton Spearman" parent="ScrollContainer/HFlowContainer/ENM" unique_id=556156657 instance=ExtResource("2_yqeip")]
+[node name="Skeleton Spearman" parent="ScrollContainer/HFlowContainer/MON" unique_id=2081109812 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("11_jqmen")
 
-[node name="Skeleton Archer" parent="ScrollContainer/HFlowContainer/ENM" unique_id=2115806295 instance=ExtResource("2_yqeip")]
+[node name="Skeleton Archer" parent="ScrollContainer/HFlowContainer/MON" unique_id=122332408 instance=ExtResource("2_yqeip")]
 layout_mode = 2
 entity = ExtResource("12_crryw")
 

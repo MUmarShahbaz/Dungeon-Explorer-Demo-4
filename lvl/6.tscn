@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bbg6fsrcyvfow" path="res://components/MISC/level.gd" id="1_y5plx"]
 [ext_resource type="PackedScene" uid="uid://qc6y2r101yqr" path="res://maps/mercenary_guild.tscn" id="2_vk2nq"]
-[ext_resource type="PackedScene" uid="uid://ciuubul3d4wm1" path="res://scenes/characters/mob/witch.tscn" id="3_vk2nq"]
+[ext_resource type="PackedScene" uid="uid://ciuubul3d4wm1" path="res://scenes/characters/mob/enemy/witch.tscn" id="3_vk2nq"]
+[ext_resource type="PackedScene" uid="uid://cvwjmyu7mpr77" path="res://scenes/characters/mob/enemy/elven archer.tscn" id="4_gd4qn"]
+[ext_resource type="PackedScene" uid="uid://bcm1ycae5k5wl" path="res://scenes/characters/mob/enemy/gladiator.tscn" id="5_s2kvt"]
 
 [node name="Ambush" type="Node2D" unique_id=1970056131]
 script = ExtResource("1_y5plx")
@@ -11,5 +13,13 @@ metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="MercenaryGuild" parent="." unique_id=1027294771 instance=ExtResource("2_vk2nq")]
 
-[node name="Witch" parent="." unique_id=74087624 instance=ExtResource("3_vk2nq")]
+[node name="Mercenaries" type="Node2D" parent="." unique_id=224442349]
+
+[node name="Witch" parent="Mercenaries" unique_id=74087624 instance=ExtResource("3_vk2nq")]
 position = Vector2(1414, 218)
+
+[node name="Elven Archer" parent="Mercenaries" unique_id=1582985569 instance=ExtResource("4_gd4qn")]
+position = Vector2(1381, 217)
+
+[node name="Gladiator" parent="Mercenaries" unique_id=205144350 instance=ExtResource("5_s2kvt")]
+position = Vector2(1336, 216)

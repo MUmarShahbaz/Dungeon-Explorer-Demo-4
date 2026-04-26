@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtqu2i6wvcrtc"]
 
 [ext_resource type="PackedScene" uid="uid://d3sjuw2xon2v4" path="res://maps/castle_outdoors.tscn" id="1_mmdjw"]
-[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/corrupt knight.tscn" id="2_oqyht"]
+[ext_resource type="PackedScene" uid="uid://ycuwkubi11sy" path="res://scenes/characters/mob/enemy/corrupt knight.tscn" id="2_oqyht"]
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_qq4ve"]
 [ext_resource type="Script" uid="uid://k0njues52nl2" path="res://components/MISC/spawner.gd" id="3_nhe16"]
 [ext_resource type="PackedScene" uid="uid://knr8x2n3fuq8" path="res://scenes/characters/npc/ally knight.tscn" id="5_8mlh3"]

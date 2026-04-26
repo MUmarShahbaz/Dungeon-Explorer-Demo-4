@@ -45,6 +45,10 @@ func charge(target : Entity):
 		else: primary()
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2kcv"]
+atlas = ExtResource("8_bv6nj")
+region = Rect2(798, 50, 61, 78)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnh4d"]
 atlas = ExtResource("2_mr8vb")
 region = Rect2(0, 0, 128, 128)
@@ -1015,6 +1019,11 @@ primary_buffer = NodePath("Buffer")
 projectile_launcher = NodePath("ProjectileLauncher")
 TDR_front = 500.0
 TDR_back = 100.0
+avatar = SubResource("AtlasTexture_w2kcv")
+title = "Witch"
+type = 2
+HitPoints = 30.0
+Walk_Speed = 80.0
 Attack_Range = 300.0
 collider = NodePath("collider")
 ANM_Animated_Sprite = NodePath("sprite")

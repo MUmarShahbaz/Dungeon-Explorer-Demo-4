@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cslpoftconrkv" path="res://scenes/characters/mob/boss/minotaur.tscn" id="2_gd4qn"]
 [ext_resource type="Script" uid="uid://5u3surwy2bde" path="res://components/MISC/wave.gd" id="2_y5plx"]
 [ext_resource type="PackedScene" uid="uid://3f4jx31apm83" path="res://maps/dungeon.tscn" id="3_sluun"]
-[ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/lesser demon.tscn" id="3_vk2nq"]
+[ext_resource type="PackedScene" uid="uid://b8kyfmk7bsd7" path="res://scenes/characters/mob/monsters/lesser demon.tscn" id="3_vk2nq"]
 [ext_resource type="PackedScene" uid="uid://dc0xavqpescsx" path="res://scenes/characters/mob/boss/dragon.tscn" id="5_s2kvt"]
 [ext_resource type="PackedScene" uid="uid://njse68a42wiw" path="res://ui/boss_hp.tscn" id="6_l4g5w"]
 
