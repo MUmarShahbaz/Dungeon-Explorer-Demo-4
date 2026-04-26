@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://wuy4mmsavstv"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_uth3l"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_ax3va"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_e8v2b"]
+[ext_resource type="Texture2D" uid="uid://cvtnvhyb4deob" path="res://assets/sprites/dialogues/knight/Special.png" id="3_tcas1"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="4_5b12y"]
+
+[sub_resource type="Resource" id="Resource_hx23q"]
+script = ExtResource("1_uth3l")
+Text = "Speak
+or else......"
+Sprite = ExtResource("2_ax3va")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_lnwos"]
+script = ExtResource("1_uth3l")
+Text = "The mercenary explains:
+Someone from the nobility is corrupt
+and is planning a coup."
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_etcte"]
+script = ExtResource("1_uth3l")
+Text = "The King's sickness is thanks to
+a special poison from overseas"
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_fxopj"]
+script = ExtResource("1_uth3l")
+Text = "The mercenaries were only asked
+to stop you from reaching the castle"
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_2pbkb"]
+script = ExtResource("1_uth3l")
+Text = "They were contacted via letter
+The don't know who hired them"
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_ykmg5"]
+script = ExtResource("1_uth3l")
+Text = "I must make haste and go
+straight to the castle"
+Sprite = ExtResource("3_tcas1")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_p4nbe"]
+script = ExtResource("1_uth3l")
+Text = "Tell the local knights to meet
+me at the castle"
+Sprite = ExtResource("4_5b12y")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_e8v2b")
+array = Array[ExtResource("1_uth3l")]([SubResource("Resource_hx23q"), SubResource("Resource_lnwos"), SubResource("Resource_etcte"), SubResource("Resource_fxopj"), SubResource("Resource_2pbkb"), SubResource("Resource_ykmg5"), SubResource("Resource_p4nbe")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

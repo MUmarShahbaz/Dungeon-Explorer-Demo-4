@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://chyodfihwwwe2"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_kdwij"]
+[ext_resource type="Texture2D" uid="uid://bxmicwy6pqxpa" path="res://assets/sprites/dialogues/knight/Smile.png" id="2_0klu2"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_3t7s2"]
+[ext_resource type="Texture2D" uid="uid://dhup1larybry3" path="res://assets/sprites/dialogues/knight/Calm.png" id="3_pqr0y"]
+
+[sub_resource type="Resource" id="Resource_3t7s2"]
+script = ExtResource("1_kdwij")
+Text = "Whew! That was close!
+Made it out by a hair’s breadth!"
+Sprite = ExtResource("2_0klu2")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_kdwij"]
+script = ExtResource("1_kdwij")
+Text = "Ever get the feeling that you are being watched?"
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[sub_resource type="Resource" id="Resource_tk5ok"]
+script = ExtResource("1_kdwij")
+Text = "I don't know why
+but I have a bad feeling"
+Sprite = ExtResource("3_pqr0y")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_3t7s2")
+array = Array[ExtResource("1_kdwij")]([SubResource("Resource_3t7s2"), SubResource("Resource_kdwij"), SubResource("Resource_tk5ok")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

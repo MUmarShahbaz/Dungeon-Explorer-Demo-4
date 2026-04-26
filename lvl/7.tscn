@@ -12,15 +12,16 @@ script/source = "extends Level
 func _ready() -> void:   
 	super._ready()
 	await QuickScripts.player_spawned
+	QuickScripts.player.entity_died.connect(QuickScripts.open_lvl.bind(7))
 	await $\"Ally Knights/Spawner\".begin()
 	Input.action_press(\"army_follow\")
 	await get_tree().physics_frame
 	Input.action_release(\"army_follow\")
 	await QuickScripts.move_entity(-400)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/7/rendezvous.tres\")
 	QuickScripts.camera_offset(Vector2.RIGHT*13)
 	QuickScripts.new_dialogue(null, \"res://scenes/dialogues/7/climb_fountain.tres\")
 	$\"Corrupt Knights/Spawner\".begin()
-	
 
 func _physics_process(_delta: float) -> void:
 	var entities = get_tree().get_nodes_in_group(\"entities\")

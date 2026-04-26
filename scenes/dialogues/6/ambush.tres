@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://bg1hdde6ltq32"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_vdv3j"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="2_5jp8t"]
+[ext_resource type="Texture2D" uid="uid://chxs7or3hlljv" path="res://assets/sprites/dialogues/knight/Aggression.png" id="2_nwkgy"]
+
+[sub_resource type="Resource" id="Resource_kqgyo"]
+script = ExtResource("1_vdv3j")
+Text = "Mercenaries!!!
+It's an ambush!!"
+Sprite = ExtResource("2_nwkgy")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("2_5jp8t")
+array = Array[ExtResource("1_vdv3j")]([SubResource("Resource_kqgyo")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"

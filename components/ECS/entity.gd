@@ -155,11 +155,13 @@ func check_anim_end(animation : String) -> bool:
 
 func await_frame(animation: String, frame : int) -> void:
 	while !check_frame(animation, frame):
+		if not get_tree(): break
 		await get_tree().process_frame
 	return
 
 func await_anim_end(animation: String):
 	while not check_anim_end(animation):
+		if not get_tree(): break
 		await get_tree().process_frame
 	return
 
@@ -170,6 +172,7 @@ func start_anim(animation : String, force : bool = false):
 func force_anim(animation : String):
 	while not check_anim_end(animation):
 		if not check_anim(animation): start_anim(animation, true)
+		if not get_tree(): break
 		await get_tree().process_frame
 	return
 #endregion

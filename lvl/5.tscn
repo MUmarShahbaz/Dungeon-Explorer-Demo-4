@@ -36,7 +36,7 @@ func prepare_map():
 	for door in $Dungeon/Doors.get_children():
 		door.door_opened.connect(func (_x): if door.exit != null: player_spawn_position = door.exit.global_position)
 		door.unlock()
-	$Dungeon/Doors/door0.door_opened.connect(func (_x): QuickScripts.open_lvl(7))
+	$Dungeon/Doors/door0.door_opened.connect(func (_x): QuickScripts.open_lvl(6))
 	$Dungeon/Doors/door4.door_opened.connect(func (_x): if get_node_or_null(\"Mob Waves/Lesser Demons\"): $\"Mob Waves/Lesser Demons\".queue_free())
 	$Dungeon/Doors/door16.lock()
 

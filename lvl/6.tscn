@@ -1,14 +1,162 @@
 [gd_scene format=3 uid="uid://6addh66ubpqb"]
 
-[ext_resource type="Script" uid="uid://bbg6fsrcyvfow" path="res://components/MISC/level.gd" id="1_y5plx"]
 [ext_resource type="PackedScene" uid="uid://qc6y2r101yqr" path="res://maps/mercenary_guild.tscn" id="2_vk2nq"]
 [ext_resource type="PackedScene" uid="uid://ciuubul3d4wm1" path="res://scenes/characters/mob/enemy/witch.tscn" id="3_vk2nq"]
 [ext_resource type="PackedScene" uid="uid://cvwjmyu7mpr77" path="res://scenes/characters/mob/enemy/elven archer.tscn" id="4_gd4qn"]
 [ext_resource type="PackedScene" uid="uid://bcm1ycae5k5wl" path="res://scenes/characters/mob/enemy/gladiator.tscn" id="5_s2kvt"]
 [ext_resource type="PackedScene" uid="uid://bscerisq317hb" path="res://scenes/characters/mob/enemy/pyromancer.tscn" id="6_l4g5w"]
 
+[sub_resource type="GDScript" id="GDScript_s2kvt"]
+script/source = "extends Level
+
+var cutscene_1_played : bool = false
+var cutscene_2_played : bool = false
+
+func _ready() -> void:
+	super._ready()
+	await QuickScripts.player_spawned
+	QuickScripts.player.entity_died.connect(QuickScripts.open_lvl.bind(6))
+	for mercenary in get_tree().get_nodes_in_group(\"mercenary\"): mercenary.flip()
+	await QuickScripts.move_entity(80)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/suspicious.tres\")
+
+func _physics_process(_delta: float) -> void:
+	if QuickScripts.player:
+		if QuickScripts.player.global_position.x >= 1000 and not cutscene_1_played:
+			cutscene_1()
+		if get_tree().get_nodes_in_group(\"mercenary\").size() == 1 and not cutscene_2_played:
+			await cutscene_2()
+			await QuickScripts.fade_out()
+			QuickScripts.open_lvl(7)
+
+func cutscene_1():
+	cutscene_1_played = true
+	QuickScripts.player.move(0)
+	QuickScripts.camera_offset(Vector2.RIGHT)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/ambush.tres\")
+	for mercenary in get_tree().get_nodes_in_group(\"mercenary\"): mercenary.puppet = false
+
+func cutscene_2():
+	cutscene_2_played = true
+	QuickScripts.player.disable_controls = true
+	var last_mercenary = get_tree().get_first_node_in_group(\"mercenary\")
+	last_mercenary.puppet = true
+	last_mercenary.hp = 1000
+	last_mercenary.start_anim(\"idle\", true)
+	var to_last_mercenary : Vector2 = last_mercenary.global_position - QuickScripts.player.global_position
+	while to_last_mercenary.length() > 200:
+		to_last_mercenary = last_mercenary.global_position - QuickScripts.player.global_position
+		QuickScripts.player.move(to_last_mercenary.normalized().x, true)
+		if not get_tree(): break
+		await get_tree().physics_frame
+	QuickScripts.player.move(0)
+	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/interrogation.tres\")
+"
+
+[sub_resource type="GDScript" id="GDScript_l4g5w"]
+script/source = "extends Enemy
+#region normal
+@export var melee_range : float
+@export var melee_controller : MeleeController
+@export var primary_buffer : Buffer
+@export var projectile_launcher : ProjectileLauncher
+
+func _process(_delta: float) -> void:
+	ANM_Animation_Tree.set(\"parameters/conditions/attack\", primary_buffer.buffer and not melee_controller.is_cooldown)
+
+func primary():
+	primary_buffer.start()
+
+func secondary():
+	if projectile_launcher.is_cooldown: return
+	start_anim(\"shoot\")
+
+func charge(target : Entity):
+	var to_target := target.global_position - global_position
+	if to_target.length() > Attack_Range: move(to_target.normalized().x, true)
+	else:
+		if to_target.x * facing < 0: flip()
+		move(0)
+		if to_target.length() > melee_range: secondary()
+		else: primary()
+#endregion
+
+func die():
+	if get_tree().get_nodes_in_group(\"mercenary\").size() > 1:
+		remove_from_group(\"mercenary\")
+		super.die()
+"
+
+[sub_resource type="GDScript" id="GDScript_gq75b"]
+script/source = "extends Enemy
+#region normal
+@export var projectile_launcher : ProjectileLauncher
+
+func primary(): if not projectile_launcher.is_cooldown: start_anim(\"shoot\")
+#endregion
+
+func die():
+	if get_tree().get_nodes_in_group(\"mercenary\").size() > 1:
+		remove_from_group(\"mercenary\")
+		super.die()
+"
+
+[sub_resource type="GDScript" id="GDScript_7xhx2"]
+script/source = "extends Enemy
+#region normal
+@export var attack_buffer : Buffer
+@export var melee_controller : MeleeController
+
+func _process(_delta: float) -> void:
+	ANM_Animation_Tree.set(\"parameters/conditions/attack\", attack_buffer.buffer and not melee_controller.is_cooldown)
+
+func primary():
+	attack_buffer.start()
+#endregion
+
+func die():
+	if get_tree().get_nodes_in_group(\"mercenary\").size() > 1:
+		remove_from_group(\"mercenary\")
+		super.die()
+"
+
+[sub_resource type="GDScript" id="GDScript_kpsck"]
+script/source = "extends Enemy
+#region normal
+@export var attack_buffer : Buffer
+@export var melee_controller : MeleeController
+@export var atk3_dps : float
+@export var atk3_damage_zone : DamageZone
+
+var attack_3_reported : bool = false
+
+func _process(_delta: float) -> void:
+	ANM_Animation_Tree.set(\"parameters/conditions/attack\", attack_buffer.buffer and not melee_controller.is_cooldown)
+	if check_anim(\"attack_3\") and not attack_3_reported:
+		attack_3_reported = true
+		attack_3()
+
+func primary():
+	attack_buffer.start()
+
+func attack_3():
+	while check_anim(\"attack_3\"):
+		if ANM_Animated_Sprite.frame > 5 and ANM_Animated_Sprite.frame < 12:
+			atk3_damage_zone.damage_all(atk3_dps*get_physics_process_delta_time())
+		if not get_tree(): continue
+		await get_tree().physics_frame
+	melee_controller.try_cooldown()
+	attack_3_reported = false
+#endregion
+
+func die():
+	if get_tree().get_nodes_in_group(\"mercenary\").size() > 1:
+		remove_from_group(\"mercenary\")
+		super.die()
+"
+
 [node name="Ambush" type="Node2D" unique_id=1970056131]
-script = ExtResource("1_y5plx")
+script = SubResource("GDScript_s2kvt")
 player_spawn_position = Vector2(0, 200)
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
@@ -16,14 +164,22 @@ metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Mercenaries" type="Node2D" parent="." unique_id=224442349]
 
-[node name="Witch" parent="Mercenaries" unique_id=74087624 instance=ExtResource("3_vk2nq")]
+[node name="Witch" parent="Mercenaries" unique_id=74087624 groups=["mercenary"] instance=ExtResource("3_vk2nq")]
 position = Vector2(1414, 218)
+script = SubResource("GDScript_l4g5w")
+puppet = true
 
-[node name="Elven Archer" parent="Mercenaries" unique_id=1582985569 instance=ExtResource("4_gd4qn")]
+[node name="Elven Archer" parent="Mercenaries" unique_id=1582985569 groups=["mercenary"] instance=ExtResource("4_gd4qn")]
 position = Vector2(1381, 217)
+script = SubResource("GDScript_gq75b")
+puppet = true
 
-[node name="Gladiator" parent="Mercenaries" unique_id=205144350 instance=ExtResource("5_s2kvt")]
+[node name="Gladiator" parent="Mercenaries" unique_id=205144350 groups=["mercenary"] instance=ExtResource("5_s2kvt")]
 position = Vector2(1336, 216)
+script = SubResource("GDScript_7xhx2")
+puppet = true
 
-[node name="Pyromancer" parent="Mercenaries" unique_id=933659021 instance=ExtResource("6_l4g5w")]
+[node name="Pyromancer" parent="Mercenaries" unique_id=933659021 groups=["mercenary"] instance=ExtResource("6_l4g5w")]
 position = Vector2(1301, 219)
+script = SubResource("GDScript_kpsck")
+puppet = true

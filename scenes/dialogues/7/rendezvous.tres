@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueSequence" format=3 uid="uid://b0mouf6esaave"]
+
+[ext_resource type="Script" uid="uid://86nuwqny3eip" path="res://components/RES/Dialogue.gd" id="1_cykfx"]
+[ext_resource type="Texture2D" uid="uid://cvtnvhyb4deob" path="res://assets/sprites/dialogues/knight/Special.png" id="2_vscju"]
+[ext_resource type="Script" uid="uid://0jqxed4lfalo" path="res://components/RES/DialogueSequence.gd" id="6_0jkxh"]
+
+[sub_resource type="Resource" id="Resource_k1n8v"]
+script = ExtResource("1_cykfx")
+Text = "Good! It seems the knights have arrived.
+There are more up ahead too.
+WAIT!!!"
+Sprite = ExtResource("2_vscju")
+metadata/_custom_type_script = "uid://86nuwqny3eip"
+
+[resource]
+script = ExtResource("6_0jkxh")
+array = Array[ExtResource("1_cykfx")]([SubResource("Resource_k1n8v")])
+metadata/_custom_type_script = "uid://0jqxed4lfalo"
