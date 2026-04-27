@@ -66,6 +66,7 @@ size = Vector2(87, 2)
 [node name="Escape the Dungeon" type="Node2D" unique_id=353818878]
 script = SubResource("GDScript_3283v")
 player_spawn_position = Vector2(9900, 1006)
+objective_point = "4.1."
 
 [node name="Dragon HP" type="CanvasLayer" parent="." unique_id=1459266638]
 visible = false

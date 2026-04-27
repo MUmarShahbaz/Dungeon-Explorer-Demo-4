@@ -25,6 +25,7 @@ func cutscene_1():
 	QuickScripts.camera_offset(Vector2.RIGHT)
 	await QuickScripts.move_entity(600, %\"Elf Queen\", false)
 	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/1/elf_queens_request.tres\")
+	QuickScripts.pause_menu.rebuild_tree(\"2.1.\")
 	QuickScripts.camera_offset(Vector2.ZERO)
 	QuickScripts.move_entity(50)
 
@@ -38,6 +39,7 @@ size = Vector2(80, 215)
 [node name="Elf Queen\'s Request" type="Node2D" unique_id=1512458389]
 script = SubResource("GDScript_u1uom")
 player_spawn_position = Vector2(50, 140)
+objective_point = "1.0."
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Indoors" parent="." unique_id=77318229 instance=ExtResource("2_367xe")]

@@ -149,6 +149,7 @@ size = Vector2(1424, 261)
 [node name="Enter the Dungeon" type="Node2D" unique_id=1808679160]
 script = SubResource("GDScript_3283v")
 player_spawn_position = Vector2(-31, 46)
+objective_point = "2.1+"
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Demon_General_HP" type="CanvasLayer" parent="." unique_id=867674065]

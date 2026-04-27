@@ -44,6 +44,7 @@ size = Vector2(130.25, 20)
 [node name="Break into castle" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
 player_spawn_position = Vector2(-550, 150)
+objective_point = "4.4."
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_mmdjw")]

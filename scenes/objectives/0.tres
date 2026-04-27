@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="Objective" format=3 uid="uid://bcp2r33uqoiu"]
+
+[ext_resource type="Script" uid="uid://dxu3127l2h7yg" path="res://components/RES/Objective.gd" id="1_34vm1"]
+
+[sub_resource type="Resource" id="Resource_34vm1"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Meet the Queen"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_yksam"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Enter Dungeon"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_bj3oc"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Reach deepest chamber"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_7rrcb"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Meet the Dark Lady"
+subobjectives = Array[ExtResource("1_34vm1")]([SubResource("Resource_yksam"), SubResource("Resource_bj3oc")])
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_5h84l"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Aquire Miracle Potion"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_elvmu"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Escape Dungeon"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_p1bak"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Defeat Mercenaries"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_qal4c"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Break into Castle"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_ygptb"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Climb Fountain and Trees"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_4o3n7"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Return"
+subobjectives = Array[ExtResource("1_34vm1")]([SubResource("Resource_elvmu"), SubResource("Resource_p1bak"), SubResource("Resource_qal4c"), SubResource("Resource_ygptb")])
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_2jy3k"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Give potion to Queen"
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[sub_resource type="Resource" id="Resource_22s1e"]
+script = ExtResource("1_34vm1")
+checked = true
+text = "Heal the King"
+subobjectives = Array[ExtResource("1_34vm1")]([SubResource("Resource_2jy3k")])
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"
+
+[resource]
+script = ExtResource("1_34vm1")
+subobjectives = Array[ExtResource("1_34vm1")]([SubResource("Resource_34vm1"), SubResource("Resource_7rrcb"), SubResource("Resource_5h84l"), SubResource("Resource_4o3n7"), SubResource("Resource_22s1e")])
+metadata/_custom_type_script = "uid://dxu3127l2h7yg"

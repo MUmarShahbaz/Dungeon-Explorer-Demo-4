@@ -33,6 +33,7 @@ func cutscene_1():
 	QuickScripts.camera_offset(Vector2.RIGHT)
 	await QuickScripts.move_entity(675, %\"Elf Queen\", true)
 	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/8/give_potion.tres\")
+	QuickScripts.pause_menu.rebuild_tree(\"5+1+\")
 	QuickScripts.camera_offset()
 
 func cutscene_2():
@@ -54,6 +55,7 @@ func cutscene_3():
 [node name="End" type="Node2D" unique_id=1512458389]
 script = SubResource("GDScript_u1uom")
 player_spawn_position = Vector2(50, 140)
+objective_point = "5.1."
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Indoors" parent="." unique_id=77318229 instance=ExtResource("1_hmhoh")]

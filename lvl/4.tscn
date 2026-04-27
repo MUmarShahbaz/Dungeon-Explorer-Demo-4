@@ -24,6 +24,7 @@ func cutscene_1():
 	QuickScripts.camera_offset(Vector2.RIGHT)
 	%\"Dark Lady\".flip()
 	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/4/audience.tres\")
+	QuickScripts.pause_menu.rebuild_tree(\"4.1.\")
 	QuickScripts.move_entity(-75)
 
 func _on_next_level_body_entered(body: Node2D) -> void:
@@ -36,6 +37,7 @@ size = Vector2(64, 281)
 [node name="Audience with Dark Lady" type="Node2D" unique_id=1137905628]
 script = SubResource("GDScript_ru2nh")
 player_spawn_position = Vector2(-75, 155)
+objective_point = "3.0."
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Deepest Chamber" parent="." unique_id=1451006815 instance=ExtResource("2_yad1s")]

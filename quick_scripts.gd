@@ -110,6 +110,7 @@ func move_entity(to : int, entity: Entity = player, run : bool = true, speed_boo
 	if dif < 0:
 		while entity.global_position.x > to:
 			entity.move(-1 * speed_boost, run)
+			if not get_tree(): break
 			await get_tree().physics_frame
 	if dif > 0:
 		while entity.global_position.x < to:

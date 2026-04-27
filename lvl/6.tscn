@@ -34,6 +34,7 @@ func cutscene_1():
 	QuickScripts.player.move(0)
 	QuickScripts.camera_offset(Vector2.RIGHT)
 	await QuickScripts.new_dialogue(null, \"res://scenes/dialogues/6/ambush.tres\")
+	QuickScripts.pause_menu.rebuild_tree(\"4.2.\")
 	for mercenary in get_tree().get_nodes_in_group(\"mercenary\"): mercenary.puppet = false
 
 func cutscene_2():
@@ -158,6 +159,7 @@ func die():
 [node name="Ambush" type="Node2D" unique_id=1970056131]
 script = SubResource("GDScript_s2kvt")
 player_spawn_position = Vector2(0, 200)
+objective_point = "4.1+"
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="MercenaryGuild" parent="." unique_id=1027294771 instance=ExtResource("2_vk2nq")]

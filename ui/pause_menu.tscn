@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmvrlagg3o3i6"]
 
 [ext_resource type="Theme" uid="uid://jybapoe2molj" path="res://assets/theme/main.tres" id="1_2thiu"]
+[ext_resource type="FontFile" uid="uid://ma273g1gutiu" path="res://assets/fonts/NewRocker-Regular.ttf" id="1_6ap7o"]
 [ext_resource type="PackedScene" uid="uid://cos5ex21hlpxf" path="res://ui/controls.tscn" id="2_ii2nf"]
 [ext_resource type="PackedScene" uid="uid://bm3cufrccaih6" path="res://ui/audio.tscn" id="2_npydk"]
 [ext_resource type="PackedScene" uid="uid://bkalwlo4pjron" path="res://ui/entity_stats.tscn" id="3_fob5h"]
@@ -14,10 +15,17 @@ script/source = "extends CanvasLayer
 @onready var controls = $Menu/Controls
 @onready var entity_stats = $\"Menu/Entity Stats\"
 @onready var back = $Menu/Back
-@onready var resume = $Menu/Main/Resume
+@onready var resume = $Menu/Main/Buttons/Resume
+@onready var objective_tree = $Menu/Main/Objectives
 @onready var fade = $Fade
 
 enum states {Main, Audio, Controls, Entity_Stats}
+var objective_root
+
+func _ready() -> void:
+	objective_root = objective_tree.create_item()
+	objective_tree.hide_root = true
+	objective_tree.set_column_expand(0, false)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"interact\"): _on_back_pressed()
@@ -73,7 +81,42 @@ func _on_quit_pressed() -> void:
 func _on_back_pressed() -> void:
 	if at_pause_home: _on_resume_pressed()
 	else: change_state(states.Main)
+
+var objective_list = preload(\"res://scenes/objectives/0.tres\")
+
+func rebuild_tree(at_mission : String):
+	objective_tree.clear()
+	objective_root = objective_tree.create_item()
+	var big = int(at_mission[0])
+	var big_completed = at_mission[1] == \"+\"
+	var small = int(at_mission[2])
+	var small_completed = at_mission[3] == \"+\"
+	var list = objective_list.subobjectives.duplicate_deep(2)
+	list = list.slice(0, big)
+	if not big_completed: list.back().checked = false
+	if small != 0:
+		list.back().subobjectives = list.back().subobjectives.slice(0, small)
+		if not small_completed: list.back().subobjectives.back().checked = false
+	for objective in list: add_objective(objective)
+
+func add_objective(objective : Objective, root : TreeItem = objective_root):
+	var new_objective : TreeItem = root.create_child()
+	new_objective.set_cell_mode(0, TreeItem.CELL_MODE_CHECK)
+	new_objective.set_checked(0, objective.checked)
+	new_objective.set_text(1, objective.text)
+	new_objective.set_expand_right(1, true)
+	if objective.subobjectives.size() > 0:
+		for subobjective : Objective in objective.subobjectives: add_objective(subobjective, new_objective)
 "
+
+[sub_resource type="Theme" id="Theme_j3kxr"]
+Tree/colors/font_color = Color(1, 1, 1, 1)
+Tree/constants/inner_item_margin_bottom = 8
+Tree/constants/inner_item_margin_left = 12
+Tree/constants/inner_item_margin_top = 8
+Tree/font_sizes/font_size = 25
+Tree/fonts/font = ExtResource("1_6ap7o")
+Tree/fonts/title_button_font = ExtResource("1_6ap7o")
 
 [node name="Pause Menu" type="CanvasLayer" unique_id=1918781953]
 process_mode = 3
@@ -89,45 +132,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Main" type="VBoxContainer" parent="Menu" unique_id=610502761]
+[node name="BG" type="ColorRect" parent="Menu" unique_id=1915730659]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.75
-anchor_top = 0.5
-anchor_right = 0.75
-anchor_bottom = 0.5
-offset_left = -201.5
-offset_top = -129.0
-offset_right = 201.5
-offset_bottom = 129.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="BG" type="ColorRect" parent="Menu/Main" unique_id=1915730659]
-layout_mode = 2
 color = Color(1, 1, 1, 0.67058825)
 
-[node name="Resume" type="Button" parent="Menu/Main" unique_id=1710977182]
+[node name="Main" type="HBoxContainer" parent="Menu" unique_id=884053975]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.85
+anchor_bottom = 0.5
+offset_top = -233.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Objectives" type="Tree" parent="Menu/Main" unique_id=32031355]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_j3kxr")
+columns = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/Main" unique_id=610502761]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Resume" type="Button" parent="Menu/Main/Buttons" unique_id=1710977182]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Resume"
 
-[node name="Audio" type="Button" parent="Menu/Main" unique_id=701159153]
+[node name="Audio" type="Button" parent="Menu/Main/Buttons" unique_id=701159153]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Audio"
 
-[node name="Controls" type="Button" parent="Menu/Main" unique_id=727683323]
+[node name="Controls" type="Button" parent="Menu/Main/Buttons" unique_id=727683323]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Controls"
 
-[node name="Entity Stats" type="Button" parent="Menu/Main" unique_id=403563585]
+[node name="Entity Stats" type="Button" parent="Menu/Main/Buttons" unique_id=403563585]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Entity Stats"
 
-[node name="Quit" type="Button" parent="Menu/Main" unique_id=1570958491]
+[node name="Quit" type="Button" parent="Menu/Main/Buttons" unique_id=1570958491]
 layout_mode = 2
 theme = ExtResource("1_2thiu")
 text = "Quit"
@@ -165,9 +222,9 @@ duration = 2.0
 start_blank = true
 metadata/_custom_type_script = "uid://1uygfo1ei3w4"
 
-[connection signal="pressed" from="Menu/Main/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Menu/Main/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="Menu/Main/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="Menu/Main/Entity Stats" to="." method="_on_entity_stats_pressed"]
-[connection signal="pressed" from="Menu/Main/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/Main/Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Menu/Main/Buttons/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="Menu/Main/Buttons/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Menu/Main/Buttons/Entity Stats" to="." method="_on_entity_stats_pressed"]
+[connection signal="pressed" from="Menu/Main/Buttons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Menu/Back" to="." method="_on_back_pressed"]

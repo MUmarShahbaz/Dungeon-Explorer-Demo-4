@@ -76,9 +76,7 @@ func change_state(new_state : states):
 func go_to_lvl(number : int):
 	if opening_a_level: return
 	opening_a_level = true
-	var opened_lvl = QuickScripts.get_lvl(number)
-	await QuickScripts.fade_out()
-	get_tree().change_scene_to_packed(opened_lvl)
+	QuickScripts.open_lvl(number)
 
 func _on_back_pressed() -> void:
 	if Missions.get_meta(\"visible\") == true: change_state(states.Play)

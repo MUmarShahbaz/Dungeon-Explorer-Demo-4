@@ -42,6 +42,7 @@ size = Vector2(70.5, 508)
 [node name="Tutorial" type="Node2D" unique_id=1580822662]
 script = SubResource("GDScript_p2nvj")
 player_spawn_position = Vector2(2100, 75)
+objective_point = "2.1."
 metadata/_custom_type_script = "uid://bbg6fsrcyvfow"
 
 [node name="Castle Outdoors" parent="." unique_id=2112943336 instance=ExtResource("1_p2nvj")]
