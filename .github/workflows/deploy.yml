@@ -84,7 +84,7 @@ jobs:
                 name: godot-export
             
             - name: Unpack Godot Artifact
-              run: mv -v Web/* . && rmdir Web
+              run: mkdir game && mv -v Web/* game && rmdir Web
             
             - name: Push
               run: |
