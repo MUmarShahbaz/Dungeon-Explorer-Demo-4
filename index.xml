@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Dungeon Explorer</title>
+      <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4</link>
+      <description>Last 10 notes on Dungeon Explorer</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>Ability Component System</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ACS/ACS</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ACS/ACS</guid>
+    <description><![CDATA[ A system of plugins that perform a certain action ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Ally</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Ally</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Ally</guid>
+    <description><![CDATA[ Inherits : Entity Responsibilities Identifying as a Good Guy Stand Still / Use Secondary Move Patrol Follow Player Auto-Detect Enemy Charge at Enemy . ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Boss</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Boss</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Boss</guid>
+    <description><![CDATA[ Inherits : Enemy Responsibilities Reducing the chances of getting interrupted during attacks . ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Civilian</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Civilian</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Civilian</guid>
+    <description><![CDATA[ Inherits : Entity Responsibilities Identifying as a Good Guy Patrol Auto-Detect Enemy Running away from Enemy . ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Entity Component System</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/ECS</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/ECS</guid>
+    <description><![CDATA[ A scalable system designed to ease the creation and usage of Entities in the game ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Enemy</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Enemy</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Enemy</guid>
+    <description><![CDATA[ Inherits : Entity Responsibilities Identifying as a Bad Guy Patrol Auto-Detect Ally Charge at Ally . ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Entity</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Entity</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Entity</guid>
+    <description><![CDATA[ The base class of all entities ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Player</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Player</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/ECS/Player</guid>
+    <description><![CDATA[ Inherits : Ally Responsibilities Disable all Controls from Ally Interact with Manual Controls Health Regeneration Special Points / Boost handling . ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item><item>
+    <title>Home</title>
+    <link>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/</link>
+    <guid>https://mumarshahbaz.github.io/Dungeon-Explorer-Demo-4/</guid>
+    <description><![CDATA[ A brief overview of the ins and out of the Dungeon Explorer game ]]></description>
+    <pubDate>Mon, 27 Apr 2026 23:03:50 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
