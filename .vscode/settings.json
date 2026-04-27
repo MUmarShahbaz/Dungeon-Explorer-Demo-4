@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "node_modules": true,
+        "public": true,
+        ".gitignore": true,
+        ".node-version": true,
+        ".npmrc": true,
+        ".prettierignore": true,
+        ".prettierrc": true,
+        "globals.d.ts": true,
+        "index.d.ts": true,
+        "package-lock.json": true,
+        "package.json": true,
+        "tsconfig.json": true
+    }
+}

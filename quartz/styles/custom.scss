@@ -1,3 +1,39 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+.text-xxlg {
+    font-size: xx-large;
+}
+
+.w-center {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  min-height: 42px;
+  padding: 10px;
+  margin: 10px;
+
+  background-color: var(--gray);
+  color: var(--dark);
+
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: var(--darkgray);
+  color: var(--light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
